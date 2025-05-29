@@ -1,19 +1,31 @@
 #include <iostream>
+#include <unistd.h>
+#include <arpa/inet.h>
 #include <string>
 #include <cstring>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <sys/select.h>
+#include <thread>
 
 constexpr int PORT = 9090;
-constexpr int BUFFER_SIZE = 1024;
+
+void receive_messages(int sock_fd) {
+    char buffer[1024];
+    while (true) {
+        int bytes = read(sock_fd, buffer, sizeof(buffer) - 1);
+        if (bytes <= 0) {
+            std::cout << "\nDisconnected from server.\n";
+            break;
+        }
+        buffer[bytes] = '\0';
+        std::string msg(buffer);
+        std::cout << msg;
+        std::cout.flush();
+    }
+}
 
 int main() {
     int sock_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (sock_fd == -1) {
-        perror("Ошибка создания сокета");
+        perror("Socket creation failed");
         return 1;
     }
 
@@ -23,36 +35,22 @@ int main() {
     inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr);
 
     if (connect(sock_fd, (sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
-        perror("Не удалось подключиться к серверу");
+        perror("Connection to server failed");
         return 1;
     }
 
-    fd_set read_fds;
-    char buffer[BUFFER_SIZE]{};
+    std::thread recv_thread(receive_messages, sock_fd);
 
-    while (true) {
-        FD_ZERO(&read_fds);
-        FD_SET(sock_fd, &read_fds);
-        FD_SET(STDIN_FILENO, &read_fds);
-
-        int max_fd = std::max(sock_fd, STDIN_FILENO) + 1;
-        if (select(max_fd, &read_fds, nullptr, nullptr, nullptr) < 0) break;
-
-        if (FD_ISSET(sock_fd, &read_fds)) {
-            ssize_t len = recv(sock_fd, buffer, sizeof(buffer) - 1, 0);
-            if (len <= 0) break;
-            buffer[len] = '\0';
-            std::cout << buffer << std::flush;
+    std::string input;
+    while (std::getline(std::cin, input)) {
+        if (input == "/exit") {
+            break;
         }
-
-        if (FD_ISSET(STDIN_FILENO, &read_fds)) {
-            std::string input;
-            std::getline(std::cin, input);
-            input += "\n";
-            send(sock_fd, input.c_str(), input.size(), 0);
-        }
+        input += "\n";
+        send(sock_fd, input.c_str(), input.size(), 0);
     }
 
     close(sock_fd);
+    recv_thread.join();
     return 0;
 }
