@@ -6,7 +6,6 @@
 #include <cstring>
 #include <map>
 #include <unordered_map>
-#include <deque>
 #include <vector>
 #include <algorithm>
 
@@ -21,20 +20,6 @@ struct ClientInfo {
 
 std::unordered_map<int, ClientInfo> clients;
 std::unordered_map<std::string, int> id_to_fd;
-std::deque<int> speaking_queue;
-
-void promote_next_speaker() {
-    while (!speaking_queue.empty()) {
-        int next_fd = speaking_queue.front();
-        speaking_queue.pop_front();
-        if (clients.count(next_fd)) {
-            clients[next_fd].is_speaking = true;
-            std::string msg = "You are now speaking.\n";
-            send(next_fd, msg.c_str(), msg.size(), 0);
-            return;
-        }
-    }
-}
 
 void disconnect_client(int fd, fd_set &master_fds) {
     if (clients.count(fd)) {
@@ -45,35 +30,15 @@ void disconnect_client(int fd, fd_set &master_fds) {
         if (!connected_to.empty() && id_to_fd.count(connected_to)) {
             int target_fd = id_to_fd[connected_to];
             clients[target_fd].connected_to.clear();
+            clients[target_fd].is_speaking = false;
             std::string msg = "Your conversation partner has left the chat.\n";
             send(target_fd, msg.c_str(), msg.size(), 0);
-        }
-
-        if (clients[fd].is_speaking) {
-            clients[fd].is_speaking = false;
-            promote_next_speaker();
         }
 
         clients.erase(fd);
         id_to_fd.erase(id);
         FD_CLR(fd, &master_fds);
         close(fd);
-    }
-}
-
-void try_add_to_queue(int fd) {
-    if (!clients[fd].is_speaking && std::find(speaking_queue.begin(), speaking_queue.end(), fd) == speaking_queue.end()) {
-        speaking_queue.push_back(fd);
-        std::string notify = "You have been added to the speaking queue.\n";
-        send(fd, notify.c_str(), notify.size(), 0);
-
-        bool someone_speaking = false;
-        for (const auto& [_, client] : clients) {
-            if (client.is_speaking) someone_speaking = true;
-        }
-        if (!someone_speaking) {
-            promote_next_speaker();
-        }
     }
 }
 
@@ -85,14 +50,15 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
             if (!clients[target_fd].connected_to.empty()) {
                 int old_fd = id_to_fd[clients[target_fd].connected_to];
                 clients[old_fd].connected_to.clear();
+                clients[old_fd].is_speaking = false;
                 std::string warn = "Your session was terminated by another connection.\n";
                 send(old_fd, warn.c_str(), warn.size(), 0);
             }
             clients[fd].connected_to = target_id;
             clients[target_fd].connected_to = clients[fd].id;
-            send(fd, "Connection established.\n", 26, 0);
+            clients[fd].is_speaking = true;
+            send(fd, "Connection established. You are now speaking.\n", 47, 0);
             send(target_fd, "A user connected to you.\n", 26, 0);
-            try_add_to_queue(fd);
         } else {
             send(fd, "User not found.\n", 17, 0);
         }
@@ -101,10 +67,10 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
             std::string target_id = clients[fd].connected_to;
             if (!target_id.empty() && id_to_fd.count(target_id)) {
                 int target_fd = id_to_fd[target_id];
-                speaking_queue.push_front(target_fd);
                 clients[fd].is_speaking = false;
+                clients[target_fd].is_speaking = true;
                 send(fd, "You passed the microphone.\n", 28, 0);
-                promote_next_speaker();
+                send(target_fd, "You are now speaking.\n", 24, 0);
             } else {
                 send(fd, "No connected client to pass speaking right.\n", 44, 0);
             }
