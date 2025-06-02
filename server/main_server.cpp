@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include <vector>
 #include <algorithm>
+#include <ctime>
+#include <sstream>
 
 constexpr int PORT = 9090;
 
@@ -20,6 +22,13 @@ struct ClientInfo {
 
 std::unordered_map<int, ClientInfo> clients;
 std::unordered_map<std::string, int> id_to_fd;
+
+std::string get_timestamp() {
+    time_t now = time(nullptr);
+    char buf[20];
+    strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M", localtime(&now));
+    return std::string(buf);
+}
 
 void disconnect_client(int fd, fd_set &master_fds) {
     if (clients.count(fd)) {
@@ -162,7 +171,9 @@ int main() {
                             std::string target_id = clients[fd].connected_to;
                             if (!target_id.empty() && id_to_fd.count(target_id)) {
                                 int target_fd = id_to_fd[target_id];
-                                std::string text = msg + "\n";
+                                std::string timestamp = get_timestamp();
+                                std::string sender = clients[fd].id;
+                                std::string text = "[" + timestamp + "] " + sender + ": " + msg + "\n";
                                 send(target_fd, text.c_str(), text.size(), 0);
                             } else {
                                 send(fd, "Not connected. Use /connect <ID>\n", 33, 0);
