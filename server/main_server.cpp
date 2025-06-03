@@ -18,6 +18,7 @@ struct ClientInfo {
     std::string id;
     std::string connected_to;
     bool is_speaking = false;
+    std::string pending_request_from;
 };
 
 std::unordered_map<int, ClientInfo> clients;
@@ -56,18 +57,23 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
         std::string target_id = msg.substr(9);
         if (id_to_fd.count(target_id)) {
             int target_fd = id_to_fd[target_id];
-            if (!clients[target_fd].connected_to.empty()) {
-                int old_fd = id_to_fd[clients[target_fd].connected_to];
-                clients[old_fd].connected_to.clear();
-                clients[old_fd].is_speaking = false;
-                std::string warn = "Your session was terminated by another connection.\n";
-                send(old_fd, warn.c_str(), warn.size(), 0);
+
+            if (!clients[target_fd].pending_request_from.empty()) {
+                send(fd, "User is busy with another request.\n", 34, 0);
+                return;
             }
-            clients[fd].connected_to = target_id;
-            clients[target_fd].connected_to = clients[fd].id;
-            clients[fd].is_speaking = true;
-            send(fd, "Connection established. You are now speaking.\n", 47, 0);
-            send(target_fd, "A user connected to you.\n", 26, 0);
+
+            if (!clients[target_fd].connected_to.empty()) {
+                std::string notice = "User '" + clients[fd].id + "' attempted to connect to you, but you are already in a conversation.\n";
+                send(target_fd, notice.c_str(), notice.size(), 0);
+
+                send(fd, "User is already connected.\n", 29, 0);
+                return;
+            }
+
+            clients[target_fd].pending_request_from = clients[fd].id;
+            std::string prompt = "User '" + clients[fd].id + "' wants to connect. Accept? (yes/no)\n";
+            send(target_fd, prompt.c_str(), prompt.size(), 0);
         } else {
             send(fd, "User not found.\n", 17, 0);
         }
@@ -90,6 +96,31 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
         disconnect_client(fd, master_fds);
     } else {
         send(fd, "Only /connect <ID>, /vote, /end are allowed.\n", 45, 0);
+    }
+}
+
+void handle_pending_response(int fd, const std::string &msg) {
+    ClientInfo &responder = clients[fd];
+    if (responder.pending_request_from.empty()) return;
+
+    std::string requester_id = responder.pending_request_from;
+    responder.pending_request_from.clear();
+
+    if (!id_to_fd.count(requester_id)) {
+        send(fd, "Requester disconnected.\n", 25, 0);
+        return;
+    }
+
+    int requester_fd = id_to_fd[requester_id];
+    if (msg == "yes") {
+        responder.connected_to = requester_id;
+        clients[requester_fd].connected_to = responder.id;
+        clients[requester_fd].is_speaking = true;
+        send(requester_fd, "Connection accepted. You are now speaking.\n", 45, 0);
+        send(fd, "Connection established.\n", 26, 0);
+    } else {
+        send(requester_fd, "Connection rejected.\n", 23, 0);
+        send(fd, "Connection declined.\n", 23, 0);
     }
 }
 
@@ -161,6 +192,8 @@ int main() {
                             id_to_fd[id] = fd;
                             std::string welcome = "Hello, " + id + "! Use /connect <ID>, /vote, /end\n";
                             send(fd, welcome.c_str(), welcome.size(), 0);
+                        } else if (!clients[fd].pending_request_from.empty()) {
+                            handle_pending_response(fd, msg);
                         } else if (msg[0] == '/') {
                             handle_client_command(fd, msg, master_fds);
                         } else {
