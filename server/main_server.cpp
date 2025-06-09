@@ -1,3 +1,5 @@
+#include "history.h"
+
 #include <iostream>
 #include <unistd.h>
 #include <netinet/in.h>
@@ -118,6 +120,14 @@ void handle_pending_response(int fd, const std::string &msg) {
         clients[requester_fd].is_speaking = true;
         send(requester_fd, "Connection accepted. You are now speaking.\n", 45, 0);
         send(fd, "Connection established.\n", 26, 0);
+        std::string history = load_history_for_users(responder.id, requester_id);
+        if (!history.empty()) {
+            send(fd, "Chat history:\n", 14, 0);
+            send(fd, history.c_str(), history.size(), 0);
+            send(requester_fd, "Chat history:\n", 14, 0);
+            send(requester_fd, history.c_str(), history.size(), 0);
+        }
+
     } else {
         send(requester_fd, "Connection rejected.\n", 23, 0);
         send(fd, "Connection declined.\n", 23, 0);
@@ -208,6 +218,7 @@ int main() {
                                 std::string sender = clients[fd].id;
                                 std::string text = "[" + timestamp + "] " + sender + ": " + msg + "\n";
                                 send(target_fd, text.c_str(), text.size(), 0);
+                                append_message_to_history(sender, target_id, text);
                             } else {
                                 send(fd, "Not connected. Use /connect <ID>\n", 33, 0);
                             }
