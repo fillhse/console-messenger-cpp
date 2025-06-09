@@ -48,6 +48,12 @@ int main() {
     while (true) {
         std::getline(std::cin, input);
         if (input.empty()) continue;
+        if (input == "/exit") {
+            send(sockfd, input.c_str(), input.size(), 0);
+            std::cout << "\nServer closed your session. Exiting...\n";
+            close(sockfd);
+            exit(0);
+        }
         send(sockfd, input.c_str(), input.size(), 0);
     }
 

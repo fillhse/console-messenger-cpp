@@ -128,8 +128,7 @@ void handle_pending_response(int fd, const std::string &msg) {
         responder.connected_to = requester_id;
         clients[requester_fd].connected_to = responder.id;
         clients[requester_fd].is_speaking = true;
-        send(requester_fd, "Connection accepted. You are now speaking.\n", 45, 0);
-        send(fd, "Connection established.\n", 26, 0);
+
         std::string history = load_history_for_users(responder.id, requester_id);
         if (!history.empty()) {
             send(fd, "Chat history:\n", 14, 0);
@@ -137,6 +136,8 @@ void handle_pending_response(int fd, const std::string &msg) {
             send(requester_fd, "Chat history:\n", 14, 0);
             send(requester_fd, history.c_str(), history.size(), 0);
         }
+        send(requester_fd, "Connection accepted. You are now speaking.\n", 45, 0);
+        send(fd, "Connection established.\n", 26, 0);
 
     } else {
         send(requester_fd, "Connection rejected.\n", 23, 0);
@@ -214,9 +215,22 @@ int main() {
                             send(fd, welcome.c_str(), welcome.size(), 0);
                         } else if (!clients[fd].pending_request_from.empty()) {
                             handle_pending_response(fd, msg);
-                        } else if (msg[0] == '/' || msg[0] == '/help') {
+                        } else if (msg[0] == '/') {
                             handle_client_command(fd, msg, master_fds);
-                        } else {
+                        } else if (msg == "/help") {
+                            std::string help =
+                                "Available commands:\n"
+                                "/connect <ID> - request chat with user\n"
+                                "/vote         - pass speaker role\n"
+                                "/end          - end current conversation\n"
+                                "/exit         - exit the chat completely\n"
+                                "/help         - show this message\n";
+                            send(fd, help.c_str(), help.size(), 0);
+                        }
+                        else if (msg == "/exit") {
+                            disconnect_client(fd, master_fds);
+                        }
+                        else {
                             if (clients[fd].connected_to.empty()) {
                                 send(fd, "You are not in a conversation. Use /connect <ID> to start chatting.\n", 69, 0);
                                 continue;
