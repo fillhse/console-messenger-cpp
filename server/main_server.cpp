@@ -207,10 +207,15 @@ int main() {
                         } else if (msg[0] == '/') {
                             handle_client_command(fd, msg, master_fds);
                         } else {
+                            if (clients[fd].connected_to.empty()) {
+                                send(fd, "You are not in a conversation. Use /connect <ID> to start chatting.\n", 69, 0);
+                                continue;
+                            }
                             if (!clients[fd].is_speaking) {
                                 send(fd, "You cannot send messages unless you're the current speaker.\n", 63, 0);
                                 continue;
                             }
+
                             std::string target_id = clients[fd].connected_to;
                             if (!target_id.empty() && id_to_fd.count(target_id)) {
                                 int target_fd = id_to_fd[target_id];
