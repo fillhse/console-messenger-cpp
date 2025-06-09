@@ -95,8 +95,18 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
             send(fd, "You are not the current speaker.\n", 34, 0);
         }
     } else if (msg == "/end") {
-        disconnect_client(fd, master_fds);
-    } else {
+        std::string partner_id = clients[fd].connected_to;
+        if (!partner_id.empty() && id_to_fd.count(partner_id)) {
+            int partner_fd = id_to_fd[partner_id];
+            clients[partner_fd].connected_to.clear();
+            clients[partner_fd].is_speaking = false;
+            send(partner_fd, "Your conversation partner has ended the chat.\n", 46, 0);
+        }
+        clients[fd].connected_to.clear();
+        clients[fd].is_speaking = false;
+        send(fd, "You have left the conversation.\n", 33, 0);
+    } 
+    else {
         send(fd, "Only /connect <ID>, /vote, /end are allowed.\n", 45, 0);
     }
 }
@@ -204,7 +214,7 @@ int main() {
                             send(fd, welcome.c_str(), welcome.size(), 0);
                         } else if (!clients[fd].pending_request_from.empty()) {
                             handle_pending_response(fd, msg);
-                        } else if (msg[0] == '/') {
+                        } else if (msg[0] == '/' || msg[0] == '/help') {
                             handle_client_command(fd, msg, master_fds);
                         } else {
                             if (clients[fd].connected_to.empty()) {
