@@ -1,5 +1,5 @@
 #include "history.h"
-
+#include "telegram_auth.h"
 #include <iostream>
 #include <unistd.h>
 #include <netinet/in.h>
@@ -25,6 +25,7 @@ struct ClientInfo {
 
 std::unordered_map<int, ClientInfo> clients;
 std::unordered_map<std::string, int> id_to_fd;
+std::unordered_map<int, std::string> pending_auth;
 
 std::string get_timestamp() {
     time_t now = time(nullptr);
@@ -189,7 +190,8 @@ int main() {
                     if (client_fd != -1) {
                         FD_SET(client_fd, &master_fds);
                         fd_max = std::max(fd_max, client_fd);
-                        send(client_fd, "Enter your ID: ", 16, 0);
+                        const char* ask_id = "Enter your ID: ";
+                        send(client_fd, ask_id, strlen(ask_id), 0);
                     }
                 } else {
                     char buf[1024];
@@ -202,17 +204,35 @@ int main() {
                         msg.erase(std::remove(msg.begin(), msg.end(), '\n'), msg.end());
                         msg.erase(std::remove(msg.begin(), msg.end(), '\r'), msg.end());
 
-                        if (clients.count(fd) == 0) {
-                            std::string id = msg;
-                            if (id_to_fd.count(id)) {
-                                int old_fd = id_to_fd[id];
-                                send(old_fd, "Your ID is used by another client.\n", 37, 0);
-                                disconnect_client(old_fd, master_fds);
+                        if (clients.count(fd) == 0 && !pending_auth.count(fd)) {
+                            std::string chat_id = msg;
+                            if (chat_id.empty()) {
+                                send(fd, "Chat ID cannot be empty. Try again:\n", 36, 0);
+                                continue;
                             }
-                            clients[fd] = ClientInfo{fd, id};
-                            id_to_fd[id] = fd;
-                            std::string welcome = "Hello, " + id + "! Use /connect <ID>, /vote, /end\n";
-                            send(fd, welcome.c_str(), welcome.size(), 0);
+
+                            std::string code = generate_auth_code();
+                            if (send_telegram_code(chat_id, code)) {
+                                pending_auth[fd] = chat_id;
+                                const char* sent = "Telegram code sent. Enter the code to log in: ";
+                                send(fd, sent, strlen(sent), 0);
+                            } else {
+                                send(fd, "Failed to send Telegram message.\nUse command /exit to exit.\nCheck the telegram ID and write it again: ", 104, 0);
+                            }
+                        }
+                        else if (pending_auth.count(fd)) {
+                            std::string entered_code = msg;
+                            std::string chat_id = pending_auth[fd];
+                            if (verify_auth_code(chat_id, entered_code)) {
+                                clients[fd] = ClientInfo{fd, chat_id};
+                                id_to_fd[chat_id] = fd;
+                                pending_auth.erase(fd);
+
+                                std::string welcome = "Welcome, " + chat_id + "! Use /connect <ID>, /vote, /end\n";
+                                send(fd, welcome.c_str(), welcome.size(), 0);
+                            } else {
+                                send(fd, "Incorrect code. Try again: ", 27, 0);
+                            }
                         } else if (!clients[fd].pending_request_from.empty()) {
                             handle_pending_response(fd, msg);
                         } else if (msg[0] == '/') {
