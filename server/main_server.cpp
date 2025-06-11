@@ -106,8 +106,18 @@ void handle_client_command(int fd, const std::string &msg, fd_set &master_fds) {
         clients[fd].connected_to.clear();
         clients[fd].is_speaking = false;
         send(fd, "You have left the conversation.\n", 33, 0);
-    } 
-    else {
+    } else if (msg == "/help") {
+        std::string help =
+            "Available commands:\n"
+            "/connect <ID> - request chat with user\n"
+            "/vote         - pass speaker role\n"
+            "/end          - end current conversation\n"
+            "/exit         - exit the chat completely\n"
+            "/help         - show this message\n";
+        send(fd, help.c_str(), help.size(), 0);
+    } else if (msg == "/exit") {
+        disconnect_client(fd, master_fds);
+    } else {
         send(fd, "Only /connect <ID>, /vote, /end are allowed.\n", 45, 0);
     }
 }
@@ -147,6 +157,7 @@ void handle_pending_response(int fd, const std::string &msg) {
 }
 
 int main() {
+    ensure_bot_token();
     int listener = socket(AF_INET, SOCK_STREAM, 0);
     if (listener == -1) {
         perror("socket");
@@ -237,18 +248,6 @@ int main() {
                             handle_pending_response(fd, msg);
                         } else if (msg[0] == '/') {
                             handle_client_command(fd, msg, master_fds);
-                        } else if (msg == "/help") {
-                            std::string help =
-                                "Available commands:\n"
-                                "/connect <ID> - request chat with user\n"
-                                "/vote         - pass speaker role\n"
-                                "/end          - end current conversation\n"
-                                "/exit         - exit the chat completely\n"
-                                "/help         - show this message\n";
-                            send(fd, help.c_str(), help.size(), 0);
-                        }
-                        else if (msg == "/exit") {
-                            disconnect_client(fd, master_fds);
                         }
                         else {
                             if (clients[fd].connected_to.empty()) {

@@ -10,4 +10,5 @@ bool verify_auth_code(const std::string& chat_id, const std::string& code);
 
 extern std::string BOT_TOKEN;  // задаётся при запуске сервера
 void set_bot_token(const std::string& token);
+void ensure_bot_token();
 #endif // TELEGRAM_AUTH_H
