@@ -48,7 +48,7 @@ void disconnect_client(int fd, fd_set& master_fds) {
 			clients[target_fd].connected_to.clear();
 			clients[target_fd].is_speaking = false;
 			const std::string msg = "Your conversation partner has left the chat.\n";
-			send_all(target_fd, msg.c_str());
+			send_packet(target_fd, msg.c_str());
 		}
 
 		clients.erase(fd);
@@ -65,7 +65,7 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 			int target_fd = id_to_fd[target_id];
 
 			if (!clients[target_fd].pending_request_from.empty()) {
-				send_all(fd, "User is busy with another request.\n");
+				send_packet(fd, "User is busy with another request.\n");
 				return;
 			}
 
@@ -73,16 +73,16 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 				const std::string notice = "User '" + clients[fd].id +
 				                           "' attempted to connect to you, but you are "
 				                           "already in a conversation.\n";
-				send_all(target_fd, notice.c_str());
-				send_all(fd, "User is already connected.\n");
+				send_packet(target_fd, notice.c_str());
+				send_packet(fd, "User is already connected.\n");
 				return;
 			}
 
 			clients[target_fd].pending_request_from = clients[fd].id;
 			const std::string prompt = "User '" + clients[fd].id + "' wants to connect. Accept? (yes/no)\n";
-			send_all(target_fd, prompt.c_str());
+			send_packet(target_fd, prompt.c_str());
 		} else {
-			send_all(fd, "User not found.\n");
+			send_packet(fd, "User not found.\n");
 		}
 	} else if (msg == "/vote") {
 		if (clients[fd].is_speaking) {
@@ -91,13 +91,13 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 				int target_fd = id_to_fd[target_id];
 				clients[fd].is_speaking = false;
 				clients[target_fd].is_speaking = true;
-				send_all(fd, "You passed the microphone.\n");
-				send_all(target_fd, "You are now speaking.\n");
+				send_packet(fd, "You passed the microphone.\n");
+				send_packet(target_fd, "You are now speaking.\n");
 			} else {
-				send_all(fd, "No connected client to pass speaking right.\n");
+				send_packet(fd, "No connected client to pass speaking right.\n");
 			}
 		} else {
-			send_all(fd, "You are not the current speaker.\n");
+			send_packet(fd, "You are not the current speaker.\n");
 		}
 	} else if (msg == "/end") {
 		std::string partner_id = clients[fd].connected_to;
@@ -105,11 +105,11 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 			int partner_fd = id_to_fd[partner_id];
 			clients[partner_fd].connected_to.clear();
 			clients[partner_fd].is_speaking = false;
-			send_all(partner_fd, "Your conversation partner has ended the chat.\n");
+			send_packet(partner_fd, "Your conversation partner has ended the chat.\n");
 		}
 		clients[fd].connected_to.clear();
 		clients[fd].is_speaking = false;
-		send_all(fd, "You have left the conversation.\n");
+		send_packet(fd, "You have left the conversation.\n");
 	} else if (msg == "/help") {
 		const std::string help =
 		    "Available commands:\n"
@@ -118,11 +118,11 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 		    "/end          - end current conversation\n"
 		    "/exit         - exit the chat completely\n"
 		    "/help         - show this message\n";
-		send_all(fd, help.c_str());
+		send_packet(fd, help.c_str());
 	} else if (msg == "/exit") {
 		disconnect_client(fd, master_fds);
 	} else {
-		send_all(fd, "Only /connect <ID>, /vote, /end, /exit, /help are allowed.\n");
+		send_packet(fd, "Only /connect <ID>, /vote, /end, /exit, /help are allowed.\n");
 	}
 }
 
@@ -135,7 +135,7 @@ void handle_pending_response(int fd, const std::string& msg) {
 	responder.pending_request_from.clear();
 
 	if (!id_to_fd.count(requester_id)) {
-		send_all(fd, "Requester disconnected.\n");
+		send_packet(fd, "Requester disconnected.\n");
 		return;
 	}
 
@@ -147,16 +147,16 @@ void handle_pending_response(int fd, const std::string& msg) {
 
 		std::string history = load_history_for_users(responder.id, requester_id);
 		if (!history.empty()) {
-			send_all(fd, "Chat history:\n");
-			send_all(fd, history.c_str());
-			send_all(requester_fd, "Chat history:\n");
-			send_all(requester_fd, history.c_str());
+			send_packet(fd, "Chat history:\n");
+			send_packet(fd, history.c_str());
+			send_packet(requester_fd, "Chat history:\n");
+			send_packet(requester_fd, history.c_str());
 		}
-		send_all(requester_fd, "Connection accepted. You are now speaking.\n");
-		send_all(fd, "Connection established. You are a listener.\n");
+		send_packet(requester_fd, "Connection accepted. You are now speaking.\n");
+		send_packet(fd, "Connection established. You are a listener.\n");
 	} else {
-		send_all(requester_fd, "Connection rejected.\n");
-		send_all(fd, "Connection declined.\n");
+		send_packet(requester_fd, "Connection rejected.\n");
+		send_packet(fd, "Connection declined.\n");
 	}
 }
 
@@ -209,7 +209,7 @@ int main() {
 					FD_SET(client_fd, &master_fds);
 					fd_max = std::max(fd_max, client_fd);
 					const char* ask_id = "Enter your ID:\n";
-					send_all(client_fd, ask_id);
+					send_packet(client_fd, ask_id);
 				}
 			} else {
 				std::string msg;
@@ -221,7 +221,7 @@ int main() {
 				if (clients.count(fd) == 0 && !pending_auth.count(fd)) {
 					std::string chat_id = msg;
 					if (chat_id.empty()) {
-						send_all(fd, "Chat ID cannot be empty. Try again:\n");
+						send_packet(fd, "Chat ID cannot be empty. Try again:\n");
 						continue;
 					}
 
@@ -229,9 +229,9 @@ int main() {
 					if (send_telegram_code(chat_id, code)) {
 						pending_auth[fd] = chat_id;
 						const char* sent = "Telegram code sent. Enter the code to log in:\n";
-						send_all(fd, sent);
+						send_packet(fd, sent);
 					} else {
-						send_all(fd,
+						send_packet(fd,
 						         "Failed to send Telegram message.\nUse command /exit to "
 						         "exit.\nCheck the telegram ID and write it again:\n");
 					}
@@ -243,7 +243,7 @@ int main() {
 					if (verify_auth_code(chat_id, entered_code)) {
 						if (id_to_fd.count(chat_id)) {
 							int old_fd = id_to_fd[chat_id];
-							send_all(old_fd, "You have been logged out (second login detected).\n");
+							send_packet(old_fd, "You have been logged out (second login detected).\n");
 							disconnect_client(old_fd, master_fds);
 						}
 
@@ -253,9 +253,9 @@ int main() {
 
 						std::string welcome =
 						    "Welcome, " + chat_id + "! Use /connect <ID>, /vote, /end, /exit, /help\n";
-						send_all(fd, welcome.c_str());
+						send_packet(fd, welcome.c_str());
 					} else {
-						send_all(fd, "Incorrect code. Try again:\n");
+						send_packet(fd, "Incorrect code. Try again:\n");
 					}
 				}
 
@@ -269,13 +269,13 @@ int main() {
 
 				else {
 					if (clients[fd].connected_to.empty()) {
-						send_all(fd,
-						         "You are not in a conversation. Use /connect <ID> to "
+						send_packet(fd,
+						         "You are not in a conversation.\nUse /connect <ID> to "
 						         "start chatting.\n");
 						continue;
 					}
 					if (!clients[fd].is_speaking) {
-						send_all(fd,
+						send_packet(fd,
 						         "You cannot send messages unless you're the current "
 						         "speaker.\n");
 						continue;
@@ -287,10 +287,10 @@ int main() {
 						std::string timestamp = get_timestamp();
 						std::string sender = clients[fd].id;
 						std::string text = "[" + timestamp + "] " + sender + ": " + msg + "\n";
-						send_all(target_fd, text.c_str(), text.size());
+						send_packet(target_fd, text.c_str());
 						append_message_to_history(sender, target_id, text);
 					} else {
-						send_all(fd, "Not connected. Use /connect <ID>\n");
+						send_packet(fd, "Not connected. Use /connect <ID>\n");
 					}
 				}
 			}

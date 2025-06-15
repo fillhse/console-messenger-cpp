@@ -55,11 +55,19 @@ ServerConf get_config() {
 
 void receive_messages(int fd) {
 	std::string line;
-	while (recv_line(fd, line))
-		std::cout << line << '\n';
+		while (recv_line(fd, line)) {
+			if (line.empty())                   // пустую строку пропускаем
+				continue;
+
+			if (line == "*ENDM*") {             // маркер конца пакета
+				std::cout << "Your message: " << std::flush;
+				continue;
+			}
+			std::cout << line << '\n';
+		}
 	std::cout << "\nDisconnected from server.\n";
 	close(fd);
-	_exit(0);
+	exit(0);
 }
 
 int main() {
