@@ -73,11 +73,11 @@ int main() {
             continue;
         }
         if (input == "/exit") {
-            send_line(sock, "/exit");
+            send_all(sock, "/exit");
             std::cout << "\nExiting...\n";
             break;
         }
-        send_line(sock, input);
+        send_all(sock, input);
     }
     close(sock);
     return 0;
