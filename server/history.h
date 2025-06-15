@@ -3,7 +3,8 @@
 
 #include <string>
 
-void append_message_to_history(const std::string& user1, const std::string& user2, const std::string& message);
+void append_message_to_history(const std::string& user1, const std::string& user2,
+                               const std::string& message);
 std::string load_history_for_users(const std::string& user1, const std::string& user2);
 
-#endif // HISTORY_H
+#endif

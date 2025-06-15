@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # --- общий include-путь: корень проекта --------------------
-#  >> ДОБАВЬТЕ ЭТУ СТРОКУ <<
 include_directories("${PROJECT_SOURCE_DIR}")
 
 # ---------------- Сервер ----------------------------------

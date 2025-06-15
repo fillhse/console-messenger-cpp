@@ -1,0 +1,63 @@
+BasedOnStyle:  Google
+Language:      Cpp
+
+# ---------- отступы: табы вместо пробелов ----------
+UseTab:               ForIndentation
+IndentWidth:          4
+TabWidth:             4
+
+# ---------- строки и переносы ----------
+ColumnLimit:         110
+PenaltyBreakComment: 300
+PenaltyBreakString:  300
+
+# ---------- скобки ----------
+BreakBeforeBraces:   Attach
+BraceWrapping:
+  AfterControlStatement:   false
+  AfterEnum:               false
+  AfterStruct:             false
+  SplitEmptyRecord:        false
+  SplitEmptyFunction:      false
+
+# ---------- пробелы и указатели ----------
+SpaceBeforeParens:    ControlStatements
+PointerAlignment:     Left
+DerivePointerAlignment: false
+
+# ---------- короткие конструкции ----------
+AllowShortIfStatementsOnASingleLine:     false
+AllowShortLoopsOnASingleLine:            false
+AllowShortFunctionsOnASingleLine:        Inline
+
+# ---------- шаблоны и объявления ----------
+AlwaysBreakTemplateDeclarations:         Yes
+AlwaysBreakAfterReturnType:              None
+IndentWrappedFunctionNames:              false
+
+# ---------- switch/case ----------
+IndentCaseLabels:      true
+
+# ---------- namespaces ----------
+NamespaceIndentation:  All
+FixNamespaceComments:  true
+
+# ---------- includes ----------
+SortIncludes:          true
+IncludeBlocks:         Regroup
+IncludeCategories:
+  - Regex:           '^<.*\.h>'
+    Priority:        1
+  - Regex:           '^"(server|client|telegram_).*"'
+    Priority:        2
+  - Regex:           '.*'
+    Priority:        3
+
+# ---------- комментарии ----------
+ReflowComments:        true
+
+# ---------- макросы ----------
+IndentPPDirectives:    AfterHash
+
+# ---------- язык и стандарт ----------
+Standard:              c++17
