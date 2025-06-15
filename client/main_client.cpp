@@ -1,62 +1,84 @@
 #include <iostream>
-#include <thread>
+#include <fstream>
+#include <sstream>
 #include <string>
+#include <thread>
+#include <filesystem>
 #include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
-#include <cstring>
+#include "socket_utils.h"
 
-constexpr int PORT = 9090;
-constexpr const char* SERVER_IP = "127.0.0.1";
+constexpr size_t MAX_INPUT = 2000;
+const std::string CFG_DIR  = "CLIENT_SETTING";
+const std::string CFG_FILE = "CLIENT_SETTING/ip_port.txt";
 
-void receive_messages(int sockfd) {
-    char buffer[1024];
-    while (true) {
-        int bytes_received = recv(sockfd, buffer, sizeof(buffer) - 1, 0);
-        if (bytes_received <= 0) {
-            std::cout << "\nDisconnected from server." << std::endl;
-            close(sockfd);
-            exit(0);
-        }
-        buffer[bytes_received] = '\0';
-        std::cout << buffer << std::flush;
+struct ServerConf { std::string ip; int port; };
+
+bool valid_ip_port(const std::string& ip, int port) {
+    sockaddr_in tmp{};
+    return inet_pton(AF_INET, ip.c_str(), &tmp.sin_addr) == 1 && port > 0 && port < 65536;
+}
+
+ServerConf get_config() {
+    std::filesystem::create_directories(CFG_DIR);
+    std::ifstream fin(CFG_FILE);
+    std::string ip; int port;
+    bool ok = false;
+    if (fin) {
+        std::string line; std::getline(fin, line);
+        std::istringstream ss(line);
+        std::getline(ss, ip, ':'); ss >> port;
+        ok = valid_ip_port(ip, port);
     }
+    while (!ok) {
+        std::cout << "Enter server IP: "; std::cin >> ip;
+        std::cout << "Enter server port: "; std::cin >> port; std::cin.ignore();
+        ok = valid_ip_port(ip, port);
+        if (!ok) std::cout << "Invalid IP or port. Try again.\n";
+    }
+    std::ofstream(CFG_FILE, std::ios::trunc) << ip << ':' << port << '\n';
+    return {ip, port};
+}
+
+void receive_messages(int fd) {
+    std::string line;
+    while (recv_line(fd, line)) std::cout << line << '\n';
+    std::cout << "\nDisconnected from server.\n";
+    close(fd);
+    _exit(0);
 }
 
 int main() {
-    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd == -1) {
-        perror("socket");
-        return 1;
-    }
+    ServerConf conf = get_config();
 
-    sockaddr_in server_addr{};
-    server_addr.sin_family = AF_INET;
-    server_addr.sin_port = htons(PORT);
-    inet_pton(AF_INET, SERVER_IP, &server_addr.sin_addr);
+    int sock = socket(AF_INET, SOCK_STREAM, 0);
+    if (sock == -1) { perror("socket"); return 1; }
 
-    if (connect(sockfd, (sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
-        perror("connect");
-        return 1;
-    }
+    sockaddr_in addr{};
+    addr.sin_family = AF_INET;
+    addr.sin_port   = htons(conf.port);
+    inet_pton(AF_INET, conf.ip.c_str(), &addr.sin_addr);
 
-    std::thread receiver(receive_messages, sockfd);
-    receiver.detach();
+    if (connect(sock, (sockaddr*)&addr, sizeof(addr)) < 0) { perror("connect"); return 1; }
+
+    std::thread(receive_messages, sock).detach();
 
     std::string input;
-    while (true) {
-        std::getline(std::cin, input);
+    while (std::getline(std::cin, input)) {
         if (input.empty()) continue;
-        if (input == "/exit") {
-            send(sockfd, input.c_str(), input.size(), 0);
-            std::cout << "\nServer closed your session. Exiting...\n";
-            close(sockfd);
-            exit(0);
+        if (input.size() > MAX_INPUT) {
+            std::cout << "Message longer than 2000 characters. Split it.\n";
+            continue;
         }
-        send(sockfd, input.c_str(), input.size(), 0);
+        if (input == "/exit") {
+            send_line(sock, "/exit");
+            std::cout << "\nExiting...\n";
+            break;
+        }
+        send_line(sock, input);
     }
-
-    close(sockfd);
+    close(sock);
     return 0;
 }
