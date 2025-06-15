@@ -22,7 +22,6 @@ inline bool send_all(int fd, std::string_view sv) {
 	return send_all(fd, sv.data(), sv.size());
 }
 
-/* ► ДОБАВЛЕНО: гарантирует '\n' в конце строки */
 inline bool send_line(int fd, std::string_view sv) {
 	if (sv.empty() || sv.back() != '\n') {
 		std::string tmp(sv);
