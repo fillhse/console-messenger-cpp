@@ -41,13 +41,13 @@ void disconnect_client(int fd, fd_set& master_fds) {
 	if (clients.count(fd)) {
 		std::string id = clients[fd].id;
 		std::string connected_to = clients[fd].connected_to;
-		std::cout << "Disconnecting client: " << id << " (fd: " << fd << ")\n";
+		std::cout << "\nDisconnecting client: " << id << " (fd: " << fd << ")\n";
 
 		if (!connected_to.empty() && id_to_fd.count(connected_to)) {
 			int target_fd = id_to_fd[connected_to];
 			clients[target_fd].connected_to.clear();
 			clients[target_fd].is_speaking = false;
-			const std::string msg = "Your conversation partner has left the chat.\n";
+			const std::string msg = "\nYour conversation partner has left the chat.\n";
 			send_packet(target_fd, msg.c_str());
 		}
 
@@ -79,7 +79,7 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 			}
 
 			clients[target_fd].pending_request_from = clients[fd].id;
-			const std::string prompt = "User '" + clients[fd].id + "' wants to connect. Accept? (yes/no)\n";
+			const std::string prompt = "\nUser '" + clients[fd].id + "' wants to connect. Accept? (yes/no)\n";
 			send_packet(target_fd, prompt.c_str());
 		} else {
 			send_packet(fd, "User not found.\n");
@@ -105,7 +105,7 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 			int partner_fd = id_to_fd[partner_id];
 			clients[partner_fd].connected_to.clear();
 			clients[partner_fd].is_speaking = false;
-			send_packet(partner_fd, "Your conversation partner has ended the chat.\n");
+			send_packet(partner_fd, "\nYour conversation partner has ended the chat.\n");
 		}
 		clients[fd].connected_to.clear();
 		clients[fd].is_speaking = false;
@@ -209,7 +209,7 @@ int main() {
 				if (cmd == "/shutdown") {
 					std::cout << "Shutting down server...\n";
 					for (auto& [cfd, info] : clients)
-						send_all(cfd, "Server is shutting down.\n");
+						send_all(cfd, "\nServer is shutting down.\n");
 					for (auto& [cfd, info] : clients)
 						close(cfd);
 					close(listener);
@@ -262,7 +262,7 @@ int main() {
 					if (verify_auth_code(chat_id, entered_code)) {
 						if (id_to_fd.count(chat_id)) {
 							int old_fd = id_to_fd[chat_id];
-							send_packet(old_fd, "You have been logged out (second login detected).\n");
+							send_packet(old_fd, "\nYou have been logged out (second login detected).\n");
 							disconnect_client(old_fd, master_fds);
 						}
 
