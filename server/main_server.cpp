@@ -70,7 +70,7 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 			}
 
 			if (!clients[target_fd].connected_to.empty()) {
-				const std::string notice = "User '" + clients[fd].id +
+				const std::string notice = "\nUser '" + clients[fd].id +
 				                           "' attempted to connect to you, but you are "
 				                           "already in a conversation.\n";
 				send_packet(target_fd, notice.c_str());
@@ -91,7 +91,7 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 				int target_fd = id_to_fd[target_id];
 				clients[fd].is_speaking = false;
 				clients[target_fd].is_speaking = true;
-				send_packet(fd, "You passed the microphone.\n");
+				send_all(fd, "You passed the microphone.\n");
 				send_packet(target_fd, "You are now speaking.\n");
 			} else {
 				send_packet(fd, "No connected client to pass speaking right.\n");
@@ -148,13 +148,13 @@ void handle_pending_response(int fd, const std::string& msg) {
 
 		std::string history = load_history_for_users(responder.id, requester_id);
 		if (!history.empty()) {
-			send_packet(fd, "Chat history:\n");
-			send_packet(fd, history.c_str());
-			send_packet(requester_fd, "Chat history:\n");
-			send_packet(requester_fd, history.c_str());
+			send_all(fd, "Chat history:\n");
+			send_all(fd, history.c_str());
+			send_all(requester_fd, "Chat history:\n");
+			send_all(requester_fd, history.c_str());
 		}
 		send_packet(requester_fd, "Connection accepted. You are now speaking.\n");
-		send_packet(fd, "Connection established. You are a listener.\n");
+		send_all(fd, "Connection established. You are a listener.\n");
 	} else {
 		send_packet(requester_fd, "Connection rejected.\n");
 		send_packet(fd, "Connection declined.\n");
@@ -209,7 +209,7 @@ int main() {
 				if (cmd == "/shutdown") {
 					std::cout << "Shutting down server...\n";
 					for (auto& [cfd, info] : clients)
-						send_packet(cfd, "Server is shutting down.\n");
+						send_all(cfd, "Server is shutting down.\n");
 					for (auto& [cfd, info] : clients)
 						close(cfd);
 					close(listener);
@@ -295,7 +295,7 @@ int main() {
 						continue;
 					}
 					if (!clients[fd].is_speaking) {
-						send_packet(fd,
+						send_all(fd,
 						            "You cannot send messages unless you're the current "
 						            "speaker.\n");
 						continue;
@@ -307,7 +307,7 @@ int main() {
 						std::string timestamp = get_timestamp();
 						std::string sender = clients[fd].id;
 						std::string text = "[" + timestamp + "] " + sender + ": " + msg + "\n";
-						send_packet(target_fd, text.c_str());
+						send_all(target_fd, text.c_str());
 						append_message_to_history(sender, target_id, text);
 					} else {
 						send_packet(fd, "Not connected. Use /connect <ID>\n");
