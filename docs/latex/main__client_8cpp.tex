@@ -1,0 +1,294 @@
+\doxysection{client/main\+\_\+client.cpp File Reference}
+\hypertarget{main__client_8cpp}{}\label{main__client_8cpp}\index{client/main\_client.cpp@{client/main\_client.cpp}}
+
+
+Клиент консольного мессенджера\+: подключение к серверу и обмен сообщениями.  
+
+
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include "{}socket\+\_\+utils.\+h"{}}\newline
+{\ttfamily \#include $<$filesystem$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+Include dependency graph for main\+\_\+client.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main__client_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structServerConf}{Server\+Conf}}
+\begin{DoxyCompactList}\small\item\em Параметры подключения к серверу. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main__client_8cpp_a23489770044ee71dadf7e684f389b34e}{valid\+\_\+ip\+\_\+port}} (const std\+::string \&ip, int port)
+\begin{DoxyCompactList}\small\item\em Проверить корректность IPv4-\/адреса и порта. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structServerConf}{Server\+Conf}} \mbox{\hyperlink{main__client_8cpp_a253f749bc3b9a90d689bc4a9add6ac2f}{get\+\_\+config}} ()
+\begin{DoxyCompactList}\small\item\em Считать или запросить у пользователя настройки сервера. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main__client_8cpp_a429f0be9cd5e66680dde8c7d7c66932a}{receive\+\_\+messages}} (int fd)
+\begin{DoxyCompactList}\small\item\em Цикл приёма и вывода сообщений от сервера. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main__client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Точка входа клиентского приложения. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+constexpr size\+\_\+t \mbox{\hyperlink{main__client_8cpp_ae05ed23459808847072c4665d12da4c4}{MAX\+\_\+\+INPUT}} = 2000
+\begin{DoxyCompactList}\small\item\em Максимально допустимая длина сообщения от пользователя. \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{main__client_8cpp_aa6524633f52e451cbf3b745f6f5c704c}{CFG\+\_\+\+DIR}} = "{}CLIENT\+\_\+\+SETTING"{}
+\begin{DoxyCompactList}\small\item\em Директория для хранения конфигурационного файла. \end{DoxyCompactList}\item 
+const std\+::string \mbox{\hyperlink{main__client_8cpp_a3c106e9451db143d78ea6aecebbfb61d}{CFG\+\_\+\+FILE}} = "{}CLIENT\+\_\+\+SETTING/ip\+\_\+port.\+txt"{}
+\begin{DoxyCompactList}\small\item\em Путь к файлу с настройками (IP и порт сервера). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Клиент консольного мессенджера\+: подключение к серверу и обмен сообщениями. 
+
+Программа читает конфигурацию сервера (IP и порт), устанавливает TCP-\/соединение, запускает поток для приёма сообщений и отправляет введённые пользователем строки. 
+
+Definition in file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main__client_8cpp_a253f749bc3b9a90d689bc4a9add6ac2f}\label{main__client_8cpp_a253f749bc3b9a90d689bc4a9add6ac2f} 
+\index{main\_client.cpp@{main\_client.cpp}!get\_config@{get\_config}}
+\index{get\_config@{get\_config}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_config()}{get\_config()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structServerConf}{Server\+Conf}} get\+\_\+config (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Считать или запросить у пользователя настройки сервера. 
+
+Если файл с конфигурацией существует, пытается прочитать из него строку в формате "{}\+IP\+:порт"{}. Если данные некорректны или файла нет, запрашивает ввод у пользователя до тех пор, пока не будет введена валидная пара. Сохраняет корректные настройки в файл.
+
+\begin{DoxyReturn}{Returns}
+Настройки сервера в виде \doxylink{structServerConf}{Server\+Conf}. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ std::filesystem::create\_directories(\mbox{\hyperlink{main__client_8cpp_aa6524633f52e451cbf3b745f6f5c704c}{CFG\_DIR}});}
+\DoxyCodeLine{00079\ \ \ \ \ std::ifstream\ fin(\mbox{\hyperlink{main__client_8cpp_a3c106e9451db143d78ea6aecebbfb61d}{CFG\_FILE}});}
+\DoxyCodeLine{00080\ \ \ \ \ std::string\ ip;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ port;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (fin)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ std::getline(fin,\ line);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ std::istringstream\ ss(line);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ std::getline(ss,\ ip,\ \textcolor{charliteral}{':'});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ss\ >>\ port;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ok\ =\ \mbox{\hyperlink{main__client_8cpp_a23489770044ee71dadf7e684f389b34e}{valid\_ip\_port}}(ip,\ port);}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{while}\ (!ok)\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ server\ IP:\ "{}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ std::cin\ >>\ ip;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Enter\ server\ port:\ "{}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ std::cin\ >>\ port;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ std::cin.ignore();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ ok\ =\ \mbox{\hyperlink{main__client_8cpp_a23489770044ee71dadf7e684f389b34e}{valid\_ip\_port}}(ip,\ port);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ok)}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Invalid\ IP\ or\ port.\ Try\ again.\(\backslash\)n"{}};}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ std::ofstream(\mbox{\hyperlink{main__client_8cpp_a3c106e9451db143d78ea6aecebbfb61d}{CFG\_FILE}},\ std::ios::trunc)\ <<\ ip\ <<\ \textcolor{charliteral}{':'}\ <<\ port\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordflow}{return}\ \{ip,\ port\};}
+\DoxyCodeLine{00103\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main__client_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+\index{main\_client.cpp@{main\_client.cpp}!main@{main}}
+\index{main@{main}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Точка входа клиентского приложения. 
+
+Получает конфигурацию сервера, устанавливает TCP-\/соединение, запускает поток для приёма сообщений и в цикле отправляет введённые пользователем сообщения.
+
+\begin{DoxyReturn}{Returns}
+Код завершения (0 при успехе, иначе 1). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00139}{139}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{structServerConf}{ServerConf}}\ conf\ =\ \mbox{\hyperlink{main__client_8cpp_a253f749bc3b9a90d689bc4a9add6ac2f}{get\_config}}();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{int}\ sock\ =\ socket(AF\_INET,\ SOCK\_STREAM,\ 0);}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (sock\ ==\ -\/1)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}socket"{}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ sockaddr\_in\ addr\{\};}
+\DoxyCodeLine{00149\ \ \ \ \ addr.sin\_family\ =\ AF\_INET;}
+\DoxyCodeLine{00150\ \ \ \ \ addr.sin\_port\ =\ htons(conf.\mbox{\hyperlink{structServerConf_a084d69145e143fac3a9289a7eb87f0eb}{port}});}
+\DoxyCodeLine{00151\ \ \ \ \ inet\_pton(AF\_INET,\ conf.\mbox{\hyperlink{structServerConf_a042e6ca73834ff282b5616f41bae02ea}{ip}}.c\_str(),\ \&addr.sin\_addr);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordflow}{if}\ (connect(sock,\ (sockaddr*)\&addr,\ \textcolor{keyword}{sizeof}(addr))\ <\ 0)\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ perror(\textcolor{stringliteral}{"{}connect"{}});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ std::thread(\mbox{\hyperlink{main__client_8cpp_a429f0be9cd5e66680dde8c7d7c66932a}{receive\_messages}},\ sock).detach();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ std::string\ input;}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(std::cin,\ input))\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.empty())}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input.size()\ >\ \mbox{\hyperlink{main__client_8cpp_ae05ed23459808847072c4665d12da4c4}{MAX\_INPUT}})\ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Message\ longer\ than\ 2000\ characters.\ Split\ it.\(\backslash\)n"{}};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ ==\ \textcolor{stringliteral}{"{}/exit"{}})\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{socket__utils_8h_aa746ccdea39cf6cd75d161dd1354d5e3}{send\_line}}(sock,\ \textcolor{stringliteral}{"{}/exit"{}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nExiting...\(\backslash\)n"{}};}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{socket__utils_8h_aa746ccdea39cf6cd75d161dd1354d5e3}{send\_line}}(sock,\ input);}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ close(sock);}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00177\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__client_8cpp_a429f0be9cd5e66680dde8c7d7c66932a}\label{main__client_8cpp_a429f0be9cd5e66680dde8c7d7c66932a} 
+\index{main\_client.cpp@{main\_client.cpp}!receive\_messages@{receive\_messages}}
+\index{receive\_messages@{receive\_messages}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{receive\_messages()}{receive\_messages()}}
+{\footnotesize\ttfamily void receive\+\_\+messages (\begin{DoxyParamCaption}\item[{int}]{fd }\end{DoxyParamCaption})}
+
+
+
+Цикл приёма и вывода сообщений от сервера. 
+
+Читает строки из сокета через \doxylink{socket__utils_8h_adfb7b70bdf1ffb56b41fd4b88e8b5dab}{recv\+\_\+line()} до разрыва соединения. Выводит каждую строку на консоль. При получении специального маркера "{}\texorpdfstring{$\ast$}{*}\+ENDM\texorpdfstring{$\ast$}{*}"{} отображает приглашение ввода.
+
+
+\begin{DoxyParams}{Parameters}
+{\em fd} & Дескриптор подключённого сокета сервера. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00114}{114}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{socket__utils_8h_adfb7b70bdf1ffb56b41fd4b88e8b5dab}{recv\_line}}(fd,\ line))\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty())}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ ==\ \textcolor{stringliteral}{"{}*ENDM*"{}})\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}[You]>\ "{}}\ <<\ std::flush;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ std::cout\ <<\ line\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00124\ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nDisconnected\ from\ server.\(\backslash\)n"{}};}
+\DoxyCodeLine{00126\ \ \ \ \ close(fd);}
+\DoxyCodeLine{00127\ \ \ \ \ exit(0);}
+\DoxyCodeLine{00128\ \}}
+
+\end{DoxyCode}
+\Hypertarget{main__client_8cpp_a23489770044ee71dadf7e684f389b34e}\label{main__client_8cpp_a23489770044ee71dadf7e684f389b34e} 
+\index{main\_client.cpp@{main\_client.cpp}!valid\_ip\_port@{valid\_ip\_port}}
+\index{valid\_ip\_port@{valid\_ip\_port}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{valid\_ip\_port()}{valid\_ip\_port()}}
+{\footnotesize\ttfamily bool valid\+\_\+ip\+\_\+port (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ip,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Проверить корректность IPv4-\/адреса и порта. 
+
+Использует inet\+\_\+pton() для валидации формата IPv4 и проверяет, что порт находится в диапазоне 1..65535.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ip} & Строка с IPv4-\/адресом. \\
+\hline
+{\em port} & Номер порта. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true если адрес и порт валидны; false в противном случае. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00061}{61}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ sockaddr\_in\ tmp\{\};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{return}\ inet\_pton(AF\_INET,\ ip.c\_str(),\ \&tmp.sin\_addr)\ ==\ 1\ \&\&\ port\ >\ 0\ \&\&\ port\ <\ 65536;}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main__client_8cpp_aa6524633f52e451cbf3b745f6f5c704c}\label{main__client_8cpp_aa6524633f52e451cbf3b745f6f5c704c} 
+\index{main\_client.cpp@{main\_client.cpp}!CFG\_DIR@{CFG\_DIR}}
+\index{CFG\_DIR@{CFG\_DIR}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{CFG\_DIR}{CFG\_DIR}}
+{\footnotesize\ttfamily const std\+::string CFG\+\_\+\+DIR = "{}CLIENT\+\_\+\+SETTING"{}}
+
+
+
+Директория для хранения конфигурационного файла. 
+
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+\Hypertarget{main__client_8cpp_a3c106e9451db143d78ea6aecebbfb61d}\label{main__client_8cpp_a3c106e9451db143d78ea6aecebbfb61d} 
+\index{main\_client.cpp@{main\_client.cpp}!CFG\_FILE@{CFG\_FILE}}
+\index{CFG\_FILE@{CFG\_FILE}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{CFG\_FILE}{CFG\_FILE}}
+{\footnotesize\ttfamily const std\+::string CFG\+\_\+\+FILE = "{}CLIENT\+\_\+\+SETTING/ip\+\_\+port.\+txt"{}}
+
+
+
+Путь к файлу с настройками (IP и порт сервера). 
+
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+
+\Hypertarget{main__client_8cpp_ae05ed23459808847072c4665d12da4c4}\label{main__client_8cpp_ae05ed23459808847072c4665d12da4c4} 
+\index{main\_client.cpp@{main\_client.cpp}!MAX\_INPUT@{MAX\_INPUT}}
+\index{MAX\_INPUT@{MAX\_INPUT}!main\_client.cpp@{main\_client.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_INPUT}{MAX\_INPUT}}
+{\footnotesize\ttfamily constexpr size\+\_\+t MAX\+\_\+\+INPUT = 2000\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+
+
+Максимально допустимая длина сообщения от пользователя. 
+
+
+
+Definition at line \mbox{\hyperlink{main__client_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{main__client_8cpp_source}{main\+\_\+client.\+cpp}}.
+

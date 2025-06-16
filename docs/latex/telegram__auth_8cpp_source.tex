@@ -1,0 +1,158 @@
+\doxysection{telegram\+\_\+auth.\+cpp}
+\hypertarget{telegram__auth_8cpp_source}{}\label{telegram__auth_8cpp_source}\index{server/telegram\_auth.cpp@{server/telegram\_auth.cpp}}
+\mbox{\hyperlink{telegram__auth_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ telegram\_auth.cpp}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Реализация\ функций\ Telegram-\/аутентификации:\ генерация,\ отправка\ и\ проверка\ кодов.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Использует\ CURL\ (через\ системный\ вызов\ curl)\ для\ отправки\ сообщений}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ Telegram\ Bot\ API.\ Хранит\ временные\ коды\ в\ глобальной\ карте\ auth\_codes.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00007}00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00009}00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{telegram__auth_8h}{telegram\_auth.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00012}00012\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <ctime>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00021}00021\ \textcolor{comment}{//\ Глобальная\ переменная\ для\ хранения\ токена\ Telegram-\/бота.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00022}\mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{00022}}\ std::string\ \mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00024}00024\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00025}00025\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00026}00026\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00027}00027\ \textcolor{comment}{\ *\ @brief\ Установить\ глобальный\ токен\ бота.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ Сохраняет\ переданный\ токен\ в\ переменную\ BOT\_TOKEN.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00030}00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ @param\ token\ Токен\ бота,\ выданный\ BotFather.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00033}\mbox{\hyperlink{telegram__auth_8cpp_a49e6447c01a81c8af7c206e1538510a0}{00033}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{telegram__auth_8cpp_a49e6447c01a81c8af7c206e1538510a0}{set\_bot\_token}}(\textcolor{keyword}{const}\ std::string\&\ token)\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00034}00034\ \ \ \ \ \mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}}\ =\ token;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00037}00037\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00038}00038\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00039}00039\ \textcolor{comment}{///\ Глобальная\ карта,\ хранящая\ соответствие\ chat\_id\ -\/>\ код\ авторизации.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00040}\mbox{\hyperlink{telegram__auth_8cpp_a5ae22537f50327cb47da0b11b774ad87}{00040}}\ \textcolor{comment}{}std::map<std::string,\ std::string>\ \mbox{\hyperlink{telegram__auth_8cpp_a5ae22537f50327cb47da0b11b774ad87}{auth\_codes}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00042}00042\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00043}00043\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00044}00044\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00045}00045\ \textcolor{comment}{\ *\ @brief\ Сгенерировать\ случайный\ шестизначный\ код\ для\ авторизации.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00046}00046\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00047}00047\ \textcolor{comment}{\ *\ Использует\ std::rand(),\ инициализирует\ генератор\ при\ первом\ вызове}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00048}00048\ \textcolor{comment}{\ *\ на\ основе\ текущего\ времени.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00049}00049\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00050}00050\ \textcolor{comment}{\ *\ @return\ Сгенерированный\ код\ (строка\ из\ 6\ цифр).}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00051}00051\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00052}\mbox{\hyperlink{telegram__auth_8cpp_a74d2f6718acaf08c27fb5c975a939cca}{00052}}\ std::string\ \mbox{\hyperlink{telegram__auth_8cpp_a74d2f6718acaf08c27fb5c975a939cca}{generate\_auth\_code}}()\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00053}00053\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ seeded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{if}\ (!seeded)\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ std::srand(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\textcolor{keyword}{>}(std::time(\textcolor{keyword}{nullptr})));}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ seeded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00057}00057\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00059}00059\ \ \ \ \ std::string\ digits\ =\ \textcolor{stringliteral}{"{}0123456789"{}},\ code;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 6;\ ++i)}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ code\ +=\ digits[std::rand()\ \%\ 10];}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ code;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00065}00065\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00066}00066\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00067}00067\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00068}00068\ \textcolor{comment}{\ *\ @brief\ Убедиться,\ что\ токен\ бота\ загружен\ из\ файла.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00069}00069\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00070}00070\ \textcolor{comment}{\ *\ Если\ переменная\ BOT\_TOKEN\ пуста,\ пытается\ считать\ токен\ из\ файла}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00071}00071\ \textcolor{comment}{\ *\ SERVER\_SETTINGS/BOT\_TOKEN.txt.\ При\ отсутствии\ директории\ или\ файла}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00072}00072\ \textcolor{comment}{\ *\ создаёт\ их.\ Если\ после\ чтения\ токен\ остаётся\ пустым\ —\ выводит}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00073}00073\ \textcolor{comment}{\ *\ сообщение\ об\ ошибке\ и\ завершает\ программу.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00074}00074\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00075}\mbox{\hyperlink{telegram__auth_8cpp_addc2662ff5190602846d5e93f09aa388}{00075}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{telegram__auth_8cpp_addc2662ff5190602846d5e93f09aa388}{ensure\_bot\_token}}()\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00076}00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}}.empty())}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00079}00079\ \ \ \ \ \textcolor{keyword}{namespace\ }fs\ =\ std::filesystem;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00080}00080\ \ \ \ \ fs::path\ dir\ =\ \textcolor{stringliteral}{"{}SERVER\_SETTINGS"{}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00081}00081\ \ \ \ \ fs::path\ file\ =\ dir\ /\ \textcolor{stringliteral}{"{}BOT\_TOKEN.txt"{}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (!fs::exists(dir))}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00084}00084\ \ \ \ \ \ \ \ \ fs::create\_directories(dir);}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00086}00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (fs::exists(file))\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00087}00087\ \ \ \ \ \ \ \ \ std::ifstream\ in(file);}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00088}00088\ \ \ \ \ \ \ \ \ std::getline(in,\ \mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}});}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00089}00089\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00090}00090\ \ \ \ \ \ \ \ \ std::ofstream\ out(file);}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}}.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00094}00094\ \ \ \ \ \ \ \ \ std::cerr\ <<\ \textcolor{stringliteral}{"{}[TelegramAuth]\ Файл\ "{}}\ <<\ file}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ не\ содержит\ токен.\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Добавьте\ токен\ в\ первую\ строку\ и\ перезапустите\ сервер.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00097}00097\ \ \ \ \ \ \ \ \ exit(1);}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00099}00099\ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00101}00101\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00102}00102\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00103}00103\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00104}00104\ \textcolor{comment}{\ *\ @brief\ Отправить\ код\ авторизации\ через\ Telegram\ Bot\ API.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00105}00105\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00106}00106\ \textcolor{comment}{\ *\ Формирует\ HTTP\ запрос\ с\ помощью\ системного\ вызова\ curl\ и\ отправляет\ код}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00107}00107\ \textcolor{comment}{\ *\ пользователю\ в\ чат.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00108}00108\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00109}00109\ \textcolor{comment}{\ *\ @param\ chat\_id\ Идентификатор\ Telegram-\/чата.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00110}00110\ \textcolor{comment}{\ *\ @param\ code\ \ \ \ Шестизначный\ код\ авторизации.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00111}00111\ \textcolor{comment}{\ *\ @return\ true\ если\ запрос\ выполнен\ успешно\ (ответ\ содержит\ "{}ok"{}:true),}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00112}00112\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ и\ код\ сохранён\ в\ auth\_codes;\ иначе\ false.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00113}00113\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00114}\mbox{\hyperlink{telegram__auth_8cpp_ad0aadb96417fb892ae3cdaf3e4b24649}{00114}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{telegram__auth_8cpp_ad0aadb96417fb892ae3cdaf3e4b24649}{send\_telegram\_code}}(\textcolor{keyword}{const}\ std::string\&\ chat\_id,\ \textcolor{keyword}{const}\ std::string\&\ code)\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00115}00115\ \ \ \ \ \mbox{\hyperlink{telegram__auth_8cpp_addc2662ff5190602846d5e93f09aa388}{ensure\_bot\_token}}();}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00116}00116\ \ \ \ \ std::string\ url\ =\ \textcolor{stringliteral}{"{}https://api.telegram.org/bot"{}}\ +\ \mbox{\hyperlink{telegram__auth_8cpp_ac261e08f76f7e7de9a1ace511ead28c5}{BOT\_TOKEN}}\ +\ \textcolor{stringliteral}{"{}/sendMessage"{}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00117}00117\ \ \ \ \ std::string\ cmd\ =\ \textcolor{stringliteral}{"{}curl\ -\/s\ -\/X\ POST\ \(\backslash\)"{}"{}}\ +\ url\ +}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\ -\/d\ chat\_id="{}}\ +}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chat\_id\ +\ \textcolor{stringliteral}{"{}\ -\/d\ text='Your\ authentication\ code\ is:\ "{}}\ +\ code\ +\ \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00122}00122\ \ \ \ \ FILE*\ pipe\ =\ popen(cmd.c\_str(),\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00123}00123\ \ \ \ \ \textcolor{keywordflow}{if}\ (!pipe)}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00126}00126\ \ \ \ \ std::string\ response;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[256];}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(buf,\ \textcolor{keyword}{sizeof}(buf),\ pipe))}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ response\ +=\ buf;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00130}00130\ \ \ \ \ \textcolor{keywordtype}{int}\ status\ =\ pclose(pipe);}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{keywordflow}{if}\ (status\ ==\ 0\ \&\&\ response.find(\textcolor{stringliteral}{"{}\(\backslash\)"{}ok\(\backslash\)"{}:true"{}})\ !=\ std::string::npos)\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00133}00133\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{telegram__auth_8cpp_a5ae22537f50327cb47da0b11b774ad87}{auth\_codes}}[chat\_id]\ =\ code;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00137}00137\ \}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00139}00139\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00140}00140\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00141}00141\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00142}00142\ \textcolor{comment}{\ *\ @brief\ Проверить\ введённый\ код\ авторизации.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00143}00143\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00144}00144\ \textcolor{comment}{\ *\ Сравнивает\ переданный\ @p\ code\ с\ сохранённым\ в\ auth\_codes\ для\ данного\ @p\ chat\_id.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00145}00145\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00146}00146\ \textcolor{comment}{\ *\ @param\ chat\_id\ Идентификатор\ Telegram-\/чата.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00147}00147\ \textcolor{comment}{\ *\ @param\ code\ \ \ \ Введённый\ пользователем\ код.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00148}00148\ \textcolor{comment}{\ *\ @return\ true\ если\ код\ корректен\ и\ сохранённая\ запись\ совпадает;\ иначе\ false.}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00149}00149\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00150}\mbox{\hyperlink{telegram__auth_8cpp_a0bd7efd131f04d1c39a7e97276c64457}{00150}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{telegram__auth_8cpp_a0bd7efd131f04d1c39a7e97276c64457}{verify\_auth\_code}}(\textcolor{keyword}{const}\ std::string\&\ chat\_id,\ \textcolor{keyword}{const}\ std::string\&\ code)\ \{}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{telegram__auth_8cpp_a5ae22537f50327cb47da0b11b774ad87}{auth\_codes}}.count(chat\_id)\ \&\&\ \mbox{\hyperlink{telegram__auth_8cpp_a5ae22537f50327cb47da0b11b774ad87}{auth\_codes}}[chat\_id]\ ==\ code;}
+\DoxyCodeLine{\Hypertarget{telegram__auth_8cpp_source_l00152}00152\ \}}
+
+\end{DoxyCode}

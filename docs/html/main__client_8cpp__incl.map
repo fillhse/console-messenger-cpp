@@ -1,0 +1,31 @@
+<map id="client/main_client.cpp" name="client/main_client.cpp">
+<area shape="rect" id="Node000001" title="Клиент консольного мессенджера: подключение к серверу и обмен сообщениями." alt="" coords="410,5,575,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,97,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="414,33,111,81,110,76,413,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="122,79,218,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="441,33,232,79,231,74,440,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="124,152,227,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="446,33,380,53,308,81,251,113,203,146,200,141,248,109,306,76,378,48,445,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="251,152,326,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="431,33,380,51,355,64,333,81,311,109,298,140,293,138,307,106,329,77,352,60,378,46,429,28"/>
+<area shape="rect" id="Node000006" href="$socket__utils_8h.html" title="Обёртки функций отправки и приёма данных по TCP&#45;сокетам." alt="" coords="344,79,455,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="479,33,427,72,424,68,476,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="473,152,553,177"/>
+<area shape="poly" id="edge13_Node000001_Node000007" title=" " alt="" coords="497,31,512,138,507,139,492,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="577,152,635,177"/>
+<area shape="poly" id="edge15_Node000001_Node000008" title=" " alt="" coords="504,29,591,140,587,143,500,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="581,79,671,104"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="515,28,593,70,591,74,513,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="696,79,769,104"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="532,28,683,73,682,78,530,33"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="794,79,869,104"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="551,28,781,76,780,81,550,33"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="893,79,957,104"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="576,27,714,47,880,76,879,81,713,52,575,32"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="364,107,225,150,224,145,363,101"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="383,106,320,147,317,142,380,102"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="419,102,484,142,481,147,416,106"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="433,101,564,146,562,151,432,107"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="351,152,448,177"/>
+<area shape="poly" id="edge10_Node000006_Node000009" title=" " alt="" coords="402,104,402,138,397,138,397,104"/>
+</map>

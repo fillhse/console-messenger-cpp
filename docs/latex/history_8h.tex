@@ -1,0 +1,147 @@
+\doxysection{server/history.h File Reference}
+\hypertarget{history_8h}{}\label{history_8h}\index{server/history.h@{server/history.h}}
+
+
+Работа с историей переписки между двумя пользователями.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+Include dependency graph for history.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{history_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{history_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{history_8h_ae34f9f425cbaa823626b71ca0129b740}{append\+\_\+message\+\_\+to\+\_\+history}} (const std\+::string \&user1, const std\+::string \&user2, const std\+::string \&message)
+\begin{DoxyCompactList}\small\item\em Добавить сообщение в историю чата двух пользователей. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{history_8h_afc2aba136cde68f180727094b3719328}{load\+\_\+history\+\_\+for\+\_\+users}} (const std\+::string \&user1, const std\+::string \&user2)
+\begin{DoxyCompactList}\small\item\em Загрузить всю историю переписки между двумя пользователями. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Работа с историей переписки между двумя пользователями. 
+
+Механизм\+:
+\begin{DoxyItemize}
+\item История хранится в каталоге HISTORY.
+\item Название файла истории для пары пользователей формируется лексикографически\+: HISTORY/$<$min$>$\+\_\+\+\_\+\+\_\+$<$max$>$.\+txt. 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{history_8h_source}{history.\+h}}.
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{history_8h_ae34f9f425cbaa823626b71ca0129b740}\label{history_8h_ae34f9f425cbaa823626b71ca0129b740} 
+\index{history.h@{history.h}!append\_message\_to\_history@{append\_message\_to\_history}}
+\index{append\_message\_to\_history@{append\_message\_to\_history}!history.h@{history.h}}
+\doxysubsubsection{\texorpdfstring{append\_message\_to\_history()}{append\_message\_to\_history()}}
+{\footnotesize\ttfamily void append\+\_\+message\+\_\+to\+\_\+history (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{user1,  }\item[{const std\+::string \&}]{user2,  }\item[{const std\+::string \&}]{message }\end{DoxyParamCaption})}
+
+
+
+Добавить сообщение в историю чата двух пользователей. 
+
+Создаёт каталог HISTORY при необходимости и дописывает {\ttfamily message} в файл для пары пользователей.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user1} & Идентификатор первого пользователя. \\
+\hline
+{\em user2} & Идентификатор второго пользователя. \\
+\hline
+{\em message} & Текст сообщения, включая символ новой строки.\\
+\hline
+\end{DoxyParams}
+Добавить сообщение в историю чата двух пользователей.
+
+Перед записью гарантирует существование папки HISTORY.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user1} & Идентификатор отправителя или просто один из пользователей чата. \\
+\hline
+{\em user2} & Идентификатор второго пользователя чата. \\
+\hline
+{\em message} & Текст сообщения; может содержать символ новой строки в конце. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{history_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{history_8cpp_source}{history.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{ensure\_history\_folder\_exists}}();}
+\DoxyCodeLine{00063\ \ \ \ \ std::ofstream\ file(\mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{get\_history\_filename}}(user1,\ user2),\ std::ios::app);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ file\ <<\ message;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \}}
+
+\end{DoxyCode}
+\Hypertarget{history_8h_afc2aba136cde68f180727094b3719328}\label{history_8h_afc2aba136cde68f180727094b3719328} 
+\index{history.h@{history.h}!load\_history\_for\_users@{load\_history\_for\_users}}
+\index{load\_history\_for\_users@{load\_history\_for\_users}!history.h@{history.h}}
+\doxysubsubsection{\texorpdfstring{load\_history\_for\_users()}{load\_history\_for\_users()}}
+{\footnotesize\ttfamily std\+::string load\+\_\+history\+\_\+for\+\_\+users (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{user1,  }\item[{const std\+::string \&}]{user2 }\end{DoxyParamCaption})}
+
+
+
+Загрузить всю историю переписки между двумя пользователями. 
+
+Открывает файл HISTORY/$<$min$>$\+\_\+\+\_\+\+\_\+$<$max$>$.\+txt и возвращает его содержимое.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user1} & Идентификатор первого пользователя. \\
+\hline
+{\em user2} & Идентификатор второго пользователя. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Строка с полным содержимым истории; пустая строка, если файл не существует или пуст.
+\end{DoxyReturn}
+Если файл с историей существует, читает его содержимое через std\+::ostringstream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user1} & Идентификатор первого пользователя. \\
+\hline
+{\em user2} & Идентификатор второго пользователя. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Строка с полным содержимым файла истории; пустая строка, если файл недоступен. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{history_8cpp_source_l00078}{78}} of file \mbox{\hyperlink{history_8cpp_source}{history.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{ensure\_history\_folder\_exists}}();}
+\DoxyCodeLine{00080\ \ \ \ \ std::ifstream\ file(\mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{get\_history\_filename}}(user1,\ user2));}
+\DoxyCodeLine{00081\ \ \ \ \ std::ostringstream\ ss;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ ss\ <<\ file.rdbuf();}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{00086\ \}}
+
+\end{DoxyCode}

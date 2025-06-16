@@ -1,0 +1,92 @@
+\doxysection{history.\+cpp}
+\hypertarget{history_8cpp_source}{}\label{history_8cpp_source}\index{server/history.cpp@{server/history.cpp}}
+\mbox{\hyperlink{history_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ history.cpp}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Реализация\ функций\ для\ хранения\ и\ загрузки\ истории\ переписки\ пользователей.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00005}00005\ \textcolor{comment}{\ *\ Механизм:}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00006}00006\ \textcolor{comment}{\ *\ -\/\ История\ для\ пары\ пользователей\ хранится\ в\ файле\ HISTORY/history\_<min>\_<max>.txt,}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ где\ <min>\ и\ <max>\ —\ идентификаторы\ пользователей\ в\ лексикографическом\ порядке.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00008}00008\ \textcolor{comment}{\ *\ -\/\ При\ добавлении\ сообщения,\ папка\ HISTORY\ создаётся\ при\ необходимости,}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ а\ сообщение\ дописывается\ в\ соответствующий\ файл.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00010}00010\ \textcolor{comment}{\ *\ -\/\ При\ загрузке\ истории\ возвращается\ содержимое\ файла\ целиком\ или\ пустая\ строка,}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ если\ файл\ не\ существует.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00012}00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{history_8h}{history.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00016}00016\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <filesystem>}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00021}00021\ \textcolor{keyword}{namespace\ }fs\ =\ std::filesystem;}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00022}00022\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00023}00023\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00024}00024\ \textcolor{comment}{\ *\ @brief\ Построить\ путь\ к\ файлу\ истории\ для\ двух\ пользователей.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00026}00026\ \textcolor{comment}{\ *\ Идентификаторы\ упорядочиваются\ лексикографически\ и\ соединяются}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00027}00027\ \textcolor{comment}{\ *\ через\ '\_',\ а\ затем\ добавляются\ префикс\ и\ суффикс.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00029}00029\ \textcolor{comment}{\ *\ @param\ user1\ Идентификатор\ первого\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00030}00030\ \textcolor{comment}{\ *\ @param\ user2\ Идентификатор\ второго\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00031}00031\ \textcolor{comment}{\ *\ @return\ Строка\ с\ путём\ к\ файлу\ истории,\ например\ "{}HISTORY/history\_alice\_bob.txt"{}.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00033}\mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{00033}}\ std::string\ \mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{get\_history\_filename}}(\textcolor{keyword}{const}\ std::string\&\ user1,\ \textcolor{keyword}{const}\ std::string\&\ user2)\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00034}00034\ \ \ \ \ std::string\ u1\ =\ user1,\ u2\ =\ user2;}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (u1\ >\ u2)}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00036}00036\ \ \ \ \ \ \ \ \ std::swap(u1,\ u2);}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00037}00037\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}HISTORY/history\_"{}}\ +\ u1\ +\ \textcolor{stringliteral}{"{}\_"{}}\ +\ u2\ +\ \textcolor{stringliteral}{"{}.txt"{}};}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00038}00038\ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00039}00039\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00040}00040\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00041}00041\ \textcolor{comment}{\ *\ @brief\ Создать\ папку\ HISTORY,\ если\ она\ ещё\ не\ существует.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00042}00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00043}00043\ \textcolor{comment}{\ *\ Использует\ std::filesystem::exists\ и\ std::filesystem::create\_directory.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00044}00044\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00045}\mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{00045}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{ensure\_history\_folder\_exists}}()\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{keywordflow}{if}\ (!fs::exists(\textcolor{stringliteral}{"{}HISTORY"{}}))\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ fs::create\_directory(\textcolor{stringliteral}{"{}HISTORY"{}});}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00050}00050\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00051}00051\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00052}00052\ \textcolor{comment}{\ *\ @brief\ Добавить\ сообщение\ в\ конец\ файла\ истории\ для\ двух\ пользователей.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00053}00053\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00054}00054\ \textcolor{comment}{\ *\ Перед\ записью\ гарантирует\ существование\ папки\ HISTORY.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00055}00055\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00056}00056\ \textcolor{comment}{\ *\ @param\ user1\ \ Идентификатор\ отправителя\ или\ просто\ один\ из\ пользователей\ чата.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00057}00057\ \textcolor{comment}{\ *\ @param\ user2\ \ Идентификатор\ второго\ пользователя\ чата.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00058}00058\ \textcolor{comment}{\ *\ @param\ message\ Текст\ сообщения;\ может\ содержать\ символ\ новой\ строки\ в\ конце.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00059}00059\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00060}\mbox{\hyperlink{history_8cpp_ae34f9f425cbaa823626b71ca0129b740}{00060}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{history_8cpp_ae34f9f425cbaa823626b71ca0129b740}{append\_message\_to\_history}}(\textcolor{keyword}{const}\ std::string\&\ user1,\ \textcolor{keyword}{const}\ std::string\&\ user2,}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ message)\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{ensure\_history\_folder\_exists}}();}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00063}00063\ \ \ \ \ std::ofstream\ file(\mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{get\_history\_filename}}(user1,\ user2),\ std::ios::app);}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00065}00065\ \ \ \ \ \ \ \ \ file\ <<\ message;}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00066}00066\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00068}00068\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00069}00069\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00070}00070\ \textcolor{comment}{\ *\ @brief\ Загрузить\ всю\ историю\ переписки\ между\ двумя\ пользователями.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00071}00071\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00072}00072\ \textcolor{comment}{\ *\ Если\ файл\ с\ историей\ существует,\ читает\ его\ содержимое\ через\ std::ostringstream.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00073}00073\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00074}00074\ \textcolor{comment}{\ *\ @param\ user1\ Идентификатор\ первого\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00075}00075\ \textcolor{comment}{\ *\ @param\ user2\ Идентификатор\ второго\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00076}00076\ \textcolor{comment}{\ *\ @return\ Строка\ с\ полным\ содержимым\ файла\ истории;\ пустая\ строка,\ если\ файл\ недоступен.}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00077}00077\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00078}\mbox{\hyperlink{history_8cpp_afc2aba136cde68f180727094b3719328}{00078}}\ std::string\ \mbox{\hyperlink{history_8cpp_afc2aba136cde68f180727094b3719328}{load\_history\_for\_users}}(\textcolor{keyword}{const}\ std::string\&\ user1,\ \textcolor{keyword}{const}\ std::string\&\ user2)\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{history_8cpp_aab3589714c50ca1cb82633cef1ec3b1c}{ensure\_history\_folder\_exists}}();}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00080}00080\ \ \ \ \ std::ifstream\ file(\mbox{\hyperlink{history_8cpp_a7a46f887a14f116d328ace1ca302725f}{get\_history\_filename}}(user1,\ user2));}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00081}00081\ \ \ \ \ std::ostringstream\ ss;}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (file)\ \{}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00083}00083\ \ \ \ \ \ \ \ \ ss\ <<\ file.rdbuf();}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00085}00085\ \ \ \ \ \textcolor{keywordflow}{return}\ ss.str();}
+\DoxyCodeLine{\Hypertarget{history_8cpp_source_l00086}00086\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,24 @@
+<map id="server/telegram_auth.cpp" name="server/telegram_auth.cpp">
+<area shape="rect" id="Node000001" title="Реализация функций Telegram&#45;аутентификации: генерация, отправка и проверка кодов." alt="" coords="370,5,559,31"/>
+<area shape="rect" id="Node000002" href="$telegram__auth_8h.html" title="Интерфейс для Telegram&#45;аутентификации: генерация, отправка и проверка кодов." alt="" coords="5,79,135,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,33,148,79,147,74,401,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="91,152,150,177"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="370,29,284,47,240,61,199,81,164,110,138,142,133,139,160,106,197,76,238,56,283,41,369,24"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="210,79,271,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="429,33,285,79,284,74,428,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="296,79,361,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="444,33,364,75,362,70,442,28"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="386,79,445,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="459,33,433,69,429,66,454,29"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="469,79,559,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="475,29,500,66,496,69,471,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="584,79,657,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="491,28,584,70,582,75,489,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="682,79,762,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="507,28,669,73,668,78,505,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="786,79,837,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="536,28,644,48,773,76,772,81,643,53,535,33"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="861,79,933,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="551,28,686,48,848,76,847,81,686,53,550,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,103,107,139,102,142,76,106"/>
+</map>

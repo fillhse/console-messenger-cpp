@@ -1,0 +1,90 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\babel@toc {russian}{}\relax 
+\contentsline {chapter}{\numberline {1}Class Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class List}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}File Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}File List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Client\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Info Struct Reference}{5}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Member Data Documentation}{5}{subsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.1}connected\_to}{5}{subsubsection.3.1.2.1}%
+\contentsline {subsubsection}{\numberline {3.1.2.2}fd}{5}{subsubsection.3.1.2.2}%
+\contentsline {subsubsection}{\numberline {3.1.2.3}id}{6}{subsubsection.3.1.2.3}%
+\contentsline {subsubsection}{\numberline {3.1.2.4}is\_speaking}{6}{subsubsection.3.1.2.4}%
+\contentsline {subsubsection}{\numberline {3.1.2.5}pending\_request\_from}{6}{subsubsection.3.1.2.5}%
+\contentsline {section}{\numberline {3.2}Server\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Conf Struct Reference}{6}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Member Data Documentation}{6}{subsection.3.2.2}%
+\contentsline {subsubsection}{\numberline {3.2.2.1}ip}{6}{subsubsection.3.2.2.1}%
+\contentsline {subsubsection}{\numberline {3.2.2.2}port}{6}{subsubsection.3.2.2.2}%
+\contentsline {chapter}{\numberline {4}File Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}client/main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}client.cpp File Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{8}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{8}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}get\_config()}{8}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}main()}{9}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}receive\_messages()}{9}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}valid\_ip\_port()}{10}{subsubsection.4.1.2.4}%
+\contentsline {subsection}{\numberline {4.1.3}Variable Documentation}{10}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}CFG\_DIR}{10}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}CFG\_FILE}{10}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}MAX\_INPUT}{11}{subsubsection.4.1.3.3}%
+\contentsline {section}{\numberline {4.2}main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}client.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{11}{section.4.2}%
+\contentsline {section}{\numberline {4.3}server/history.cpp File Reference}{13}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{14}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}append\_message\_to\_history()}{14}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}ensure\_history\_folder\_exists()}{14}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}get\_history\_filename()}{15}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}load\_history\_for\_users()}{15}{subsubsection.4.3.2.4}%
+\contentsline {section}{\numberline {4.4}history.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{16}{section.4.4}%
+\contentsline {section}{\numberline {4.5}server/history.h File Reference}{17}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{18}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Function Documentation}{18}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}append\_message\_to\_history()}{18}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}load\_history\_for\_users()}{19}{subsubsection.4.5.2.2}%
+\contentsline {section}{\numberline {4.6}history.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{19}{section.4.6}%
+\contentsline {section}{\numberline {4.7}server/main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}server.cpp File Reference}{20}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{21}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Function Documentation}{21}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}disconnect\_client()}{21}{subsubsection.4.7.2.1}%
+\contentsline {subsubsection}{\numberline {4.7.2.2}get\_timestamp()}{22}{subsubsection.4.7.2.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.3}handle\_client\_command()}{22}{subsubsection.4.7.2.3}%
+\contentsline {subsubsection}{\numberline {4.7.2.4}handle\_pending\_response()}{23}{subsubsection.4.7.2.4}%
+\contentsline {subsubsection}{\numberline {4.7.2.5}main()}{24}{subsubsection.4.7.2.5}%
+\contentsline {subsection}{\numberline {4.7.3}Variable Documentation}{26}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}PORT}{26}{subsubsection.4.7.3.1}%
+\contentsline {section}{\numberline {4.8}main\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}server.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{27}{section.4.8}%
+\contentsline {section}{\numberline {4.9}server/telegram\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}auth.cpp File Reference}{31}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{32}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}Function Documentation}{33}{subsection.4.9.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.1}ensure\_bot\_token()}{33}{subsubsection.4.9.2.1}%
+\contentsline {subsubsection}{\numberline {4.9.2.2}generate\_auth\_code()}{33}{subsubsection.4.9.2.2}%
+\contentsline {subsubsection}{\numberline {4.9.2.3}send\_telegram\_code()}{34}{subsubsection.4.9.2.3}%
+\contentsline {subsubsection}{\numberline {4.9.2.4}set\_bot\_token()}{35}{subsubsection.4.9.2.4}%
+\contentsline {subsubsection}{\numberline {4.9.2.5}verify\_auth\_code()}{35}{subsubsection.4.9.2.5}%
+\contentsline {subsection}{\numberline {4.9.3}Variable Documentation}{36}{subsection.4.9.3}%
+\contentsline {subsubsection}{\numberline {4.9.3.1}auth\_codes}{36}{subsubsection.4.9.3.1}%
+\contentsline {subsubsection}{\numberline {4.9.3.2}BOT\_TOKEN}{36}{subsubsection.4.9.3.2}%
+\contentsline {section}{\numberline {4.10}telegram\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}auth.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp}{37}{section.4.10}%
+\contentsline {section}{\numberline {4.11}server/telegram\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}auth.h File Reference}{38}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Detailed Description}{40}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Function Documentation}{40}{subsection.4.11.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.1}ensure\_bot\_token()}{40}{subsubsection.4.11.2.1}%
+\contentsline {subsubsection}{\numberline {4.11.2.2}generate\_auth\_code()}{41}{subsubsection.4.11.2.2}%
+\contentsline {subsubsection}{\numberline {4.11.2.3}send\_telegram\_code()}{41}{subsubsection.4.11.2.3}%
+\contentsline {subsubsection}{\numberline {4.11.2.4}set\_bot\_token()}{42}{subsubsection.4.11.2.4}%
+\contentsline {subsubsection}{\numberline {4.11.2.5}verify\_auth\_code()}{43}{subsubsection.4.11.2.5}%
+\contentsline {subsection}{\numberline {4.11.3}Variable Documentation}{43}{subsection.4.11.3}%
+\contentsline {subsubsection}{\numberline {4.11.3.1}BOT\_TOKEN}{43}{subsubsection.4.11.3.1}%
+\contentsline {section}{\numberline {4.12}telegram\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}auth.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{44}{section.4.12}%
+\contentsline {section}{\numberline {4.13}socket\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h File Reference}{44}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Detailed Description}{45}{subsection.4.13.1}%
+\contentsline {subsection}{\numberline {4.13.2}Function Documentation}{46}{subsection.4.13.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.1}recv\_line()}{46}{subsubsection.4.13.2.1}%
+\contentsline {subsubsection}{\numberline {4.13.2.2}send\_all()}{46}{subsubsection.4.13.2.2}%
+\contentsline {subsubsection}{\numberline {4.13.2.3}send\_line()}{47}{subsubsection.4.13.2.3}%
+\contentsline {subsubsection}{\numberline {4.13.2.4}send\_packet()}{47}{subsubsection.4.13.2.4}%
+\contentsline {section}{\numberline {4.14}socket\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{48}{section.4.14}%
+\contentsline {chapter}{{\cyrillictext \CYRP \cyrr \cyre \cyrd \cyrm \cyre \cyrt \cyrn \cyrery \cyrishrt \ \cyru \cyrk \cyra \cyrz \cyra \cyrt \cyre \cyrl \cyrsftsn }}{51}{section*.26}%

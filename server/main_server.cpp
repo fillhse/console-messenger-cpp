@@ -1,3 +1,13 @@
+/**
+ * @file main_server.cpp
+ * @brief Реализация сервера консольного мессенджера.
+ *
+ * Сервер принимает подключения клиентов по TCP, обеспечивает
+ * авторизацию через Telegram-коды, обработку команд клиентов
+ * (/connect, /vote, /end, /help, /exit, /shutdown),
+ * передачу сообщений между участниками и хранение истории.
+ */
+
 #include <netinet/in.h>
 #include <sys/select.h>
 #include <sys/socket.h>
@@ -16,8 +26,24 @@
 #include <unordered_map>
 #include <vector>
 
+/// Порт, на котором слушает сервер.
 constexpr int PORT = 9090;
 
+/**
+ * @struct ClientInfo
+ * @brief Информация о подключенном клиенте.
+ *
+ * @var ClientInfo::fd
+ * Дескриптор сокета клиента.
+ * @var ClientInfo::id
+ * Идентификатор (Telegram ID) клиента.
+ * @var ClientInfo::connected_to
+ * ID клиента, с которым установлена беседа (пусто, если нет).
+ * @var ClientInfo::is_speaking
+ * Флаг права голоса (кто может отправлять сообщения).
+ * @var ClientInfo::pending_request_from
+ * Если не пусто — ID клиента, ожидающего подтверждения соединения.
+ */
 struct ClientInfo {
 	int fd;
 	std::string id;
@@ -26,10 +52,20 @@ struct ClientInfo {
 	std::string pending_request_from;
 };
 
+/// Карта: дескриптор сокета -> информация о клиенте.
 static std::unordered_map<int, ClientInfo> clients;
+/// Карта: Telegram ID клиента -> дескриптор сокета.
 static std::unordered_map<std::string, int> id_to_fd;
+/// Карта: дескриптор сокета -> Telegram ID (ожидающие код).
 static std::unordered_map<int, std::string> pending_auth;
 
+/**
+ * @brief Получить текущую дату и время.
+ *
+ * Возвращает строку в формате "YYYY-MM-DD HH:MM".
+ *
+ * @return Форматированная метка времени.
+ */
 std::string get_timestamp() {
 	time_t now = time(nullptr);
 	char buf[20];
@@ -37,6 +73,15 @@ std::string get_timestamp() {
 	return std::string(buf);
 }
 
+/**
+ * @brief Отключить клиента и очистить его данные.
+ *
+ * Завершает соединение, удаляет из наборов клиентов,
+ * уведомляет партнера беседы.
+ *
+ * @param fd Дескриптор сокета клиента для отключения.
+ * @param master_fds Ссылка на набор файловых дескрипторов select().
+ */
 void disconnect_client(int fd, fd_set& master_fds) {
 	if (clients.count(fd)) {
 		std::string id = clients[fd].id;
@@ -58,6 +103,20 @@ void disconnect_client(int fd, fd_set& master_fds) {
 	}
 }
 
+/**
+ * @brief Обработать команду клиента в режиме диалога.
+ *
+ * Поддерживаемые команды:
+ *  - /connect <ID>
+ *  - /vote
+ *  - /end
+ *  - /help
+ *  - /exit
+ *
+ * @param fd   Дескриптор сокета отправителя.
+ * @param msg  Текст команды (без завершающего \n).
+ * @param master_fds Набор дескрипторов select() для обновления.
+ */
 void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 	if (msg.rfind("/connect ", 0) == 0) {
 		std::string target_id = msg.substr(9);
@@ -126,6 +185,15 @@ void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
 	}
 }
 
+/**
+ * @brief Обработать ответ клиента на запрос соединения.
+ *
+ * Если клиент ранее отправил /connect и ожидает ответа,
+ * эта функция устанавливает связь и пересылает историю.
+ *
+ * @param fd  Дескриптор сокета отвечающего клиента.
+ * @param msg Сообщение-ответ ("yes"/"no").
+ */
 void handle_pending_response(int fd, const std::string& msg) {
 	ClientInfo& responder = clients[fd];
 	if (responder.pending_request_from.empty())
@@ -161,6 +229,14 @@ void handle_pending_response(int fd, const std::string& msg) {
 	}
 }
 
+/**
+ * @brief Точка входа сервера.
+ *
+ * Запускает прослушивание порта,
+ * обрабатывает подключения и команды до получения /shutdown.
+ *
+ * @return 0 при корректном завершении, иначе код ошибки.
+ */
 int main() {
 	ensure_bot_token();
 

@@ -1,0 +1,47 @@
+\doxysection{history.\+h}
+\hypertarget{history_8h_source}{}\label{history_8h_source}\index{server/history.h@{server/history.h}}
+\mbox{\hyperlink{history_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ history.h}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Работа\ с\ историей\ переписки\ между\ двумя\ пользователями.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Механизм:}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00006}00006\ \textcolor{comment}{\ *\ -\/\ История\ хранится\ в\ каталоге\ HISTORY.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00007}00007\ \textcolor{comment}{\ *\ -\/\ Название\ файла\ истории\ для\ пары\ пользователей\ формируется}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ лексикографически:\ HISTORY/<min>\_\_\_<max>.txt.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00009}00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00011}00011\ \textcolor{preprocessor}{\#ifndef\ HISTORY\_H}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00012}00012\ \textcolor{preprocessor}{\#define\ HISTORY\_H}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00015}00015\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00016}00016\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00017}00017\ \textcolor{comment}{\ *\ @brief\ Добавить\ сообщение\ в\ историю\ чата\ двух\ пользователей.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00018}00018\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00019}00019\ \textcolor{comment}{\ *\ Создаёт\ каталог\ HISTORY\ при\ необходимости\ и\ дописывает\ @p\ message}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00020}00020\ \textcolor{comment}{\ *\ в\ файл\ для\ пары\ пользователей.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00021}00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00022}00022\ \textcolor{comment}{\ *\ @param\ user1\ Идентификатор\ первого\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00023}00023\ \textcolor{comment}{\ *\ @param\ user2\ Идентификатор\ второго\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00024}00024\ \textcolor{comment}{\ *\ @param\ message\ Текст\ сообщения,\ включая\ символ\ новой\ строки.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00025}00025\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00026}00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{history_8h_ae34f9f425cbaa823626b71ca0129b740}{append\_message\_to\_history}}(\textcolor{keyword}{const}\ std::string\&\ user1,\ \textcolor{keyword}{const}\ std::string\&\ user2,}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00027}00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\&\ message);}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00028}00028\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00029}00029\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00030}00030\ \textcolor{comment}{\ *\ @brief\ Загрузить\ всю\ историю\ переписки\ между\ двумя\ пользователями.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00031}00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00032}00032\ \textcolor{comment}{\ *\ Открывает\ файл\ HISTORY/<min>\_\_\_<max>.txt\ и\ возвращает\ его\ содержимое.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00033}00033\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00034}00034\ \textcolor{comment}{\ *\ @param\ user1\ Идентификатор\ первого\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00035}00035\ \textcolor{comment}{\ *\ @param\ user2\ Идентификатор\ второго\ пользователя.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00036}00036\ \textcolor{comment}{\ *\ @return\ Строка\ с\ полным\ содержимым\ истории;\ пустая\ строка,}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00037}00037\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ если\ файл\ не\ существует\ или\ пуст.}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00038}00038\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00039}00039\ std::string\ \mbox{\hyperlink{history_8h_afc2aba136cde68f180727094b3719328}{load\_history\_for\_users}}(\textcolor{keyword}{const}\ std::string\&\ user1,\ \textcolor{keyword}{const}\ std::string\&\ user2);}
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{history_8h_source_l00041}00041\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ HISTORY\_H}}
+
+\end{DoxyCode}
