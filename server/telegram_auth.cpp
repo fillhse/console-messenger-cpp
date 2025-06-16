@@ -59,8 +59,11 @@ void ensure_bot_token() {
 
 bool send_telegram_code(const std::string& chat_id, const std::string& code) {
 	ensure_bot_token();
-	std::string cmd = "curl -s https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage?chat_id=" + chat_id +
-	                  "&text=Your%20authentication%20code%20is:%20" + code;
+	std::string url = "https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage";
+	std::string cmd = "curl -s -X POST \"" + url +
+	                  "\""
+	                  " -d chat_id=" +
+	                  chat_id + " -d text='Your authentication code is: " + code + "'";
 
 	FILE* pipe = popen(cmd.c_str(), "r");
 	if (!pipe)
