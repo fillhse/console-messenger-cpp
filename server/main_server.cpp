@@ -26,9 +26,9 @@ struct ClientInfo {
 	std::string pending_request_from;
 };
 
-std::unordered_map<int, ClientInfo> clients;
-std::unordered_map<std::string, int> id_to_fd;
-std::unordered_map<int, std::string> pending_auth;
+static std::unordered_map<int, ClientInfo>   clients;
+static std::unordered_map<std::string, int>  id_to_fd;
+static std::unordered_map<int, std::string>  pending_auth;
 
 std::string get_timestamp() {
 	time_t now = time(nullptr);
@@ -141,6 +141,7 @@ void handle_pending_response(int fd, const std::string& msg) {
 
 	int requester_fd = id_to_fd[requester_id];
 	if (msg == "yes") {
+		std::cout << "Clients connected: " << responder.id << " <-> " << requester_id << std::endl;
 		responder.connected_to = requester_id;
 		clients[requester_fd].connected_to = responder.id;
 		clients[requester_fd].is_speaking = true;
@@ -188,6 +189,7 @@ int main() {
 	fd_set master_fds, read_fds;
 	FD_ZERO(&master_fds);
 	FD_SET(listener, &master_fds);
+	FD_SET(STDIN_FILENO, &master_fds);
 	int fd_max = listener;
 
 	while (true) {
@@ -200,15 +202,33 @@ int main() {
 		for (int fd = 0; fd <= fd_max; ++fd) {
 			if (!FD_ISSET(fd, &read_fds))
 				continue;
+			
+			if (fd == STDIN_FILENO) {
+				std::string cmd;
+				std::getline(std::cin, cmd);
+				if (cmd == "/shutdown") {
+					std::cout << "Shutting down server...\n";
+					// Уведомить всех клиентов
+					for (auto& [cfd, info] : clients)
+						send_packet(cfd, "Server is shutting down.\n");
+					// Закрыть всех
+					for (auto& [cfd, info] : clients) close(cfd);
+					close(listener);
+					std::cout << "Server stopped.\n";
+					return 0;
+				}
+				continue;
+			}
 
 			if (fd == listener) {
 				sockaddr_in client_addr{};
 				socklen_t addrlen = sizeof(client_addr);
 				int client_fd = accept(listener, (sockaddr*)&client_addr, &addrlen);
 				if (client_fd != -1) {
+					std::cout << "New client connected, fd: " << client_fd << std::endl;
 					FD_SET(client_fd, &master_fds);
 					fd_max = std::max(fd_max, client_fd);
-					const char* ask_id = "Enter your ID:\n";
+					const char* ask_id = "Enter your ID\n";
 					send_packet(client_fd, ask_id);
 				}
 			} else {
@@ -221,19 +241,19 @@ int main() {
 				if (clients.count(fd) == 0 && !pending_auth.count(fd)) {
 					std::string chat_id = msg;
 					if (chat_id.empty()) {
-						send_packet(fd, "Chat ID cannot be empty. Try again:\n");
+						send_packet(fd, "Chat ID cannot be empty. Try again\n");
 						continue;
 					}
 
 					std::string code = generate_auth_code();
 					if (send_telegram_code(chat_id, code)) {
 						pending_auth[fd] = chat_id;
-						const char* sent = "Telegram code sent. Enter the code to log in:\n";
+						const char* sent = "Telegram code sent. Enter the code to log in\n";
 						send_packet(fd, sent);
 					} else {
 						send_packet(fd,
 						         "Failed to send Telegram message.\nUse command /exit to "
-						         "exit.\nCheck the telegram ID and write it again:\n");
+						         "exit.\nCheck the telegram ID and write it again");
 					}
 				}
 
@@ -248,6 +268,7 @@ int main() {
 						}
 
 						clients[fd] = ClientInfo{fd, chat_id};
+						std::cout << "Client authorized: " << chat_id << " (fd: " << fd << ")" << std::endl;
 						id_to_fd[chat_id] = fd;
 						pending_auth.erase(fd);
 
@@ -255,7 +276,7 @@ int main() {
 						    "Welcome, " + chat_id + "! Use /connect <ID>, /vote, /end, /exit, /help\n";
 						send_packet(fd, welcome.c_str());
 					} else {
-						send_packet(fd, "Incorrect code. Try again:\n");
+						send_packet(fd, "Incorrect code. Try again\n");
 					}
 				}
 

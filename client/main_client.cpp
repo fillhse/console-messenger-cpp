@@ -56,10 +56,10 @@ ServerConf get_config() {
 void receive_messages(int fd) {
 	std::string line;
 		while (recv_line(fd, line)) {
-			if (line.empty())                   // пустую строку пропускаем
+			if (line.empty())             
 				continue;
 
-			if (line == "*ENDM*") {             // маркер конца пакета
+			if (line == "*ENDM*") {        
 				std::cout << "Your message: " << std::flush;
 				continue;
 			}

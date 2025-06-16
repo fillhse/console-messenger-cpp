@@ -9,10 +9,6 @@
 
 #include <string_view>
 
-bool contains_forbidden_words(const std::string& str) {
-	return str.find("*ENDM*") != std::string::npos;
-}
-
 inline bool send_all(int fd, std::string_view data) {
 	std::string message(data);
 	size_t sent = 0;
