@@ -296,8 +296,8 @@ int main() {
 					}
 					if (!clients[fd].is_speaking) {
 						send_all(fd,
-						            "You cannot send messages unless you're the current "
-						            "speaker.\n");
+						         "You cannot send messages unless you're the current "
+						         "speaker.\n");
 						continue;
 					}
 
