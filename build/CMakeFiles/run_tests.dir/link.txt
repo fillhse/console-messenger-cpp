@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/run_tests.dir/tests/test_history.cpp.o CMakeFiles/run_tests.dir/tests/test_telegram_auth.cpp.o CMakeFiles/run_tests.dir/tests/test_main_client.cpp.o CMakeFiles/run_tests.dir/tests/test_main_server.cpp.o -o run_tests  libproject_libs.a -lpthread /usr/lib/x86_64-linux-gnu/libcurl.so 
