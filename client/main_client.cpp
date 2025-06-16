@@ -55,16 +55,16 @@ ServerConf get_config() {
 
 void receive_messages(int fd) {
 	std::string line;
-		while (recv_line(fd, line)) {
-			if (line.empty())             
-				continue;
+	while (recv_line(fd, line)) {
+		if (line.empty())
+			continue;
 
-			if (line == "*ENDM*") {        
-				std::cout << "[You]> " << std::flush;
-				continue;
-			}
-			std::cout << line << '\n';
+		if (line == "*ENDM*") {
+			std::cout << "[You]> " << std::flush;
+			continue;
 		}
+		std::cout << line << '\n';
+	}
 	std::cout << "\nDisconnected from server.\n";
 	close(fd);
 	exit(0);

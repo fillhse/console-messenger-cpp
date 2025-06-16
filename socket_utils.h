@@ -1,12 +1,10 @@
 #ifndef SOCKET_UTILS_H
 #define SOCKET_UTILS_H
-#include <iostream>
 #include <sys/socket.h>
 #include <unistd.h>
 
+#include <iostream>
 #include <string>
-#include <string_view>
-
 #include <string_view>
 
 inline bool send_all(int fd, std::string_view data) {
@@ -21,13 +19,12 @@ inline bool send_all(int fd, std::string_view data) {
 	return true;
 }
 
-inline bool send_packet(int fd, std::string_view data)
-{
-	std::string message(data);	
-    if (message.empty() || message.back() != '\n')
-        message.push_back('\n');
-	message += "*ENDM*\n"; 
-    return send_all(fd, message);
+inline bool send_packet(int fd, std::string_view data) {
+	std::string message(data);
+	if (message.empty() || message.back() != '\n')
+		message.push_back('\n');
+	message += "*ENDM*\n";
+	return send_all(fd, message);
 }
 
 inline bool send_line(int fd, std::string_view sv) {

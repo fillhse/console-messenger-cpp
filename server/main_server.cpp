@@ -26,9 +26,9 @@ struct ClientInfo {
 	std::string pending_request_from;
 };
 
-static std::unordered_map<int, ClientInfo>   clients;
-static std::unordered_map<std::string, int>  id_to_fd;
-static std::unordered_map<int, std::string>  pending_auth;
+static std::unordered_map<int, ClientInfo> clients;
+static std::unordered_map<std::string, int> id_to_fd;
+static std::unordered_map<int, std::string> pending_auth;
 
 std::string get_timestamp() {
 	time_t now = time(nullptr);
@@ -202,17 +202,16 @@ int main() {
 		for (int fd = 0; fd <= fd_max; ++fd) {
 			if (!FD_ISSET(fd, &read_fds))
 				continue;
-			
+
 			if (fd == STDIN_FILENO) {
 				std::string cmd;
 				std::getline(std::cin, cmd);
 				if (cmd == "/shutdown") {
 					std::cout << "Shutting down server...\n";
-					// Уведомить всех клиентов
 					for (auto& [cfd, info] : clients)
 						send_packet(cfd, "Server is shutting down.\n");
-					// Закрыть всех
-					for (auto& [cfd, info] : clients) close(cfd);
+					for (auto& [cfd, info] : clients)
+						close(cfd);
 					close(listener);
 					std::cout << "Server stopped.\n";
 					return 0;
@@ -252,8 +251,8 @@ int main() {
 						send_packet(fd, sent);
 					} else {
 						send_packet(fd,
-						         "Failed to send Telegram message.\nUse command /exit to "
-						         "exit.\nCheck the telegram ID and write it again");
+						            "Failed to send Telegram message.\nUse command /exit to "
+						            "exit.\nCheck the telegram ID and write it again");
 					}
 				}
 
@@ -291,14 +290,14 @@ int main() {
 				else {
 					if (clients[fd].connected_to.empty()) {
 						send_packet(fd,
-						         "You are not in a conversation.\nUse /connect <ID> to "
-						         "start chatting.\n");
+						            "You are not in a conversation.\nUse /connect <ID> to "
+						            "start chatting.\n");
 						continue;
 					}
 					if (!clients[fd].is_speaking) {
 						send_packet(fd,
-						         "You cannot send messages unless you're the current "
-						         "speaker.\n");
+						            "You cannot send messages unless you're the current "
+						            "speaker.\n");
 						continue;
 					}
 
