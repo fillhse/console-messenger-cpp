@@ -261,7 +261,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="lineno">   35</span>        ssize_t n = ::send(fd, message.data() + sent, message.size() - sent, 0);</div>
 <div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (n &lt;= 0)</div>
 <div class="line"><span class="lineno">   37</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   38</span>        sent += <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(n);</div>
+<div class="line"><span class="lineno">   38</span>        sent += <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(n);     <span class="comment">// Borrowed line</span></div>
 <div class="line"><span class="lineno">   39</span>    }</div>
 <div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   41</span>}</div>

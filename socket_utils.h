@@ -35,7 +35,7 @@ inline bool send_all(int fd, std::string_view data) {
 		ssize_t n = ::send(fd, message.data() + sent, message.size() - sent, 0);
 		if (n <= 0)
 			return false;
-		sent += static_cast<size_t>(n);  	// Borrowed line
+		sent += static_cast<size_t>(n);  // Borrowed line
 	}
 	return true;
 }

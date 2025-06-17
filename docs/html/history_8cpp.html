@@ -79,9 +79,6 @@ $(function() {
   <div class="headertitle"><div class="title">history.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Реализация функций для хранения и загрузки истории переписки пользователей.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="history_8h_source.html">history.h</a>&quot;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
 <code>#include &lt;filesystem&gt;</code><br />
@@ -92,7 +89,7 @@ Include dependency graph for history.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="history_8cpp__incl.png" border="0" usemap="#aserver_2history_8cpp" alt=""/></div>
 <map name="aserver_2history_8cpp" id="aserver_2history_8cpp">
-<area shape="rect" title="Реализация функций для хранения и загрузки истории переписки пользователей." alt="" coords="193,5,330,31"/>
+<area shape="rect" title=" " alt="" coords="193,5,330,31"/>
 <area shape="rect" href="history_8h.html" title="Работа с историей переписки между двумя пользователями." alt="" coords="5,79,83,104"/>
 <area shape="poly" title=" " alt="" coords="227,33,93,77,91,72,226,28"/>
 <area shape="rect" title=" " alt="" coords="107,79,192,104"/>
@@ -113,28 +110,17 @@ Include dependency graph for history.cpp:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a7a46f887a14f116d328ace1ca302725f" id="r_a7a46f887a14f116d328ace1ca302725f"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a> (const std::string &amp;user1, const std::string &amp;user2)</td></tr>
-<tr class="memdesc:a7a46f887a14f116d328ace1ca302725f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Построить путь к файлу истории для двух пользователей.  <br /></td></tr>
 <tr class="separator:a7a46f887a14f116d328ace1ca302725f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab3589714c50ca1cb82633cef1ec3b1c" id="r_aab3589714c50ca1cb82633cef1ec3b1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a> ()</td></tr>
-<tr class="memdesc:aab3589714c50ca1cb82633cef1ec3b1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Создать папку HISTORY, если она ещё не существует.  <br /></td></tr>
 <tr class="separator:aab3589714c50ca1cb82633cef1ec3b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae34f9f425cbaa823626b71ca0129b740" id="r_ae34f9f425cbaa823626b71ca0129b740"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8cpp.html#ae34f9f425cbaa823626b71ca0129b740">append_message_to_history</a> (const std::string &amp;user1, const std::string &amp;user2, const std::string &amp;message)</td></tr>
-<tr class="memdesc:ae34f9f425cbaa823626b71ca0129b740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавить сообщение в конец файла истории для двух пользователей.  <br /></td></tr>
+<tr class="memdesc:ae34f9f425cbaa823626b71ca0129b740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавить сообщение в историю чата двух пользователей.  <br /></td></tr>
 <tr class="separator:ae34f9f425cbaa823626b71ca0129b740"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc2aba136cde68f180727094b3719328" id="r_afc2aba136cde68f180727094b3719328"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="history_8cpp.html#afc2aba136cde68f180727094b3719328">load_history_for_users</a> (const std::string &amp;user1, const std::string &amp;user2)</td></tr>
 <tr class="memdesc:afc2aba136cde68f180727094b3719328"><td class="mdescLeft">&#160;</td><td class="mdescRight">Загрузить всю историю переписки между двумя пользователями.  <br /></td></tr>
 <tr class="separator:afc2aba136cde68f180727094b3719328"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Реализация функций для хранения и загрузки истории переписки пользователей. </p>
-<p>Механизм:</p><ul>
-<li>История для пары пользователей хранится в файле HISTORY/history_&lt;min&gt;_&lt;max&gt;.txt, где &lt;min&gt; и &lt;max&gt; — идентификаторы пользователей в лексикографическом порядке.</li>
-<li>При добавлении сообщения, папка HISTORY создаётся при необходимости, а сообщение дописывается в соответствующий файл.</li>
-<li>При загрузке истории возвращается содержимое файла целиком или пустая строка, если файл не существует. </li>
-</ul>
-
-<p class="definition">Definition in file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-</div><h2 class="groupheader">Function Documentation</h2>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="ae34f9f425cbaa823626b71ca0129b740" name="ae34f9f425cbaa823626b71ca0129b740"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae34f9f425cbaa823626b71ca0129b740">&#9670;&#160;</a></span>append_message_to_history()</h2>
 
@@ -167,28 +153,27 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Добавить сообщение в конец файла истории для двух пользователей. </p>
-<p>Добавить сообщение в историю чата двух пользователей.</p>
-<p>Перед записью гарантирует существование папки HISTORY.</p>
+<p>Добавить сообщение в историю чата двух пользователей. </p>
+<p>Создаёт каталог HISTORY при необходимости и дописывает <code>message</code> в файл для пары пользователей.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">user1</td><td>Идентификатор отправителя или просто один из пользователей чата. </td></tr>
-    <tr><td class="paramname">user2</td><td>Идентификатор второго пользователя чата. </td></tr>
-    <tr><td class="paramname">message</td><td>Текст сообщения; может содержать символ новой строки в конце. </td></tr>
+    <tr><td class="paramname">user1</td><td>Идентификатор первого пользователя. </td></tr>
+    <tr><td class="paramname">user2</td><td>Идентификатор второго пользователя. </td></tr>
+    <tr><td class="paramname">message</td><td>Текст сообщения, включая символ новой строки. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00060">60</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                         {</div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
-<div class="line"><span class="lineno">   63</span>    std::ofstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2), std::ios::app);</div>
-<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">if</span> (file) {</div>
-<div class="line"><span class="lineno">   65</span>        file &lt;&lt; message;</div>
-<div class="line"><span class="lineno">   66</span>    }</div>
-<div class="line"><span class="lineno">   67</span>}</div>
-<div class="ttc" id="ahistory_8cpp_html_a7a46f887a14f116d328ace1ca302725f"><div class="ttname"><a href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a></div><div class="ttdeci">std::string get_history_filename(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdoc">Построить путь к файлу истории для двух пользователей.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00033">history.cpp:33</a></div></div>
-<div class="ttc" id="ahistory_8cpp_html_aab3589714c50ca1cb82633cef1ec3b1c"><div class="ttname"><a href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a></div><div class="ttdeci">void ensure_history_folder_exists()</div><div class="ttdoc">Создать папку HISTORY, если она ещё не существует.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00045">history.cpp:45</a></div></div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00023">23</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                         {</div>
+<div class="line"><span class="lineno">   25</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
+<div class="line"><span class="lineno">   26</span>    std::ofstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2), std::ios::app);</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span> (file) {</div>
+<div class="line"><span class="lineno">   28</span>        file &lt;&lt; message;</div>
+<div class="line"><span class="lineno">   29</span>    }</div>
+<div class="line"><span class="lineno">   30</span>}</div>
+<div class="ttc" id="ahistory_8cpp_html_a7a46f887a14f116d328ace1ca302725f"><div class="ttname"><a href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a></div><div class="ttdeci">std::string get_history_filename(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00010">history.cpp:10</a></div></div>
+<div class="ttc" id="ahistory_8cpp_html_aab3589714c50ca1cb82633cef1ec3b1c"><div class="ttname"><a href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a></div><div class="ttdeci">void ensure_history_folder_exists()</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00017">history.cpp:17</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -207,15 +192,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Создать папку HISTORY, если она ещё не существует. </p>
-<p>Использует std::filesystem::exists и std::filesystem::create_directory. </p>
-
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00045">45</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   45</span>                                    {</div>
-<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">if</span> (!fs::exists(<span class="stringliteral">&quot;HISTORY&quot;</span>)) {</div>
-<div class="line"><span class="lineno">   47</span>        fs::create_directory(<span class="stringliteral">&quot;HISTORY&quot;</span>);</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
-<div class="line"><span class="lineno">   49</span>}</div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00017">17</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>                                    {</div>
+<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">if</span> (!fs::exists(<span class="stringliteral">&quot;HISTORY&quot;</span>)) {</div>
+<div class="line"><span class="lineno">   19</span>        fs::create_directory(<span class="stringliteral">&quot;HISTORY&quot;</span>);</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+<div class="line"><span class="lineno">   21</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -245,24 +227,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Построить путь к файлу истории для двух пользователей. </p>
-<p>Идентификаторы упорядочиваются лексикографически и соединяются через '_', а затем добавляются префикс и суффикс.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">user1</td><td>Идентификатор первого пользователя. </td></tr>
-    <tr><td class="paramname">user2</td><td>Идентификатор второго пользователя. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Строка с путём к файлу истории, например "HISTORY/history_alice_bob.txt". </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00033">33</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   33</span>                                                                               {</div>
-<div class="line"><span class="lineno">   34</span>    std::string u1 = user1, u2 = user2;</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (u1 &gt; u2)</div>
-<div class="line"><span class="lineno">   36</span>        std::swap(u1, u2);</div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;HISTORY/history_&quot;</span> + u1 + <span class="stringliteral">&quot;_&quot;</span> + u2 + <span class="stringliteral">&quot;.txt&quot;</span>;</div>
-<div class="line"><span class="lineno">   38</span>}</div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00010">10</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>                                                                               {</div>
+<div class="line"><span class="lineno">   11</span>    std::string u1 = user1, u2 = user2;</div>
+<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">if</span> (u1 &gt; u2)</div>
+<div class="line"><span class="lineno">   13</span>        std::swap(u1, u2);</div>
+<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;HISTORY/history_&quot;</span> + u1 + <span class="stringliteral">&quot;_&quot;</span> + u2 + <span class="stringliteral">&quot;.txt&quot;</span>;</div>
+<div class="line"><span class="lineno">   15</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -293,7 +264,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Загрузить всю историю переписки между двумя пользователями. </p>
-<p>Если файл с историей существует, читает его содержимое через std::ostringstream.</p>
+<p>Открывает файл HISTORY/&lt;min&gt;___&lt;max&gt;.txt и возвращает его содержимое.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">user1</td><td>Идентификатор первого пользователя. </td></tr>
@@ -301,18 +272,18 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Строка с полным содержимым файла истории; пустая строка, если файл недоступен. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Строка с полным содержимым истории; пустая строка, если файл не существует или пуст. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00078">78</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>                                                                                 {</div>
-<div class="line"><span class="lineno">   79</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
-<div class="line"><span class="lineno">   80</span>    std::ifstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2));</div>
-<div class="line"><span class="lineno">   81</span>    std::ostringstream ss;</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (file) {</div>
-<div class="line"><span class="lineno">   83</span>        ss &lt;&lt; file.rdbuf();</div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><span class="lineno">   86</span>}</div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00032">32</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>                                                                                 {</div>
+<div class="line"><span class="lineno">   33</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
+<div class="line"><span class="lineno">   34</span>    std::ifstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2));</div>
+<div class="line"><span class="lineno">   35</span>    std::ostringstream ss;</div>
+<div class="line"><span class="lineno">   36</span>    <span class="keywordflow">if</span> (file) {</div>
+<div class="line"><span class="lineno">   37</span>        ss &lt;&lt; file.rdbuf();</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><span class="lineno">   40</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
