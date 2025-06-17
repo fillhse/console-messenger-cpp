@@ -240,28 +240,30 @@ void handle_pending_response(int fd, const std::string& msg) {
 int main() {
 	ensure_bot_token();
 
-	int listener = socket(AF_INET, SOCK_STREAM, 0);
-	if (listener == -1) {
-		perror("socket");
-		return 1;
-	}
+	// BEGIN: Borrowed code (socket initialization and server setup)
+int listener = socket(AF_INET, SOCK_STREAM, 0);
+if (listener == -1) {
+    perror("socket");
+    return 1;
+}
 
-	int opt = 1;
-	setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+int opt = 1;
+setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 
-	sockaddr_in server_addr{};
-	server_addr.sin_family = AF_INET;
-	server_addr.sin_port = htons(PORT);
-	server_addr.sin_addr.s_addr = INADDR_ANY;
+sockaddr_in server_addr{};
+server_addr.sin_family = AF_INET;
+server_addr.sin_port = htons(PORT);
+server_addr.sin_addr.s_addr = INADDR_ANY;
 
-	if (bind(listener, (sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
-		perror("bind");
-		return 1;
-	}
+if (bind(listener, (sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
+    perror("bind");
+    return 1;
+}
 
-	listen(listener, SOMAXCONN);
+listen(listener, SOMAXCONN);
+// END: Borrowed code (socket initialization and server setup)
 	std::cout << "Server listening on port " << PORT << std::endl;
-
+	// BEGIN: Borrowed code
 	fd_set master_fds, read_fds;
 	FD_ZERO(&master_fds);
 	FD_SET(listener, &master_fds);
@@ -274,6 +276,7 @@ int main() {
 			perror("select");
 			break;
 		}
+		// END: Borrowed code
 
 		for (int fd = 0; fd <= fd_max; ++fd) {
 			if (!FD_ISSET(fd, &read_fds))

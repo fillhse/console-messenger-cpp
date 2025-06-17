@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/console_client.dir/client/main_client.cpp.o -o console_client  -lpthread 

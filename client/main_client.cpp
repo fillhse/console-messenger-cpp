@@ -139,21 +139,23 @@ void receive_messages(int fd) {
 int main() {
 	ServerConf conf = get_config();
 
-	int sock = socket(AF_INET, SOCK_STREAM, 0);
-	if (sock == -1) {
-		perror("socket");
-		return 1;
-	}
+	// BEGIN: Borrowed code (socket creation and connection setup)
+int sock = socket(AF_INET, SOCK_STREAM, 0);
+if (sock == -1) {
+    perror("socket");
+    return 1;
+}
 
-	sockaddr_in addr{};
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(conf.port);
-	inet_pton(AF_INET, conf.ip.c_str(), &addr.sin_addr);
+sockaddr_in addr{};
+addr.sin_family = AF_INET;
+addr.sin_port = htons(conf.port);
+inet_pton(AF_INET, conf.ip.c_str(), &addr.sin_addr);
 
-	if (connect(sock, (sockaddr*)&addr, sizeof(addr)) < 0) {
-		perror("connect");
-		return 1;
-	}
+if (connect(sock, (sockaddr*)&addr, sizeof(addr)) < 0) {
+    perror("connect");
+    return 1;
+}
+// END: Borrowed code (socket creation and connection setup)
 
 	std::thread(receive_messages, sock).detach();
 

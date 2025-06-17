@@ -119,9 +119,11 @@ bool send_telegram_code(const std::string& chat_id, const std::string& code) {
 	                  " -d chat_id=" +
 	                  chat_id + " -d text='Your authentication code is: " + code + "'";
 
-	FILE* pipe = popen(cmd.c_str(), "r");
+	// BEGIN: Borrowed code (executing curl command and reading response)
+FILE* pipe = popen(cmd.c_str(), "r");
 	if (!pipe)
 		return false;
+// END: Borrowed code (executing curl command and reading response)
 
 	std::string response;
 	char buf[256];
