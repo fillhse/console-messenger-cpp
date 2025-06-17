@@ -117,7 +117,7 @@ void receive_messages(int fd) {
 		if (line.empty())
 			continue;
 		if (line == "*ENDM*") {
-			std::cout << "[You]> " << std::flush;
+			std::cout << "> " << std::flush;
 			continue;
 		}
 		std::cout << line << '\n';
