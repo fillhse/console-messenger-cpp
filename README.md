@@ -103,7 +103,7 @@ CLIENT_SETTING/ip_port.txt
 ```bash
 ./console_server in build folder
 ```
-
+- By default, the server runs on port 9090
 - In the server console enter `/shutdown` to notify clients and exit cleanly.
 
 ### Start Client
@@ -111,7 +111,6 @@ CLIENT_SETTING/ip_port.txt
 ```bash
 ./console_client in build folder
 ```
-
 - Follow prompts to authenticate via Telegram.  
 - Available client commands:
 
