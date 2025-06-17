@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/console_server.dir/server/main_server.cpp.o CMakeFiles/console_server.dir/server/history.cpp.o CMakeFiles/console_server.dir/server/telegram_auth.cpp.o -o console_server  /usr/lib/x86_64-linux-gnu/libcurl.so -lpthread 

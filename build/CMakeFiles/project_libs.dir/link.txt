@@ -1,2 +1,0 @@
-/usr/bin/ar qc libproject_libs.a CMakeFiles/project_libs.dir/server/history.cpp.o CMakeFiles/project_libs.dir/server/telegram_auth.cpp.o
-/usr/bin/ranlib libproject_libs.a
