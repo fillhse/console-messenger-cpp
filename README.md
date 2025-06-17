@@ -40,7 +40,7 @@ console-messenger-cpp/
 │   └── test_telegram_auth.cpp   # Unit tests for telegram_auth
 └── docs/
     ├── html/                    # Generated HTML documentation
-    └── latex/                   # Generated LaTeX sources & PDF (optional)
+    └── latex/                   # refman.pdf
 ```
 
 ---
