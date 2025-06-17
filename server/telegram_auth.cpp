@@ -10,9 +10,13 @@
 #include <random>
 #include <string>
 
+std::string BOT_TOKEN;
+
 void set_bot_token(const std::string& token) {
 	BOT_TOKEN = token;
 }
+
+std::map<std::string, std::string> auth_codes;
 
 std::string generate_auth_code() {
 	static bool seeded = false;
