@@ -68,6 +68,8 @@ git clone https://github.com/fillhse/console-messenger-cpp.git
 cd console-messenger-cpp
 git submodule update --init --recursive      # cpr
 sudo apt-get update
+sudo apt-get install cmake
+sudo apt-get install build-essential -y
 sudo apt-get install libssl-dev
 sudo apt-get install libcurl4-openssl-dev
 ```
