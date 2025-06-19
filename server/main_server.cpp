@@ -118,7 +118,7 @@ void disconnect_client(int fd, fd_set& master_fds) {
  * @param master_fds Набор дескрипторов select() для обновления.
  */
 void handle_client_command(int fd, const std::string& msg, fd_set& master_fds) {
-	if (msg.rfind("/connect ", 0) == 0) {
+	if (msg.starts_with("/connect ")) {
 		std::string target_id = msg.substr(9);
 		if (id_to_fd.count(target_id)) {
 			int target_fd = id_to_fd[target_id];
@@ -240,7 +240,6 @@ void handle_pending_response(int fd, const std::string& msg) {
 int main() {
 	ensure_bot_token();
 
-	// BEGIN: Borrowed code (socket initialization and server setup)
 	int listener = socket(AF_INET, SOCK_STREAM, 0);
 	if (listener == -1) {
 		perror("socket");
@@ -261,9 +260,9 @@ int main() {
 	}
 
 	listen(listener, SOMAXCONN);
-	// END: Borrowed code (socket initialization and server setup)
+
 	std::cout << "Server listening on port " << PORT << std::endl;
-	// BEGIN: Borrowed code
+
 	fd_set master_fds, read_fds;
 	FD_ZERO(&master_fds);
 	FD_SET(listener, &master_fds);
@@ -276,7 +275,6 @@ int main() {
 			perror("select");
 			break;
 		}
-		// END: Borrowed code
 
 		for (int fd = 0; fd <= fd_max; ++fd) {
 			if (!FD_ISSET(fd, &read_fds))
@@ -287,10 +285,12 @@ int main() {
 				std::getline(std::cin, cmd);
 				if (cmd == "/shutdown") {
 					std::cout << "Shutting down server...\n";
+					// BEGIN: Borrowed code
 					for (auto& [cfd, info] : clients)
 						send_all(cfd, "\nServer is shutting down.\n");
 					for (auto& [cfd, info] : clients)
 						close(cfd);
+					// END: Borrowed code
 					close(listener);
 					std::cout << "Server stopped.\n";
 					return 0;
@@ -299,9 +299,7 @@ int main() {
 			}
 
 			if (fd == listener) {
-				sockaddr_in client_addr{};
-				socklen_t addrlen = sizeof(client_addr);
-				int client_fd = accept(listener, (sockaddr*)&client_addr, &addrlen);
+				int client_fd = accept(listener, nullptr, nullptr);
 				if (client_fd != -1) {
 					std::cout << "New client connected, fd: " << client_fd << std::endl;
 					FD_SET(client_fd, &master_fds);

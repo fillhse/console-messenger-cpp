@@ -17,25 +17,33 @@
 
 #include <iostream>
 #include <string>
-#include <string_view>
 
 /**
- * @brief Отправить весь буфер данных через сокет.
+ * @brief  Отправить всю строку целиком по TCP-сокету.
  *
- * Использует ::send() в цикле, пока не отправит все байты из @p data.
+ * Функция многократно вызывает системный ::send(), пока не
+ * будет передан каждый байт строки @p msg.  Рассчитана на
+ * **блокирующий** сокет — ::send() внутри может подождать,
+ * когда освободится буфер ядра.
  *
- * @param fd Дескриптор сокета.
- * @param data Буфер данных для отправки.
- * @return true если все данные успешно отправлены, false при ошибке.
+ * @param fd   Дескриптор открытого TCP-сокета.
+ * @param msg  Строка, которую нужно передать (без копирования —
+ *             используется её внутренний буфер).
+ *
+ * @return true   Если переданы все символы строки.
+ * @return false  Если ::send() вернул 0 (соединение закрыто)
+ *                или < 0 (критическая ошибка).
  */
-inline bool send_all(int fd, std::string_view data) {
-	std::string message(data);
+inline bool send_all(
+    int fd, const std::string& msg) {  // Без const ссылка на временный std::string запрещена стандартом.
 	size_t sent = 0;
-	while (sent < message.size()) {
-		ssize_t n = ::send(fd, message.data() + sent, message.size() - sent, 0);
-		if (n <= 0)
+	while (sent < msg.size()) {
+		ssize_t n = ::send(fd,
+		                   msg.c_str() + sent,  // адрес нужного байта
+		                   msg.size() - sent, 0);
+		if (n <= 0)  // ошибка или разрыв
 			return false;
-		sent += static_cast<size_t>(n);  // Borrowed line
+		sent += static_cast<size_t>(n);
 	}
 	return true;
 }
@@ -50,8 +58,7 @@ inline bool send_all(int fd, std::string_view data) {
  * @param data Текст данных для отправки.
  * @return true если пакет успешно отправлен, false при ошибке.
  */
-inline bool send_packet(int fd, std::string_view data) {
-	std::string message(data);
+inline bool send_packet(int fd, std::string message) {
 	if (message.empty() || message.back() != '\n')
 		message.push_back('\n');
 	message += "*ENDM*\n";
@@ -68,13 +75,11 @@ inline bool send_packet(int fd, std::string_view data) {
  * @param sv Строка для отправки.
  * @return true если строка успешно отправлена, false при ошибке.
  */
-inline bool send_line(int fd, std::string_view sv) {
-	if (sv.empty() || sv.back() != '\n') {
-		std::string tmp(sv);
-		tmp.push_back('\n');
-		return send_all(fd, tmp);
+inline bool send_line(int fd, std::string message) {
+	if (message.empty() || message.back() != '\n') {
+		message.push_back('\n');
 	}
-	return send_all(fd, sv);
+	return send_all(fd, message);
 }
 
 /**

@@ -23,7 +23,7 @@
 /**
  * @brief Максимально допустимая длина сообщения от пользователя.
  */
-constexpr size_t MAX_INPUT = 2000;
+static const size_t MAX_LEN_INPUT = 2000;
 
 /**
  * @brief Директория для хранения конфигурационного файла.
@@ -57,11 +57,19 @@ struct ServerConf {
  * @param port  Номер порта.
  * @return true  если адрес и порт валидны;
  *         false в противном случае.
+ *
+ * @see
+ * https://stackoverflow.com/questions/318236/how-do-you-validate-that-a-string-is-a-valid-ipv4-address-in-c
+ *
+ * @note Вдохновлено ответом ibodi, лицензия CC BY-SA 4.0.
  */
+
+// BEGIN: Borrowed code
 bool valid_ip_port(const std::string& ip, int port) {
 	sockaddr_in tmp{};
 	return inet_pton(AF_INET, ip.c_str(), &tmp.sin_addr) == 1 && port > 0 && port < 65536;
 }
+// END: Borrowed code
 
 /**
  * @brief Считать или запросить у пользователя настройки сервера.
@@ -81,11 +89,7 @@ ServerConf get_config() {
 	int port;
 	bool ok = false;
 	if (fin) {
-		std::string line;
-		std::getline(fin, line);
-		std::istringstream ss(line);
-		std::getline(ss, ip, ':');
-		ss >> port;
+		std::getline(fin, ip, ':') && (fin >> port);
 		ok = valid_ip_port(ip, port);
 	}
 	while (!ok) {
@@ -139,7 +143,6 @@ void receive_messages(int fd) {
 int main() {
 	ServerConf conf = get_config();
 
-	// BEGIN: Borrowed code (socket creation and connection setup)
 	int sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock == -1) {
 		perror("socket");
@@ -155,7 +158,6 @@ int main() {
 		perror("connect");
 		return 1;
 	}
-	// END: Borrowed code (socket creation and connection setup)
 
 	std::thread(receive_messages, sock).detach();
 
@@ -163,7 +165,7 @@ int main() {
 	while (std::getline(std::cin, input)) {
 		if (input.empty())
 			continue;
-		if (input.size() > MAX_INPUT) {
+		if (input.size() > MAX_LEN_INPUT) {
 			std::cout << "Message longer than 2000 characters. Split it.\n";
 			continue;
 		}

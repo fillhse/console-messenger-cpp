@@ -1,5 +1,7 @@
 #include "telegram_auth.h"
 
+#include <cpr/cpr.h>
+
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
@@ -12,16 +14,12 @@
 
 std::string BOT_TOKEN;
 
-void set_bot_token(const std::string& token) {
-	BOT_TOKEN = token;
-}
-
 std::map<std::string, std::string> auth_codes;
 
 std::string generate_auth_code() {
 	static bool seeded = false;
 	if (!seeded) {
-		std::srand(static_cast<unsigned>(std::time(nullptr)));
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
 		seeded = true;
 	}
 
@@ -32,9 +30,6 @@ std::string generate_auth_code() {
 }
 
 void ensure_bot_token() {
-	if (!BOT_TOKEN.empty())
-		return;
-
 	namespace fs = std::filesystem;
 	fs::path dir = "SERVER_SETTINGS";
 	fs::path file = dir / "BOT_TOKEN.txt";
@@ -58,26 +53,9 @@ void ensure_bot_token() {
 }
 
 bool send_telegram_code(const std::string& chat_id, const std::string& code) {
-	ensure_bot_token();
-	std::string url = "https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage";
-	std::string cmd = "curl -s -X POST \"" + url +
-	                  "\""
-	                  " -d chat_id=" +
-	                  chat_id + " -d text='Your authentication code is: " + code + "'";
-
-	// BEGIN: Borrowed code (executing curl command and reading response)
-	FILE* pipe = popen(cmd.c_str(), "r");
-	if (!pipe)
-		return false;
-	// END: Borrowed code (executing curl command and reading response)
-
-	std::string response;
-	char buf[256];
-	while (fgets(buf, sizeof(buf), pipe))
-		response += buf;
-	int status = pclose(pipe);
-
-	if (status == 0 && response.find("\"ok\":true") != std::string::npos) {
+	cpr::Response response = cpr::Post(cpr::Url{"https://api.telegram.org/bot" + BOT_TOKEN + "/sendMessage"},
+	                                   cpr::Payload{{"chat_id", chat_id}, {"text", "Your code is: " + code}});
+	if (response.text.find("\"ok\":true") != std::string::npos) {
 		auth_codes[chat_id] = code;
 		return true;
 	}

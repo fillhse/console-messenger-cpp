@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
-#include <sstream>
+#include <string>
 
 namespace fs = std::filesystem;
 
@@ -32,9 +32,11 @@ void append_message_to_history(const std::string& user1, const std::string& user
 std::string load_history_for_users(const std::string& user1, const std::string& user2) {
 	ensure_history_folder_exists();
 	std::ifstream file(get_history_filename(user1, user2));
-	std::ostringstream ss;
-	if (file) {
-		ss << file.rdbuf();
+	std::string line, text;
+	if (file.is_open()) {
+		while (std::getline(file, line)) {
+			text += line + "\n";
+		}
 	}
-	return ss.str();
+	return text;
 }

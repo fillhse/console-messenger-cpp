@@ -105,16 +105,16 @@ Include dependency graph for main_client.cpp:</div>
 <area shape="poly" title=" " alt="" coords="414,33,111,81,110,76,413,28"/>
 <area shape="rect" title=" " alt="" coords="122,79,218,104"/>
 <area shape="poly" title=" " alt="" coords="441,33,232,79,231,74,440,28"/>
-<area shape="rect" title=" " alt="" coords="124,152,227,177"/>
-<area shape="poly" title=" " alt="" coords="446,33,380,53,308,81,251,113,203,146,200,141,248,109,306,76,378,48,445,28"/>
-<area shape="rect" title=" " alt="" coords="251,152,326,177"/>
-<area shape="poly" title=" " alt="" coords="431,33,380,51,355,64,333,81,311,109,298,140,293,138,307,106,329,77,352,60,378,46,429,28"/>
+<area shape="rect" title=" " alt="" coords="193,152,296,177"/>
+<area shape="poly" title=" " alt="" coords="439,33,380,52,322,81,288,111,262,142,258,139,284,107,319,76,378,47,437,28"/>
+<area shape="rect" title=" " alt="" coords="321,152,395,177"/>
+<area shape="poly" title=" " alt="" coords="411,32,367,50,349,63,334,80,328,94,329,109,343,140,338,142,324,111,323,93,329,77,345,59,365,45,409,28"/>
 <area shape="rect" href="socket__utils_8h.html" title="Обёртки функций отправки и приёма данных по TCP&#45;сокетам." alt="" coords="344,79,455,104"/>
 <area shape="poly" title=" " alt="" coords="479,33,427,72,424,68,476,29"/>
-<area shape="rect" title=" " alt="" coords="473,152,553,177"/>
-<area shape="poly" title=" " alt="" coords="497,31,512,138,507,139,492,31"/>
-<area shape="rect" title=" " alt="" coords="577,152,635,177"/>
-<area shape="poly" title=" " alt="" coords="504,29,591,140,587,143,500,33"/>
+<area shape="rect" title=" " alt="" coords="419,152,499,177"/>
+<area shape="poly" title=" " alt="" coords="493,32,468,139,462,138,487,31"/>
+<area shape="rect" title=" " alt="" coords="523,152,582,177"/>
+<area shape="poly" title=" " alt="" coords="500,30,545,138,540,140,495,32"/>
 <area shape="rect" title=" " alt="" coords="581,79,671,104"/>
 <area shape="poly" title=" " alt="" coords="515,28,593,70,591,74,513,33"/>
 <area shape="rect" title=" " alt="" coords="696,79,769,104"/>
@@ -123,12 +123,10 @@ Include dependency graph for main_client.cpp:</div>
 <area shape="poly" title=" " alt="" coords="551,28,781,76,780,81,550,33"/>
 <area shape="rect" title=" " alt="" coords="893,79,957,104"/>
 <area shape="poly" title=" " alt="" coords="576,27,714,47,880,76,879,81,713,52,575,32"/>
-<area shape="poly" title=" " alt="" coords="364,107,225,150,224,145,363,101"/>
-<area shape="poly" title=" " alt="" coords="383,106,320,147,317,142,380,102"/>
-<area shape="poly" title=" " alt="" coords="419,102,484,142,481,147,416,106"/>
-<area shape="poly" title=" " alt="" coords="433,101,564,146,562,151,432,107"/>
-<area shape="rect" title=" " alt="" coords="351,152,448,177"/>
-<area shape="poly" title=" " alt="" coords="402,104,402,138,397,138,397,104"/>
+<area shape="poly" title=" " alt="" coords="376,106,283,149,281,144,373,102"/>
+<area shape="poly" title=" " alt="" coords="395,106,374,141,369,139,390,103"/>
+<area shape="poly" title=" " alt="" coords="411,103,443,140,439,143,407,106"/>
+<area shape="poly" title=" " alt="" coords="425,102,516,144,514,149,423,106"/>
 </map>
 </div>
 </div>
@@ -157,9 +155,6 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ae05ed23459808847072c4665d12da4c4" id="r_ae05ed23459808847072c4665d12da4c4"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__client_8cpp.html#ae05ed23459808847072c4665d12da4c4">MAX_INPUT</a> = 2000</td></tr>
-<tr class="memdesc:ae05ed23459808847072c4665d12da4c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Максимально допустимая длина сообщения от пользователя.  <br /></td></tr>
-<tr class="separator:ae05ed23459808847072c4665d12da4c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6524633f52e451cbf3b745f6f5c704c" id="r_aa6524633f52e451cbf3b745f6f5c704c"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main__client_8cpp.html#aa6524633f52e451cbf3b745f6f5c704c">CFG_DIR</a> = &quot;CLIENT_SETTING&quot;</td></tr>
 <tr class="memdesc:aa6524633f52e451cbf3b745f6f5c704c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Директория для хранения конфигурационного файла.  <br /></td></tr>
 <tr class="separator:aa6524633f52e451cbf3b745f6f5c704c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,35 +187,31 @@ Variables</h2></td></tr>
 <p>Если файл с конфигурацией существует, пытается прочитать из него строку в формате "IP:порт". Если данные некорректны или файла нет, запрашивает ввод у пользователя до тех пор, пока не будет введена валидная пара. Сохраняет корректные настройки в файл.</p>
 <dl class="section return"><dt>Returns</dt><dd>Настройки сервера в виде <a class="el" href="structServerConf.html" title="Параметры подключения к серверу.">ServerConf</a>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00077">77</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>                        {</div>
-<div class="line"><span class="lineno">   78</span>    std::filesystem::create_directories(<a class="code hl_variable" href="main__client_8cpp.html#aa6524633f52e451cbf3b745f6f5c704c">CFG_DIR</a>);</div>
-<div class="line"><span class="lineno">   79</span>    std::ifstream fin(<a class="code hl_variable" href="main__client_8cpp.html#a3c106e9451db143d78ea6aecebbfb61d">CFG_FILE</a>);</div>
-<div class="line"><span class="lineno">   80</span>    std::string ip;</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordtype">int</span> port;</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span> (fin) {</div>
-<div class="line"><span class="lineno">   84</span>        std::string line;</div>
-<div class="line"><span class="lineno">   85</span>        std::getline(fin, line);</div>
-<div class="line"><span class="lineno">   86</span>        std::istringstream ss(line);</div>
-<div class="line"><span class="lineno">   87</span>        std::getline(ss, ip, <span class="charliteral">&#39;:&#39;</span>);</div>
-<div class="line"><span class="lineno">   88</span>        ss &gt;&gt; port;</div>
-<div class="line"><span class="lineno">   89</span>        ok = <a class="code hl_function" href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a>(ip, port);</div>
-<div class="line"><span class="lineno">   90</span>    }</div>
-<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">while</span> (!ok) {</div>
-<div class="line"><span class="lineno">   92</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Enter server IP: &quot;</span>;</div>
-<div class="line"><span class="lineno">   93</span>        std::cin &gt;&gt; ip;</div>
-<div class="line"><span class="lineno">   94</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Enter server port: &quot;</span>;</div>
-<div class="line"><span class="lineno">   95</span>        std::cin &gt;&gt; port;</div>
-<div class="line"><span class="lineno">   96</span>        std::cin.ignore();</div>
-<div class="line"><span class="lineno">   97</span>        ok = <a class="code hl_function" href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a>(ip, port);</div>
-<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">if</span> (!ok)</div>
-<div class="line"><span class="lineno">   99</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Invalid IP or port. Try again.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  100</span>    }</div>
-<div class="line"><span class="lineno">  101</span>    std::ofstream(<a class="code hl_variable" href="main__client_8cpp.html#a3c106e9451db143d78ea6aecebbfb61d">CFG_FILE</a>, std::ios::trunc) &lt;&lt; ip &lt;&lt; <span class="charliteral">&#39;:&#39;</span> &lt;&lt; port &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">return</span> {ip, port};</div>
-<div class="line"><span class="lineno">  103</span>}</div>
-<div class="ttc" id="amain__client_8cpp_html_a23489770044ee71dadf7e684f389b34e"><div class="ttname"><a href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a></div><div class="ttdeci">bool valid_ip_port(const std::string &amp;ip, int port)</div><div class="ttdoc">Проверить корректность IPv4-адреса и порта.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00061">main_client.cpp:61</a></div></div>
+<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00084">84</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>                        {</div>
+<div class="line"><span class="lineno">   85</span>    std::filesystem::create_directories(<a class="code hl_variable" href="main__client_8cpp.html#aa6524633f52e451cbf3b745f6f5c704c">CFG_DIR</a>);</div>
+<div class="line"><span class="lineno">   86</span>    std::ifstream fin(<a class="code hl_variable" href="main__client_8cpp.html#a3c106e9451db143d78ea6aecebbfb61d">CFG_FILE</a>);</div>
+<div class="line"><span class="lineno">   87</span>    std::string ip;</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordtype">int</span> port;</div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">if</span> (fin) {</div>
+<div class="line"><span class="lineno">   91</span>        std::getline(fin, ip, <span class="charliteral">&#39;:&#39;</span>) &amp;&amp; (fin &gt;&gt; port);</div>
+<div class="line"><span class="lineno">   92</span>        ok = <a class="code hl_function" href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a>(ip, port);</div>
+<div class="line"><span class="lineno">   93</span>    }</div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">while</span> (!ok) {</div>
+<div class="line"><span class="lineno">   95</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Enter server IP: &quot;</span>;</div>
+<div class="line"><span class="lineno">   96</span>        std::cin &gt;&gt; ip;</div>
+<div class="line"><span class="lineno">   97</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;Enter server port: &quot;</span>;</div>
+<div class="line"><span class="lineno">   98</span>        std::cin &gt;&gt; port;</div>
+<div class="line"><span class="lineno">   99</span>        std::cin.ignore();</div>
+<div class="line"><span class="lineno">  100</span>        ok = <a class="code hl_function" href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a>(ip, port);</div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">if</span> (!ok)</div>
+<div class="line"><span class="lineno">  102</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Invalid IP or port. Try again.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  103</span>    }</div>
+<div class="line"><span class="lineno">  104</span>    std::ofstream(<a class="code hl_variable" href="main__client_8cpp.html#a3c106e9451db143d78ea6aecebbfb61d">CFG_FILE</a>, std::ios::trunc) &lt;&lt; ip &lt;&lt; <span class="charliteral">&#39;:&#39;</span> &lt;&lt; port &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> {ip, port};</div>
+<div class="line"><span class="lineno">  106</span>}</div>
+<div class="ttc" id="amain__client_8cpp_html_a23489770044ee71dadf7e684f389b34e"><div class="ttname"><a href="main__client_8cpp.html#a23489770044ee71dadf7e684f389b34e">valid_ip_port</a></div><div class="ttdeci">bool valid_ip_port(const std::string &amp;ip, int port)</div><div class="ttdoc">Проверить корректность IPv4-адреса и порта.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00067">main_client.cpp:67</a></div></div>
 <div class="ttc" id="amain__client_8cpp_html_a3c106e9451db143d78ea6aecebbfb61d"><div class="ttname"><a href="main__client_8cpp.html#a3c106e9451db143d78ea6aecebbfb61d">CFG_FILE</a></div><div class="ttdeci">const std::string CFG_FILE</div><div class="ttdoc">Путь к файлу с настройками (IP и порт сервера).</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00036">main_client.cpp:36</a></div></div>
 <div class="ttc" id="amain__client_8cpp_html_aa6524633f52e451cbf3b745f6f5c704c"><div class="ttname"><a href="main__client_8cpp.html#aa6524633f52e451cbf3b745f6f5c704c">CFG_DIR</a></div><div class="ttdeci">const std::string CFG_DIR</div><div class="ttdoc">Директория для хранения конфигурационного файла.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00031">main_client.cpp:31</a></div></div>
 </div><!-- fragment -->
@@ -245,52 +236,49 @@ Variables</h2></td></tr>
 <p>Получает конфигурацию сервера, устанавливает TCP-соединение, запускает поток для приёма сообщений и в цикле отправляет введённые пользователем сообщения.</p>
 <dl class="section return"><dt>Returns</dt><dd>Код завершения (0 при успехе, иначе 1). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00139">139</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  139</span>           {</div>
-<div class="line"><span class="lineno">  140</span>    <a class="code hl_struct" href="structServerConf.html">ServerConf</a> conf = <a class="code hl_function" href="main__client_8cpp.html#a253f749bc3b9a90d689bc4a9add6ac2f">get_config</a>();</div>
-<div class="line"><span class="lineno">  141</span> </div>
-<div class="line"><span class="lineno">  142</span>    <span class="comment">// BEGIN: Borrowed code (socket creation and connection setup)</span></div>
-<div class="line"><span class="lineno">  143</span><span class="keywordtype">int</span> sock = socket(AF_INET, SOCK_STREAM, 0);</div>
-<div class="line"><span class="lineno">  144</span><span class="keywordflow">if</span> (sock == -1) {</div>
-<div class="line"><span class="lineno">  145</span>    perror(<span class="stringliteral">&quot;socket&quot;</span>);</div>
-<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  147</span>}</div>
-<div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>sockaddr_in addr{};</div>
-<div class="line"><span class="lineno">  150</span>addr.sin_family = AF_INET;</div>
-<div class="line"><span class="lineno">  151</span>addr.sin_port = htons(conf.<a class="code hl_variable" href="structServerConf.html#a084d69145e143fac3a9289a7eb87f0eb">port</a>);</div>
-<div class="line"><span class="lineno">  152</span>inet_pton(AF_INET, conf.<a class="code hl_variable" href="structServerConf.html#a042e6ca73834ff282b5616f41bae02ea">ip</a>.c_str(), &amp;addr.sin_addr);</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span><span class="keywordflow">if</span> (connect(sock, (sockaddr*)&amp;addr, <span class="keyword">sizeof</span>(addr)) &lt; 0) {</div>
-<div class="line"><span class="lineno">  155</span>    perror(<span class="stringliteral">&quot;connect&quot;</span>);</div>
-<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  157</span>}</div>
-<div class="line"><span class="lineno">  158</span><span class="comment">// END: Borrowed code (socket creation and connection setup)</span></div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>    std::thread(<a class="code hl_function" href="main__client_8cpp.html#a429f0be9cd5e66680dde8c7d7c66932a">receive_messages</a>, sock).detach();</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    std::string input;</div>
-<div class="line"><span class="lineno">  163</span>    <span class="keywordflow">while</span> (std::getline(std::cin, input)) {</div>
-<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">if</span> (input.empty())</div>
-<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">if</span> (input.size() &gt; <a class="code hl_variable" href="main__client_8cpp.html#ae05ed23459808847072c4665d12da4c4">MAX_INPUT</a>) {</div>
-<div class="line"><span class="lineno">  167</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Message longer than 2000 characters. Split it.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  168</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  169</span>        }</div>
-<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">if</span> (input == <span class="stringliteral">&quot;/exit&quot;</span>) {</div>
-<div class="line"><span class="lineno">  171</span>            <a class="code hl_function" href="socket__utils_8h.html#aa746ccdea39cf6cd75d161dd1354d5e3">send_line</a>(sock, <span class="stringliteral">&quot;/exit&quot;</span>);</div>
-<div class="line"><span class="lineno">  172</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nExiting...\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  173</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  174</span>        }</div>
-<div class="line"><span class="lineno">  175</span>        <a class="code hl_function" href="socket__utils_8h.html#aa746ccdea39cf6cd75d161dd1354d5e3">send_line</a>(sock, input);</div>
-<div class="line"><span class="lineno">  176</span>    }</div>
-<div class="line"><span class="lineno">  177</span>    close(sock);</div>
-<div class="line"><span class="lineno">  178</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  179</span>}</div>
-<div class="ttc" id="amain__client_8cpp_html_a253f749bc3b9a90d689bc4a9add6ac2f"><div class="ttname"><a href="main__client_8cpp.html#a253f749bc3b9a90d689bc4a9add6ac2f">get_config</a></div><div class="ttdeci">ServerConf get_config()</div><div class="ttdoc">Считать или запросить у пользователя настройки сервера.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00077">main_client.cpp:77</a></div></div>
-<div class="ttc" id="amain__client_8cpp_html_a429f0be9cd5e66680dde8c7d7c66932a"><div class="ttname"><a href="main__client_8cpp.html#a429f0be9cd5e66680dde8c7d7c66932a">receive_messages</a></div><div class="ttdeci">void receive_messages(int fd)</div><div class="ttdoc">Цикл приёма и вывода сообщений от сервера.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00114">main_client.cpp:114</a></div></div>
-<div class="ttc" id="amain__client_8cpp_html_ae05ed23459808847072c4665d12da4c4"><div class="ttname"><a href="main__client_8cpp.html#ae05ed23459808847072c4665d12da4c4">MAX_INPUT</a></div><div class="ttdeci">constexpr size_t MAX_INPUT</div><div class="ttdoc">Максимально допустимая длина сообщения от пользователя.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00026">main_client.cpp:26</a></div></div>
-<div class="ttc" id="asocket__utils_8h_html_aa746ccdea39cf6cd75d161dd1354d5e3"><div class="ttname"><a href="socket__utils_8h.html#aa746ccdea39cf6cd75d161dd1354d5e3">send_line</a></div><div class="ttdeci">bool send_line(int fd, std::string_view sv)</div><div class="ttdoc">Отправить одну строку через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00071">socket_utils.h:71</a></div></div>
+<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00142">142</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  142</span>           {</div>
+<div class="line"><span class="lineno">  143</span>    <a class="code hl_struct" href="structServerConf.html">ServerConf</a> conf = <a class="code hl_function" href="main__client_8cpp.html#a253f749bc3b9a90d689bc4a9add6ac2f">get_config</a>();</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordtype">int</span> sock = socket(AF_INET, SOCK_STREAM, 0);</div>
+<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">if</span> (sock == -1) {</div>
+<div class="line"><span class="lineno">  147</span>        perror(<span class="stringliteral">&quot;socket&quot;</span>);</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  149</span>    }</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>    sockaddr_in addr{};</div>
+<div class="line"><span class="lineno">  152</span>    addr.sin_family = AF_INET;</div>
+<div class="line"><span class="lineno">  153</span>    addr.sin_port = htons(conf.<a class="code hl_variable" href="structServerConf.html#a084d69145e143fac3a9289a7eb87f0eb">port</a>);</div>
+<div class="line"><span class="lineno">  154</span>    inet_pton(AF_INET, conf.<a class="code hl_variable" href="structServerConf.html#a042e6ca73834ff282b5616f41bae02ea">ip</a>.c_str(), &amp;addr.sin_addr);</div>
+<div class="line"><span class="lineno">  155</span> </div>
+<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">if</span> (connect(sock, (sockaddr*)&amp;addr, <span class="keyword">sizeof</span>(addr)) &lt; 0) {</div>
+<div class="line"><span class="lineno">  157</span>        perror(<span class="stringliteral">&quot;connect&quot;</span>);</div>
+<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  159</span>    }</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>    std::thread(<a class="code hl_function" href="main__client_8cpp.html#a429f0be9cd5e66680dde8c7d7c66932a">receive_messages</a>, sock).detach();</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>    std::string input;</div>
+<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">while</span> (std::getline(std::cin, input)) {</div>
+<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">if</span> (input.empty())</div>
+<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">if</span> (input.size() &gt; MAX_LEN_INPUT) {</div>
+<div class="line"><span class="lineno">  168</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;Message longer than 2000 characters. Split it.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  170</span>        }</div>
+<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">if</span> (input == <span class="stringliteral">&quot;/exit&quot;</span>) {</div>
+<div class="line"><span class="lineno">  172</span>            <a class="code hl_function" href="socket__utils_8h.html#ab9b60d15bad2fee8a7794caccf86efb6">send_line</a>(sock, <span class="stringliteral">&quot;/exit&quot;</span>);</div>
+<div class="line"><span class="lineno">  173</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\nExiting...\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  174</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  175</span>        }</div>
+<div class="line"><span class="lineno">  176</span>        <a class="code hl_function" href="socket__utils_8h.html#ab9b60d15bad2fee8a7794caccf86efb6">send_line</a>(sock, input);</div>
+<div class="line"><span class="lineno">  177</span>    }</div>
+<div class="line"><span class="lineno">  178</span>    close(sock);</div>
+<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  180</span>}</div>
+<div class="ttc" id="amain__client_8cpp_html_a253f749bc3b9a90d689bc4a9add6ac2f"><div class="ttname"><a href="main__client_8cpp.html#a253f749bc3b9a90d689bc4a9add6ac2f">get_config</a></div><div class="ttdeci">ServerConf get_config()</div><div class="ttdoc">Считать или запросить у пользователя настройки сервера.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00084">main_client.cpp:84</a></div></div>
+<div class="ttc" id="amain__client_8cpp_html_a429f0be9cd5e66680dde8c7d7c66932a"><div class="ttname"><a href="main__client_8cpp.html#a429f0be9cd5e66680dde8c7d7c66932a">receive_messages</a></div><div class="ttdeci">void receive_messages(int fd)</div><div class="ttdoc">Цикл приёма и вывода сообщений от сервера.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00117">main_client.cpp:117</a></div></div>
+<div class="ttc" id="asocket__utils_8h_html_ab9b60d15bad2fee8a7794caccf86efb6"><div class="ttname"><a href="socket__utils_8h.html#ab9b60d15bad2fee8a7794caccf86efb6">send_line</a></div><div class="ttdeci">bool send_line(int fd, std::string message)</div><div class="ttdoc">Отправить одну строку через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00078">socket_utils.h:78</a></div></div>
 <div class="ttc" id="astructServerConf_html"><div class="ttname"><a href="structServerConf.html">ServerConf</a></div><div class="ttdoc">Параметры подключения к серверу.</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00045">main_client.cpp:45</a></div></div>
 <div class="ttc" id="astructServerConf_html_a042e6ca73834ff282b5616f41bae02ea"><div class="ttname"><a href="structServerConf.html#a042e6ca73834ff282b5616f41bae02ea">ServerConf::ip</a></div><div class="ttdeci">std::string ip</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00046">main_client.cpp:46</a></div></div>
 <div class="ttc" id="astructServerConf_html_a084d69145e143fac3a9289a7eb87f0eb"><div class="ttname"><a href="structServerConf.html#a084d69145e143fac3a9289a7eb87f0eb">ServerConf::port</a></div><div class="ttdeci">int port</div><div class="ttdef"><b>Definition</b> <a href="main__client_8cpp_source.html#l00047">main_client.cpp:47</a></div></div>
@@ -322,23 +310,23 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00114">114</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  114</span>                              {</div>
-<div class="line"><span class="lineno">  115</span>    std::string line;</div>
-<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a>(fd, line)) {</div>
-<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">if</span> (line.empty())</div>
-<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">if</span> (line == <span class="stringliteral">&quot;*ENDM*&quot;</span>) {</div>
-<div class="line"><span class="lineno">  120</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span> &lt;&lt; std::flush;</div>
+<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00117">117</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  117</span>                              {</div>
+<div class="line"><span class="lineno">  118</span>    std::string line;</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a>(fd, line)) {</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">if</span> (line.empty())</div>
 <div class="line"><span class="lineno">  121</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  122</span>        }</div>
-<div class="line"><span class="lineno">  123</span>        std::cout &lt;&lt; line &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  124</span>    }</div>
-<div class="line"><span class="lineno">  125</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nDisconnected from server.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  126</span>    close(fd);</div>
-<div class="line"><span class="lineno">  127</span>    exit(0);</div>
-<div class="line"><span class="lineno">  128</span>}</div>
-<div class="ttc" id="asocket__utils_8h_html_adfb7b70bdf1ffb56b41fd4b88e8b5dab"><div class="ttname"><a href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a></div><div class="ttdeci">bool recv_line(int fd, std::string &amp;out)</div><div class="ttdoc">Прочитать одну строку из сокета до символа новой строки.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00090">socket_utils.h:90</a></div></div>
+<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">if</span> (line == <span class="stringliteral">&quot;*ENDM*&quot;</span>) {</div>
+<div class="line"><span class="lineno">  123</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;&gt; &quot;</span> &lt;&lt; std::flush;</div>
+<div class="line"><span class="lineno">  124</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  125</span>        }</div>
+<div class="line"><span class="lineno">  126</span>        std::cout &lt;&lt; line &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
+<div class="line"><span class="lineno">  128</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;\nDisconnected from server.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  129</span>    close(fd);</div>
+<div class="line"><span class="lineno">  130</span>    exit(0);</div>
+<div class="line"><span class="lineno">  131</span>}</div>
+<div class="ttc" id="asocket__utils_8h_html_adfb7b70bdf1ffb56b41fd4b88e8b5dab"><div class="ttname"><a href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a></div><div class="ttdeci">bool recv_line(int fd, std::string &amp;out)</div><div class="ttdoc">Прочитать одну строку из сокета до символа новой строки.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00095">socket_utils.h:95</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -377,13 +365,15 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true если адрес и порт валидны; false в противном случае. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true если адрес и порт валидны; false в противном случае.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://stackoverflow.com/questions/318236/how-do-you-validate-that-a-string-is-a-valid-ipv4-address-in-c">https://stackoverflow.com/questions/318236/how-do-you-validate-that-a-string-is-a-valid-ipv4-address-in-c</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Вдохновлено ответом ibodi, лицензия CC BY-SA 4.0. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00061">61</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                  {</div>
-<div class="line"><span class="lineno">   62</span>    sockaddr_in tmp{};</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">return</span> inet_pton(AF_INET, ip.c_str(), &amp;tmp.sin_addr) == 1 &amp;&amp; port &gt; 0 &amp;&amp; port &lt; 65536;</div>
-<div class="line"><span class="lineno">   64</span>}</div>
+<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00067">67</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>                                                  {</div>
+<div class="line"><span class="lineno">   68</span>    sockaddr_in tmp{};</div>
+<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">return</span> inet_pton(AF_INET, ip.c_str(), &amp;tmp.sin_addr) == 1 &amp;&amp; port &gt; 0 &amp;&amp; port &lt; 65536;</div>
+<div class="line"><span class="lineno">   70</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -421,32 +411,6 @@ Variables</h2></td></tr>
 <p>Путь к файлу с настройками (IP и порт сервера). </p>
 
 <p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00036">36</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
-
-</div>
-</div>
-<a id="ae05ed23459808847072c4665d12da4c4" name="ae05ed23459808847072c4665d12da4c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae05ed23459808847072c4665d12da4c4">&#9670;&#160;</a></span>MAX_INPUT</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr size_t MAX_INPUT = 2000</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Максимально допустимая длина сообщения от пользователя. </p>
-
-<p class="definition">Definition at line <a class="el" href="main__client_8cpp_source.html#l00026">26</a> of file <a class="el" href="main__client_8cpp_source.html">main_client.cpp</a>.</p>
 
 </div>
 </div>

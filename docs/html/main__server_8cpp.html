@@ -109,18 +109,18 @@ Include dependency graph for main_server.cpp:</div>
 <area shape="poly" title=" " alt="" coords="667,27,423,47,116,81,115,76,423,41,667,22"/>
 <area shape="rect" title=" " alt="" coords="125,79,224,104"/>
 <area shape="poly" title=" " alt="" coords="667,31,473,52,243,81,238,82,237,77,242,76,472,47,667,25"/>
-<area shape="rect" title=" " alt="" coords="179,152,282,177"/>
-<area shape="poly" title=" " alt="" coords="668,28,478,47,388,62,325,81,303,94,283,110,250,143,246,139,279,106,300,89,323,76,387,57,477,42,667,23"/>
-<area shape="rect" title=" " alt="" coords="307,152,381,177"/>
-<area shape="poly" title=" " alt="" coords="667,22,575,25,477,34,392,52,360,65,339,80,332,93,331,108,336,139,331,140,325,108,327,92,335,77,358,60,390,47,476,29,575,19,667,16"/>
+<area shape="rect" title=" " alt="" coords="218,152,321,177"/>
+<area shape="poly" title=" " alt="" coords="667,26,576,32,477,43,389,59,354,69,328,81,313,93,300,108,281,140,277,138,296,105,309,89,325,76,352,64,387,54,477,38,576,27,667,20"/>
+<area shape="rect" title=" " alt="" coords="353,152,428,177"/>
+<area shape="poly" title=" " alt="" coords="667,22,575,25,477,34,392,52,360,65,339,80,334,95,338,111,350,127,366,141,362,145,346,130,334,113,328,95,335,77,358,60,390,47,476,29,575,19,667,16"/>
 <area shape="rect" href="telegram__auth_8h.html" title="Интерфейс для Telegram&#45;аутентификации: генерация, отправка и проверка кодов." alt="" coords="587,79,717,104"/>
 <area shape="poly" title=" " alt="" coords="740,33,682,73,679,68,737,28"/>
 <area shape="rect" href="history_8h.html" title="Работа с историей переписки между двумя пользователями." alt="" coords="485,79,563,104"/>
 <area shape="poly" title=" " alt="" coords="718,33,575,77,573,72,717,28"/>
 <area shape="rect" href="socket__utils_8h.html" title="Обёртки функций отправки и приёма данных по TCP&#45;сокетам." alt="" coords="350,79,461,104"/>
 <area shape="poly" title=" " alt="" coords="699,33,474,79,473,74,698,28"/>
-<area shape="rect" title=" " alt="" coords="647,152,727,177"/>
-<area shape="poly" title=" " alt="" coords="755,31,747,65,732,105,707,143,703,140,727,103,742,64,750,30"/>
+<area shape="rect" title=" " alt="" coords="645,152,725,177"/>
+<area shape="poly" title=" " alt="" coords="755,31,747,65,732,105,707,143,702,140,727,103,742,64,750,30"/>
 <area shape="rect" title=" " alt="" coords="792,79,877,104"/>
 <area shape="poly" title=" " alt="" coords="769,29,813,68,810,72,766,33"/>
 <area shape="rect" title=" " alt="" coords="901,79,968,104"/>
@@ -135,15 +135,13 @@ Include dependency graph for main_server.cpp:</div>
 <area shape="poly" title=" " alt="" coords="842,27,1235,76,1234,81,842,32"/>
 <area shape="rect" title=" " alt="" coords="1397,79,1459,104"/>
 <area shape="poly" title=" " alt="" coords="843,20,1083,37,1231,53,1383,76,1382,81,1231,59,1082,43,842,26"/>
-<area shape="rect" title=" " alt="" coords="528,152,587,177"/>
-<area shape="poly" title=" " alt="" coords="638,106,585,146,582,141,635,102"/>
-<area shape="poly" title=" " alt="" coords="532,103,549,139,544,141,527,105"/>
-<area shape="poly" title=" " alt="" coords="378,106,273,149,271,144,376,102"/>
-<area shape="poly" title=" " alt="" coords="397,106,365,143,361,140,393,103"/>
-<area shape="poly" title=" " alt="" coords="431,102,521,144,519,149,429,106"/>
-<area shape="poly" title=" " alt="" coords="451,101,634,147,633,153,450,107"/>
-<area shape="rect" title=" " alt="" coords="406,152,503,177"/>
-<area shape="poly" title=" " alt="" coords="416,103,441,139,437,142,411,106"/>
+<area shape="rect" title=" " alt="" coords="495,152,553,177"/>
+<area shape="poly" title=" " alt="" coords="633,106,558,147,556,143,630,102"/>
+<area shape="poly" title=" " alt="" coords="527,104,527,138,521,138,521,104"/>
+<area shape="poly" title=" " alt="" coords="385,106,305,148,302,143,382,102"/>
+<area shape="poly" title=" " alt="" coords="406,105,398,139,393,138,400,104"/>
+<area shape="poly" title=" " alt="" coords="426,102,494,142,491,147,423,106"/>
+<area shape="poly" title=" " alt="" coords="451,101,633,147,631,152,450,107"/>
 </map>
 </div>
 </div>
@@ -233,7 +231,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">   93</span>            clients[target_fd].connected_to.clear();</div>
 <div class="line"><span class="lineno">   94</span>            clients[target_fd].is_speaking = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   95</span>            <span class="keyword">const</span> std::string msg = <span class="stringliteral">&quot;\nYour conversation partner has left the chat.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   96</span>            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(target_fd, msg.c_str());</div>
+<div class="line"><span class="lineno">   96</span>            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(target_fd, msg.c_str());</div>
 <div class="line"><span class="lineno">   97</span>        }</div>
 <div class="line"><span class="lineno">   98</span> </div>
 <div class="line"><span class="lineno">   99</span>        clients.erase(fd);</div>
@@ -242,7 +240,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  102</span>        close(fd);</div>
 <div class="line"><span class="lineno">  103</span>    }</div>
 <div class="line"><span class="lineno">  104</span>}</div>
-<div class="ttc" id="asocket__utils_8h_html_ab7030e8ec8c403aa4a278f6034fa4ca5"><div class="ttname"><a href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a></div><div class="ttdeci">bool send_packet(int fd, std::string_view data)</div><div class="ttdoc">Отправить пакет текстовых данных через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00053">socket_utils.h:53</a></div></div>
+<div class="ttc" id="asocket__utils_8h_html_aaea0027c92f09ab510a66048f11792e8"><div class="ttname"><a href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a></div><div class="ttdeci">bool send_packet(int fd, std::string message)</div><div class="ttdoc">Отправить пакет текстовых данных через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00061">socket_utils.h:61</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -327,13 +325,13 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="main__server_8cpp_source.html#l00120">120</a> of file <a class="el" href="main__server_8cpp_source.html">main_server.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  120</span>                                                                             {</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">if</span> (msg.rfind(<span class="stringliteral">&quot;/connect &quot;</span>, 0) == 0) {</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">if</span> (msg.starts_with(<span class="stringliteral">&quot;/connect &quot;</span>)) {</div>
 <div class="line"><span class="lineno">  122</span>        std::string target_id = msg.substr(9);</div>
 <div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (id_to_fd.count(target_id)) {</div>
 <div class="line"><span class="lineno">  124</span>            <span class="keywordtype">int</span> target_fd = id_to_fd[target_id];</div>
 <div class="line"><span class="lineno">  125</span> </div>
 <div class="line"><span class="lineno">  126</span>            <span class="keywordflow">if</span> (!clients[target_fd].pending_request_from.empty()) {</div>
-<div class="line"><span class="lineno">  127</span>                <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;User is busy with another request.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  127</span>                <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;User is busy with another request.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  128</span>                <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  129</span>            }</div>
 <div class="line"><span class="lineno">  130</span> </div>
@@ -341,16 +339,16 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  132</span>                <span class="keyword">const</span> std::string notice = <span class="stringliteral">&quot;\nUser &#39;&quot;</span> + clients[fd].id +</div>
 <div class="line"><span class="lineno">  133</span>                                           <span class="stringliteral">&quot;&#39; attempted to connect to you, but you are &quot;</span></div>
 <div class="line"><span class="lineno">  134</span>                                           <span class="stringliteral">&quot;already in a conversation.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  135</span>                <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(target_fd, notice.c_str());</div>
-<div class="line"><span class="lineno">  136</span>                <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;User is already connected.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  135</span>                <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(target_fd, notice.c_str());</div>
+<div class="line"><span class="lineno">  136</span>                <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;User is already connected.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  137</span>                <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  138</span>            }</div>
 <div class="line"><span class="lineno">  139</span> </div>
 <div class="line"><span class="lineno">  140</span>            clients[target_fd].pending_request_from = clients[fd].id;</div>
 <div class="line"><span class="lineno">  141</span>            <span class="keyword">const</span> std::string prompt = <span class="stringliteral">&quot;\nUser &#39;&quot;</span> + clients[fd].id + <span class="stringliteral">&quot;&#39; wants to connect. Accept? (yes/no)\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  142</span>            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(target_fd, prompt.c_str());</div>
+<div class="line"><span class="lineno">  142</span>            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(target_fd, prompt.c_str());</div>
 <div class="line"><span class="lineno">  143</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  144</span>            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;User not found.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;User not found.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  145</span>        }</div>
 <div class="line"><span class="lineno">  146</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (msg == <span class="stringliteral">&quot;/vote&quot;</span>) {</div>
 <div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span> (clients[fd].is_speaking) {</div>
@@ -359,13 +357,13 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  150</span>                <span class="keywordtype">int</span> target_fd = id_to_fd[target_id];</div>
 <div class="line"><span class="lineno">  151</span>                clients[fd].is_speaking = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">  152</span>                clients[target_fd].is_speaking = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  153</span>                <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, <span class="stringliteral">&quot;You passed the microphone.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  154</span>                <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(target_fd, <span class="stringliteral">&quot;You are now speaking.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  153</span>                <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, <span class="stringliteral">&quot;You passed the microphone.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  154</span>                <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(target_fd, <span class="stringliteral">&quot;You are now speaking.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  155</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  156</span>                <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;No connected client to pass speaking right.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  156</span>                <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;No connected client to pass speaking right.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  157</span>            }</div>
 <div class="line"><span class="lineno">  158</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  159</span>            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;You are not the current speaker.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  159</span>            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;You are not the current speaker.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  160</span>        }</div>
 <div class="line"><span class="lineno">  161</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (msg == <span class="stringliteral">&quot;/end&quot;</span>) {</div>
 <div class="line"><span class="lineno">  162</span>        std::string partner_id = clients[fd].connected_to;</div>
@@ -373,11 +371,11 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  164</span>            <span class="keywordtype">int</span> partner_fd = id_to_fd[partner_id];</div>
 <div class="line"><span class="lineno">  165</span>            clients[partner_fd].connected_to.clear();</div>
 <div class="line"><span class="lineno">  166</span>            clients[partner_fd].is_speaking = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  167</span>            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(partner_fd, <span class="stringliteral">&quot;\nYour conversation partner has ended the chat.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  167</span>            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(partner_fd, <span class="stringliteral">&quot;\nYour conversation partner has ended the chat.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  168</span>        }</div>
 <div class="line"><span class="lineno">  169</span>        clients[fd].connected_to.clear();</div>
 <div class="line"><span class="lineno">  170</span>        clients[fd].is_speaking = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  171</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;You have left the conversation.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  171</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;You have left the conversation.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  172</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (msg == <span class="stringliteral">&quot;/help&quot;</span>) {</div>
 <div class="line"><span class="lineno">  173</span>        <span class="keyword">const</span> std::string help =</div>
 <div class="line"><span class="lineno">  174</span>            <span class="stringliteral">&quot;Available commands:\n&quot;</span></div>
@@ -386,15 +384,15 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  177</span>            <span class="stringliteral">&quot;/end          - end current conversation\n&quot;</span></div>
 <div class="line"><span class="lineno">  178</span>            <span class="stringliteral">&quot;/exit         - exit the chat completely\n&quot;</span></div>
 <div class="line"><span class="lineno">  179</span>            <span class="stringliteral">&quot;/help         - show this message\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  180</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, help.c_str());</div>
+<div class="line"><span class="lineno">  180</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, help.c_str());</div>
 <div class="line"><span class="lineno">  181</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (msg == <span class="stringliteral">&quot;/exit&quot;</span>) {</div>
 <div class="line"><span class="lineno">  182</span>        <a class="code hl_function" href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a>(fd, master_fds);</div>
 <div class="line"><span class="lineno">  183</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  184</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Only /connect &lt;ID&gt;, /vote, /end, /exit, /help are allowed.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  184</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Only /connect &lt;ID&gt;, /vote, /end, /exit, /help are allowed.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  185</span>    }</div>
 <div class="line"><span class="lineno">  186</span>}</div>
 <div class="ttc" id="amain__server_8cpp_html_adcd4551f3c0fc277e558c0dbe94c9084"><div class="ttname"><a href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a></div><div class="ttdeci">void disconnect_client(int fd, fd_set &amp;master_fds)</div><div class="ttdoc">Отключить клиента и очистить его данные.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00085">main_server.cpp:85</a></div></div>
-<div class="ttc" id="asocket__utils_8h_html_a03a3473dbc76b30e555485f53475de14"><div class="ttname"><a href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a></div><div class="ttdeci">bool send_all(int fd, std::string_view data)</div><div class="ttdoc">Отправить весь буфер данных через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00031">socket_utils.h:31</a></div></div>
+<div class="ttc" id="asocket__utils_8h_html_a60ba7f5d1f6b2967888f6780fd231e19"><div class="ttname"><a href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a></div><div class="ttdeci">bool send_all(int fd, const std::string &amp;msg)</div><div class="ttdoc">Отправить всю строку целиком по TCP-сокету.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00037">socket_utils.h:37</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -444,7 +442,7 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  203</span>    responder.<a class="code hl_variable" href="structClientInfo.html#a838fea06ffc413229e517e39e933020b">pending_request_from</a>.clear();</div>
 <div class="line"><span class="lineno">  204</span> </div>
 <div class="line"><span class="lineno">  205</span>    <span class="keywordflow">if</span> (!id_to_fd.count(requester_id)) {</div>
-<div class="line"><span class="lineno">  206</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Requester disconnected.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  206</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Requester disconnected.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  207</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  208</span>    }</div>
 <div class="line"><span class="lineno">  209</span> </div>
@@ -457,19 +455,19 @@ Variables</h2></td></tr>
 <div class="line"><span class="lineno">  216</span> </div>
 <div class="line"><span class="lineno">  217</span>        std::string history = <a class="code hl_function" href="history_8cpp.html#afc2aba136cde68f180727094b3719328">load_history_for_users</a>(responder.<a class="code hl_variable" href="structClientInfo.html#a5418fd7080628de1c1ffa5c177236bf8">id</a>, requester_id);</div>
 <div class="line"><span class="lineno">  218</span>        <span class="keywordflow">if</span> (!history.empty()) {</div>
-<div class="line"><span class="lineno">  219</span>            <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, <span class="stringliteral">&quot;Chat history:\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  220</span>            <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, history.c_str());</div>
-<div class="line"><span class="lineno">  221</span>            <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(requester_fd, <span class="stringliteral">&quot;Chat history:\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  222</span>            <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(requester_fd, history.c_str());</div>
+<div class="line"><span class="lineno">  219</span>            <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, <span class="stringliteral">&quot;Chat history:\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  220</span>            <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, history.c_str());</div>
+<div class="line"><span class="lineno">  221</span>            <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(requester_fd, <span class="stringliteral">&quot;Chat history:\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  222</span>            <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(requester_fd, history.c_str());</div>
 <div class="line"><span class="lineno">  223</span>        }</div>
-<div class="line"><span class="lineno">  224</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(requester_fd, <span class="stringliteral">&quot;Connection accepted. You are now speaking.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  225</span>        <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, <span class="stringliteral">&quot;Connection established. You are a listener.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  224</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(requester_fd, <span class="stringliteral">&quot;Connection accepted. You are now speaking.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  225</span>        <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, <span class="stringliteral">&quot;Connection established. You are a listener.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  226</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  227</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(requester_fd, <span class="stringliteral">&quot;Connection rejected.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  228</span>        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Connection declined.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  227</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(requester_fd, <span class="stringliteral">&quot;Connection rejected.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  228</span>        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Connection declined.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  229</span>    }</div>
 <div class="line"><span class="lineno">  230</span>}</div>
-<div class="ttc" id="ahistory_8cpp_html_afc2aba136cde68f180727094b3719328"><div class="ttname"><a href="history_8cpp.html#afc2aba136cde68f180727094b3719328">load_history_for_users</a></div><div class="ttdeci">std::string load_history_for_users(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdoc">Загрузить всю историю переписки между двумя пользователями.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00032">history.cpp:32</a></div></div>
+<div class="ttc" id="ahistory_8cpp_html_afc2aba136cde68f180727094b3719328"><div class="ttname"><a href="history_8cpp.html#afc2aba136cde68f180727094b3719328">load_history_for_users</a></div><div class="ttdeci">std::string load_history_for_users(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdoc">Загрузить всю историю переписки между двумя пользователями.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00031">history.cpp:31</a></div></div>
 <div class="ttc" id="astructClientInfo_html"><div class="ttname"><a href="structClientInfo.html">ClientInfo</a></div><div class="ttdoc">Информация о подключенном клиенте.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00047">main_server.cpp:47</a></div></div>
 <div class="ttc" id="astructClientInfo_html_a5418fd7080628de1c1ffa5c177236bf8"><div class="ttname"><a href="structClientInfo.html#a5418fd7080628de1c1ffa5c177236bf8">ClientInfo::id</a></div><div class="ttdeci">std::string id</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00049">main_server.cpp:49</a></div></div>
 <div class="ttc" id="astructClientInfo_html_a838fea06ffc413229e517e39e933020b"><div class="ttname"><a href="structClientInfo.html#a838fea06ffc413229e517e39e933020b">ClientInfo::pending_request_from</a></div><div class="ttdeci">std::string pending_request_from</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00052">main_server.cpp:52</a></div></div>
@@ -500,174 +498,173 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  240</span>           {</div>
 <div class="line"><span class="lineno">  241</span>    <a class="code hl_function" href="telegram__auth_8cpp.html#addc2662ff5190602846d5e93f09aa388">ensure_bot_token</a>();</div>
 <div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>    <span class="comment">// BEGIN: Borrowed code (socket initialization and server setup)</span></div>
-<div class="line"><span class="lineno">  244</span><span class="keywordtype">int</span> listener = socket(AF_INET, SOCK_STREAM, 0);</div>
-<div class="line"><span class="lineno">  245</span><span class="keywordflow">if</span> (listener == -1) {</div>
-<div class="line"><span class="lineno">  246</span>    perror(<span class="stringliteral">&quot;socket&quot;</span>);</div>
-<div class="line"><span class="lineno">  247</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  248</span>}</div>
-<div class="line"><span class="lineno">  249</span> </div>
-<div class="line"><span class="lineno">  250</span><span class="keywordtype">int</span> opt = 1;</div>
-<div class="line"><span class="lineno">  251</span>setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &amp;opt, <span class="keyword">sizeof</span>(opt));</div>
-<div class="line"><span class="lineno">  252</span> </div>
-<div class="line"><span class="lineno">  253</span>sockaddr_in server_addr{};</div>
-<div class="line"><span class="lineno">  254</span>server_addr.sin_family = AF_INET;</div>
-<div class="line"><span class="lineno">  255</span>server_addr.sin_port = htons(<a class="code hl_variable" href="main__server_8cpp.html#a765a3ccfceadb6670202a0753b6f61f1">PORT</a>);</div>
-<div class="line"><span class="lineno">  256</span>server_addr.sin_addr.s_addr = INADDR_ANY;</div>
-<div class="line"><span class="lineno">  257</span> </div>
-<div class="line"><span class="lineno">  258</span><span class="keywordflow">if</span> (bind(listener, (sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr)) &lt; 0) {</div>
-<div class="line"><span class="lineno">  259</span>    perror(<span class="stringliteral">&quot;bind&quot;</span>);</div>
-<div class="line"><span class="lineno">  260</span>    <span class="keywordflow">return</span> 1;</div>
-<div class="line"><span class="lineno">  261</span>}</div>
-<div class="line"><span class="lineno">  262</span> </div>
-<div class="line"><span class="lineno">  263</span>listen(listener, SOMAXCONN);</div>
-<div class="line"><span class="lineno">  264</span><span class="comment">// END: Borrowed code (socket initialization and server setup)</span></div>
-<div class="line"><span class="lineno">  265</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Server listening on port &quot;</span> &lt;&lt; <a class="code hl_variable" href="main__server_8cpp.html#a765a3ccfceadb6670202a0753b6f61f1">PORT</a> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  266</span>    <span class="comment">// BEGIN: Borrowed code</span></div>
-<div class="line"><span class="lineno">  267</span>    fd_set master_fds, read_fds;</div>
-<div class="line"><span class="lineno">  268</span>    FD_ZERO(&amp;master_fds);</div>
-<div class="line"><span class="lineno">  269</span>    FD_SET(listener, &amp;master_fds);</div>
-<div class="line"><span class="lineno">  270</span>    FD_SET(STDIN_FILENO, &amp;master_fds);</div>
-<div class="line"><span class="lineno">  271</span>    <span class="keywordtype">int</span> fd_max = listener;</div>
-<div class="line"><span class="lineno">  272</span> </div>
-<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">  274</span>        read_fds = master_fds;</div>
-<div class="line"><span class="lineno">  275</span>        <span class="keywordflow">if</span> (select(fd_max + 1, &amp;read_fds, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>) == -1) {</div>
-<div class="line"><span class="lineno">  276</span>            perror(<span class="stringliteral">&quot;select&quot;</span>);</div>
-<div class="line"><span class="lineno">  277</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  278</span>        }</div>
-<div class="line"><span class="lineno">  279</span>        <span class="comment">// END: Borrowed code</span></div>
-<div class="line"><span class="lineno">  280</span> </div>
-<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fd = 0; fd &lt;= fd_max; ++fd) {</div>
-<div class="line"><span class="lineno">  282</span>            <span class="keywordflow">if</span> (!FD_ISSET(fd, &amp;read_fds))</div>
-<div class="line"><span class="lineno">  283</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  284</span> </div>
-<div class="line"><span class="lineno">  285</span>            <span class="keywordflow">if</span> (fd == STDIN_FILENO) {</div>
-<div class="line"><span class="lineno">  286</span>                std::string cmd;</div>
-<div class="line"><span class="lineno">  287</span>                std::getline(std::cin, cmd);</div>
-<div class="line"><span class="lineno">  288</span>                <span class="keywordflow">if</span> (cmd == <span class="stringliteral">&quot;/shutdown&quot;</span>) {</div>
-<div class="line"><span class="lineno">  289</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Shutting down server...\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordtype">int</span> listener = socket(AF_INET, SOCK_STREAM, 0);</div>
+<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">if</span> (listener == -1) {</div>
+<div class="line"><span class="lineno">  245</span>        perror(<span class="stringliteral">&quot;socket&quot;</span>);</div>
+<div class="line"><span class="lineno">  246</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  247</span>    }</div>
+<div class="line"><span class="lineno">  248</span> </div>
+<div class="line"><span class="lineno">  249</span>    <span class="keywordtype">int</span> opt = 1;</div>
+<div class="line"><span class="lineno">  250</span>    setsockopt(listener, SOL_SOCKET, SO_REUSEADDR, &amp;opt, <span class="keyword">sizeof</span>(opt));</div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>    sockaddr_in server_addr{};</div>
+<div class="line"><span class="lineno">  253</span>    server_addr.sin_family = AF_INET;</div>
+<div class="line"><span class="lineno">  254</span>    server_addr.sin_port = htons(<a class="code hl_variable" href="main__server_8cpp.html#a765a3ccfceadb6670202a0753b6f61f1">PORT</a>);</div>
+<div class="line"><span class="lineno">  255</span>    server_addr.sin_addr.s_addr = INADDR_ANY;</div>
+<div class="line"><span class="lineno">  256</span> </div>
+<div class="line"><span class="lineno">  257</span>    <span class="keywordflow">if</span> (bind(listener, (sockaddr*)&amp;server_addr, <span class="keyword">sizeof</span>(server_addr)) &lt; 0) {</div>
+<div class="line"><span class="lineno">  258</span>        perror(<span class="stringliteral">&quot;bind&quot;</span>);</div>
+<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  260</span>    }</div>
+<div class="line"><span class="lineno">  261</span> </div>
+<div class="line"><span class="lineno">  262</span>    listen(listener, SOMAXCONN);</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Server listening on port &quot;</span> &lt;&lt; <a class="code hl_variable" href="main__server_8cpp.html#a765a3ccfceadb6670202a0753b6f61f1">PORT</a> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  265</span> </div>
+<div class="line"><span class="lineno">  266</span>    fd_set master_fds, read_fds;</div>
+<div class="line"><span class="lineno">  267</span>    FD_ZERO(&amp;master_fds);</div>
+<div class="line"><span class="lineno">  268</span>    FD_SET(listener, &amp;master_fds);</div>
+<div class="line"><span class="lineno">  269</span>    FD_SET(STDIN_FILENO, &amp;master_fds);</div>
+<div class="line"><span class="lineno">  270</span>    <span class="keywordtype">int</span> fd_max = listener;</div>
+<div class="line"><span class="lineno">  271</span> </div>
+<div class="line"><span class="lineno">  272</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">  273</span>        read_fds = master_fds;</div>
+<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">if</span> (select(fd_max + 1, &amp;read_fds, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>) == -1) {</div>
+<div class="line"><span class="lineno">  275</span>            perror(<span class="stringliteral">&quot;select&quot;</span>);</div>
+<div class="line"><span class="lineno">  276</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  277</span>        }</div>
+<div class="line"><span class="lineno">  278</span> </div>
+<div class="line"><span class="lineno">  279</span> </div>
+<div class="line"><span class="lineno">  280</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> fd = 0; fd &lt;= fd_max; ++fd) {</div>
+<div class="line"><span class="lineno">  281</span>            <span class="keywordflow">if</span> (!FD_ISSET(fd, &amp;read_fds))</div>
+<div class="line"><span class="lineno">  282</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  283</span> </div>
+<div class="line"><span class="lineno">  284</span>            <span class="keywordflow">if</span> (fd == STDIN_FILENO) {</div>
+<div class="line"><span class="lineno">  285</span>                std::string cmd;</div>
+<div class="line"><span class="lineno">  286</span>                std::getline(std::cin, cmd);</div>
+<div class="line"><span class="lineno">  287</span>                <span class="keywordflow">if</span> (cmd == <span class="stringliteral">&quot;/shutdown&quot;</span>) {</div>
+<div class="line"><span class="lineno">  288</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Shutting down server...\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  289</span>                        <span class="comment">// BEGIN: Borrowed code</span></div>
 <div class="line"><span class="lineno">  290</span>                    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [cfd, info] : clients)</div>
-<div class="line"><span class="lineno">  291</span>                        <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(cfd, <span class="stringliteral">&quot;\nServer is shutting down.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  291</span>                        <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(cfd, <span class="stringliteral">&quot;\nServer is shutting down.\n&quot;</span>);</div>
 <div class="line"><span class="lineno">  292</span>                    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; [cfd, info] : clients)</div>
 <div class="line"><span class="lineno">  293</span>                        close(cfd);</div>
-<div class="line"><span class="lineno">  294</span>                    close(listener);</div>
-<div class="line"><span class="lineno">  295</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Server stopped.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  296</span>                    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  297</span>                }</div>
-<div class="line"><span class="lineno">  298</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  299</span>            }</div>
-<div class="line"><span class="lineno">  300</span> </div>
-<div class="line"><span class="lineno">  301</span>            <span class="keywordflow">if</span> (fd == listener) {</div>
-<div class="line"><span class="lineno">  302</span>                sockaddr_in client_addr{};</div>
-<div class="line"><span class="lineno">  303</span>                socklen_t addrlen = <span class="keyword">sizeof</span>(client_addr);</div>
-<div class="line"><span class="lineno">  304</span>                <span class="keywordtype">int</span> client_fd = accept(listener, (sockaddr*)&amp;client_addr, &amp;addrlen);</div>
-<div class="line"><span class="lineno">  305</span>                <span class="keywordflow">if</span> (client_fd != -1) {</div>
-<div class="line"><span class="lineno">  306</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;New client connected, fd: &quot;</span> &lt;&lt; client_fd &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  307</span>                    FD_SET(client_fd, &amp;master_fds);</div>
-<div class="line"><span class="lineno">  308</span>                    fd_max = std::max(fd_max, client_fd);</div>
-<div class="line"><span class="lineno">  309</span>                    <span class="keyword">const</span> <span class="keywordtype">char</span>* ask_id = <span class="stringliteral">&quot;Enter your ID\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  310</span>                    <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(client_fd, ask_id);</div>
-<div class="line"><span class="lineno">  311</span>                }</div>
-<div class="line"><span class="lineno">  312</span>            } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  313</span>                std::string msg;</div>
-<div class="line"><span class="lineno">  314</span>                <span class="keywordflow">if</span> (!<a class="code hl_function" href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a>(fd, msg)) {</div>
-<div class="line"><span class="lineno">  315</span>                    <a class="code hl_function" href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a>(fd, master_fds);</div>
-<div class="line"><span class="lineno">  316</span>                    <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  317</span>                }</div>
-<div class="line"><span class="lineno">  318</span> </div>
-<div class="line"><span class="lineno">  319</span>                <span class="keywordflow">if</span> (clients.count(fd) == 0 &amp;&amp; !pending_auth.count(fd)) {</div>
-<div class="line"><span class="lineno">  320</span>                    std::string chat_id = msg;</div>
-<div class="line"><span class="lineno">  321</span>                    <span class="keywordflow">if</span> (chat_id.empty()) {</div>
-<div class="line"><span class="lineno">  322</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Chat ID cannot be empty. Try again\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  323</span>                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  324</span>                    }</div>
-<div class="line"><span class="lineno">  325</span> </div>
-<div class="line"><span class="lineno">  326</span>                    std::string code = <a class="code hl_function" href="telegram__auth_8cpp.html#a74d2f6718acaf08c27fb5c975a939cca">generate_auth_code</a>();</div>
-<div class="line"><span class="lineno">  327</span>                    <span class="keywordflow">if</span> (<a class="code hl_function" href="telegram__auth_8cpp.html#ad0aadb96417fb892ae3cdaf3e4b24649">send_telegram_code</a>(chat_id, code)) {</div>
-<div class="line"><span class="lineno">  328</span>                        pending_auth[fd] = chat_id;</div>
-<div class="line"><span class="lineno">  329</span>                        <span class="keyword">const</span> <span class="keywordtype">char</span>* sent = <span class="stringliteral">&quot;Telegram code sent. Enter the code to log in\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  330</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, sent);</div>
-<div class="line"><span class="lineno">  331</span>                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  332</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd,</div>
-<div class="line"><span class="lineno">  333</span>                                    <span class="stringliteral">&quot;Failed to send Telegram message.\nUse command /exit to &quot;</span></div>
-<div class="line"><span class="lineno">  334</span>                                    <span class="stringliteral">&quot;exit.\nCheck the telegram ID and write it again&quot;</span>);</div>
-<div class="line"><span class="lineno">  335</span>                    }</div>
-<div class="line"><span class="lineno">  336</span>                }</div>
-<div class="line"><span class="lineno">  337</span> </div>
-<div class="line"><span class="lineno">  338</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pending_auth.count(fd)) {</div>
-<div class="line"><span class="lineno">  339</span>                    std::string entered_code = msg;</div>
-<div class="line"><span class="lineno">  340</span>                    std::string chat_id = pending_auth[fd];</div>
-<div class="line"><span class="lineno">  341</span>                    <span class="keywordflow">if</span> (<a class="code hl_function" href="telegram__auth_8cpp.html#a0bd7efd131f04d1c39a7e97276c64457">verify_auth_code</a>(chat_id, entered_code)) {</div>
-<div class="line"><span class="lineno">  342</span>                        <span class="keywordflow">if</span> (id_to_fd.count(chat_id)) {</div>
-<div class="line"><span class="lineno">  343</span>                            <span class="keywordtype">int</span> old_fd = id_to_fd[chat_id];</div>
-<div class="line"><span class="lineno">  344</span>                            <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(old_fd, <span class="stringliteral">&quot;\nYou have been logged out (second login detected).\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  345</span>                            <a class="code hl_function" href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a>(old_fd, master_fds);</div>
-<div class="line"><span class="lineno">  346</span>                        }</div>
-<div class="line"><span class="lineno">  347</span> </div>
-<div class="line"><span class="lineno">  348</span>                        clients[fd] = <a class="code hl_struct" href="structClientInfo.html">ClientInfo</a>{fd, chat_id};</div>
-<div class="line"><span class="lineno">  349</span>                        std::cout &lt;&lt; <span class="stringliteral">&quot;Client authorized: &quot;</span> &lt;&lt; chat_id &lt;&lt; <span class="stringliteral">&quot; (fd: &quot;</span> &lt;&lt; fd &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><span class="lineno">  350</span>                        id_to_fd[chat_id] = fd;</div>
-<div class="line"><span class="lineno">  351</span>                        pending_auth.erase(fd);</div>
-<div class="line"><span class="lineno">  352</span> </div>
-<div class="line"><span class="lineno">  353</span>                        std::string welcome =</div>
-<div class="line"><span class="lineno">  354</span>                            <span class="stringliteral">&quot;Welcome, &quot;</span> + chat_id + <span class="stringliteral">&quot;! Use /connect &lt;ID&gt;, /vote, /end, /exit, /help\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  355</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, welcome.c_str());</div>
-<div class="line"><span class="lineno">  356</span>                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  357</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Incorrect code. Try again\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  358</span>                    }</div>
-<div class="line"><span class="lineno">  359</span>                }</div>
-<div class="line"><span class="lineno">  360</span> </div>
-<div class="line"><span class="lineno">  361</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!clients[fd].pending_request_from.empty()) {</div>
-<div class="line"><span class="lineno">  362</span>                    <a class="code hl_function" href="main__server_8cpp.html#a9e4e4f430cdf91a029a3aaa1c1a543e6">handle_pending_response</a>(fd, msg);</div>
-<div class="line"><span class="lineno">  363</span>                }</div>
-<div class="line"><span class="lineno">  364</span> </div>
-<div class="line"><span class="lineno">  365</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!msg.empty() &amp;&amp; msg[0] == <span class="charliteral">&#39;/&#39;</span>) {</div>
-<div class="line"><span class="lineno">  366</span>                    <a class="code hl_function" href="main__server_8cpp.html#a2162e68ba4f5ca47d17798d623fbbcb8">handle_client_command</a>(fd, msg, master_fds);</div>
-<div class="line"><span class="lineno">  367</span>                }</div>
-<div class="line"><span class="lineno">  368</span> </div>
-<div class="line"><span class="lineno">  369</span>                <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  370</span>                    <span class="keywordflow">if</span> (clients[fd].connected_to.empty()) {</div>
-<div class="line"><span class="lineno">  371</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd,</div>
-<div class="line"><span class="lineno">  372</span>                                    <span class="stringliteral">&quot;You are not in a conversation.\nUse /connect &lt;ID&gt; to &quot;</span></div>
-<div class="line"><span class="lineno">  373</span>                                    <span class="stringliteral">&quot;start chatting.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  374</span>                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  375</span>                    }</div>
-<div class="line"><span class="lineno">  376</span>                    <span class="keywordflow">if</span> (!clients[fd].is_speaking) {</div>
-<div class="line"><span class="lineno">  377</span>                        <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd,</div>
-<div class="line"><span class="lineno">  378</span>                                 <span class="stringliteral">&quot;You cannot send messages unless you&#39;re the current &quot;</span></div>
-<div class="line"><span class="lineno">  379</span>                                 <span class="stringliteral">&quot;speaker.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  380</span>                        <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  381</span>                    }</div>
-<div class="line"><span class="lineno">  382</span> </div>
-<div class="line"><span class="lineno">  383</span>                    std::string target_id = clients[fd].connected_to;</div>
-<div class="line"><span class="lineno">  384</span>                    <span class="keywordflow">if</span> (!target_id.empty() &amp;&amp; id_to_fd.count(target_id)) {</div>
-<div class="line"><span class="lineno">  385</span>                        <span class="keywordtype">int</span> target_fd = id_to_fd[target_id];</div>
-<div class="line"><span class="lineno">  386</span>                        std::string timestamp = <a class="code hl_function" href="main__server_8cpp.html#a3f3b864aa1926634aeab0d037cefc11d">get_timestamp</a>();</div>
-<div class="line"><span class="lineno">  387</span>                        std::string sender = clients[fd].id;</div>
-<div class="line"><span class="lineno">  388</span>                        std::string text = <span class="stringliteral">&quot;[&quot;</span> + timestamp + <span class="stringliteral">&quot;] &quot;</span> + sender + <span class="stringliteral">&quot;: &quot;</span> + msg + <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><span class="lineno">  389</span>                        <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(target_fd, text.c_str());</div>
-<div class="line"><span class="lineno">  390</span>                        <a class="code hl_function" href="history_8cpp.html#ae34f9f425cbaa823626b71ca0129b740">append_message_to_history</a>(sender, target_id, text);</div>
-<div class="line"><span class="lineno">  391</span>                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">  392</span>                        <a class="code hl_function" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a>(fd, <span class="stringliteral">&quot;Not connected. Use /connect &lt;ID&gt;\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  393</span>                    }</div>
-<div class="line"><span class="lineno">  394</span>                }</div>
-<div class="line"><span class="lineno">  395</span>            }</div>
-<div class="line"><span class="lineno">  396</span>        }</div>
-<div class="line"><span class="lineno">  397</span>    }</div>
-<div class="line"><span class="lineno">  398</span> </div>
-<div class="line"><span class="lineno">  399</span>    close(listener);</div>
-<div class="line"><span class="lineno">  400</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">  401</span>}</div>
-<div class="ttc" id="ahistory_8cpp_html_ae34f9f425cbaa823626b71ca0129b740"><div class="ttname"><a href="history_8cpp.html#ae34f9f425cbaa823626b71ca0129b740">append_message_to_history</a></div><div class="ttdeci">void append_message_to_history(const std::string &amp;user1, const std::string &amp;user2, const std::string &amp;message)</div><div class="ttdoc">Добавить сообщение в историю чата двух пользователей.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00023">history.cpp:23</a></div></div>
+<div class="line"><span class="lineno">  294</span>                        <span class="comment">// END: Borrowed code</span></div>
+<div class="line"><span class="lineno">  295</span>                    close(listener);</div>
+<div class="line"><span class="lineno">  296</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;Server stopped.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  297</span>                    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  298</span>                }</div>
+<div class="line"><span class="lineno">  299</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  300</span>            }</div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span>            <span class="keywordflow">if</span> (fd == listener) {</div>
+<div class="line"><span class="lineno">  303</span>                <span class="keywordtype">int</span> client_fd = accept(listener, <span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  304</span>                <span class="keywordflow">if</span> (client_fd != -1) {</div>
+<div class="line"><span class="lineno">  305</span>                    std::cout &lt;&lt; <span class="stringliteral">&quot;New client connected, fd: &quot;</span> &lt;&lt; client_fd &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  306</span>                    FD_SET(client_fd, &amp;master_fds);</div>
+<div class="line"><span class="lineno">  307</span>                    fd_max = std::max(fd_max, client_fd);</div>
+<div class="line"><span class="lineno">  308</span>                    <span class="keyword">const</span> <span class="keywordtype">char</span>* ask_id = <span class="stringliteral">&quot;Enter your ID\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  309</span>                    <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(client_fd, ask_id);</div>
+<div class="line"><span class="lineno">  310</span>                }</div>
+<div class="line"><span class="lineno">  311</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  312</span>                std::string msg;</div>
+<div class="line"><span class="lineno">  313</span>                <span class="keywordflow">if</span> (!<a class="code hl_function" href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a>(fd, msg)) {</div>
+<div class="line"><span class="lineno">  314</span>                    <a class="code hl_function" href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a>(fd, master_fds);</div>
+<div class="line"><span class="lineno">  315</span>                    <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  316</span>                }</div>
+<div class="line"><span class="lineno">  317</span> </div>
+<div class="line"><span class="lineno">  318</span>                <span class="keywordflow">if</span> (clients.count(fd) == 0 &amp;&amp; !pending_auth.count(fd)) {</div>
+<div class="line"><span class="lineno">  319</span>                    std::string chat_id = msg;</div>
+<div class="line"><span class="lineno">  320</span>                    <span class="keywordflow">if</span> (chat_id.empty()) {</div>
+<div class="line"><span class="lineno">  321</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Chat ID cannot be empty. Try again\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  322</span>                        <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  323</span>                    }</div>
+<div class="line"><span class="lineno">  324</span> </div>
+<div class="line"><span class="lineno">  325</span>                    std::string code = <a class="code hl_function" href="telegram__auth_8cpp.html#a74d2f6718acaf08c27fb5c975a939cca">generate_auth_code</a>();</div>
+<div class="line"><span class="lineno">  326</span>                    <span class="keywordflow">if</span> (<a class="code hl_function" href="telegram__auth_8cpp.html#ad0aadb96417fb892ae3cdaf3e4b24649">send_telegram_code</a>(chat_id, code)) {</div>
+<div class="line"><span class="lineno">  327</span>                        pending_auth[fd] = chat_id;</div>
+<div class="line"><span class="lineno">  328</span>                        <span class="keyword">const</span> <span class="keywordtype">char</span>* sent = <span class="stringliteral">&quot;Telegram code sent. Enter the code to log in\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  329</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, sent);</div>
+<div class="line"><span class="lineno">  330</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  331</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd,</div>
+<div class="line"><span class="lineno">  332</span>                                    <span class="stringliteral">&quot;Failed to send Telegram message.\nUse command /exit to &quot;</span></div>
+<div class="line"><span class="lineno">  333</span>                                    <span class="stringliteral">&quot;exit.\nCheck the telegram ID and write it again&quot;</span>);</div>
+<div class="line"><span class="lineno">  334</span>                    }</div>
+<div class="line"><span class="lineno">  335</span>                }</div>
+<div class="line"><span class="lineno">  336</span> </div>
+<div class="line"><span class="lineno">  337</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (pending_auth.count(fd)) {</div>
+<div class="line"><span class="lineno">  338</span>                    std::string entered_code = msg;</div>
+<div class="line"><span class="lineno">  339</span>                    std::string chat_id = pending_auth[fd];</div>
+<div class="line"><span class="lineno">  340</span>                    <span class="keywordflow">if</span> (<a class="code hl_function" href="telegram__auth_8cpp.html#a0bd7efd131f04d1c39a7e97276c64457">verify_auth_code</a>(chat_id, entered_code)) {</div>
+<div class="line"><span class="lineno">  341</span>                        <span class="keywordflow">if</span> (id_to_fd.count(chat_id)) {</div>
+<div class="line"><span class="lineno">  342</span>                            <span class="keywordtype">int</span> old_fd = id_to_fd[chat_id];</div>
+<div class="line"><span class="lineno">  343</span>                            <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(old_fd, <span class="stringliteral">&quot;\nYou have been logged out (second login detected).\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  344</span>                            <a class="code hl_function" href="main__server_8cpp.html#adcd4551f3c0fc277e558c0dbe94c9084">disconnect_client</a>(old_fd, master_fds);</div>
+<div class="line"><span class="lineno">  345</span>                        }</div>
+<div class="line"><span class="lineno">  346</span> </div>
+<div class="line"><span class="lineno">  347</span>                        clients[fd] = <a class="code hl_struct" href="structClientInfo.html">ClientInfo</a>{fd, chat_id};</div>
+<div class="line"><span class="lineno">  348</span>                        std::cout &lt;&lt; <span class="stringliteral">&quot;Client authorized: &quot;</span> &lt;&lt; chat_id &lt;&lt; <span class="stringliteral">&quot; (fd: &quot;</span> &lt;&lt; fd &lt;&lt; <span class="stringliteral">&quot;)&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><span class="lineno">  349</span>                        id_to_fd[chat_id] = fd;</div>
+<div class="line"><span class="lineno">  350</span>                        pending_auth.erase(fd);</div>
+<div class="line"><span class="lineno">  351</span> </div>
+<div class="line"><span class="lineno">  352</span>                        std::string welcome =</div>
+<div class="line"><span class="lineno">  353</span>                            <span class="stringliteral">&quot;Welcome, &quot;</span> + chat_id + <span class="stringliteral">&quot;! Use /connect &lt;ID&gt;, /vote, /end, /exit, /help\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  354</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, welcome.c_str());</div>
+<div class="line"><span class="lineno">  355</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  356</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Incorrect code. Try again\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  357</span>                    }</div>
+<div class="line"><span class="lineno">  358</span>                }</div>
+<div class="line"><span class="lineno">  359</span> </div>
+<div class="line"><span class="lineno">  360</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!clients[fd].pending_request_from.empty()) {</div>
+<div class="line"><span class="lineno">  361</span>                    <a class="code hl_function" href="main__server_8cpp.html#a9e4e4f430cdf91a029a3aaa1c1a543e6">handle_pending_response</a>(fd, msg);</div>
+<div class="line"><span class="lineno">  362</span>                }</div>
+<div class="line"><span class="lineno">  363</span> </div>
+<div class="line"><span class="lineno">  364</span>                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!msg.empty() &amp;&amp; msg[0] == <span class="charliteral">&#39;/&#39;</span>) {</div>
+<div class="line"><span class="lineno">  365</span>                    <a class="code hl_function" href="main__server_8cpp.html#a2162e68ba4f5ca47d17798d623fbbcb8">handle_client_command</a>(fd, msg, master_fds);</div>
+<div class="line"><span class="lineno">  366</span>                }</div>
+<div class="line"><span class="lineno">  367</span> </div>
+<div class="line"><span class="lineno">  368</span>                <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  369</span>                    <span class="keywordflow">if</span> (clients[fd].connected_to.empty()) {</div>
+<div class="line"><span class="lineno">  370</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd,</div>
+<div class="line"><span class="lineno">  371</span>                                    <span class="stringliteral">&quot;You are not in a conversation.\nUse /connect &lt;ID&gt; to &quot;</span></div>
+<div class="line"><span class="lineno">  372</span>                                    <span class="stringliteral">&quot;start chatting.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  373</span>                        <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  374</span>                    }</div>
+<div class="line"><span class="lineno">  375</span>                    <span class="keywordflow">if</span> (!clients[fd].is_speaking) {</div>
+<div class="line"><span class="lineno">  376</span>                        <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd,</div>
+<div class="line"><span class="lineno">  377</span>                                 <span class="stringliteral">&quot;You cannot send messages unless you&#39;re the current &quot;</span></div>
+<div class="line"><span class="lineno">  378</span>                                 <span class="stringliteral">&quot;speaker.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  379</span>                        <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  380</span>                    }</div>
+<div class="line"><span class="lineno">  381</span> </div>
+<div class="line"><span class="lineno">  382</span>                    std::string target_id = clients[fd].connected_to;</div>
+<div class="line"><span class="lineno">  383</span>                    <span class="keywordflow">if</span> (!target_id.empty() &amp;&amp; id_to_fd.count(target_id)) {</div>
+<div class="line"><span class="lineno">  384</span>                        <span class="keywordtype">int</span> target_fd = id_to_fd[target_id];</div>
+<div class="line"><span class="lineno">  385</span>                        std::string timestamp = <a class="code hl_function" href="main__server_8cpp.html#a3f3b864aa1926634aeab0d037cefc11d">get_timestamp</a>();</div>
+<div class="line"><span class="lineno">  386</span>                        std::string sender = clients[fd].id;</div>
+<div class="line"><span class="lineno">  387</span>                        std::string text = <span class="stringliteral">&quot;[&quot;</span> + timestamp + <span class="stringliteral">&quot;] &quot;</span> + sender + <span class="stringliteral">&quot;: &quot;</span> + msg + <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  388</span>                        <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(target_fd, text.c_str());</div>
+<div class="line"><span class="lineno">  389</span>                        <a class="code hl_function" href="history_8cpp.html#ae34f9f425cbaa823626b71ca0129b740">append_message_to_history</a>(sender, target_id, text);</div>
+<div class="line"><span class="lineno">  390</span>                    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  391</span>                        <a class="code hl_function" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a>(fd, <span class="stringliteral">&quot;Not connected. Use /connect &lt;ID&gt;\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  392</span>                    }</div>
+<div class="line"><span class="lineno">  393</span>                }</div>
+<div class="line"><span class="lineno">  394</span>            }</div>
+<div class="line"><span class="lineno">  395</span>        }</div>
+<div class="line"><span class="lineno">  396</span>    }</div>
+<div class="line"><span class="lineno">  397</span> </div>
+<div class="line"><span class="lineno">  398</span>    close(listener);</div>
+<div class="line"><span class="lineno">  399</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  400</span>}</div>
+<div class="ttc" id="ahistory_8cpp_html_ae34f9f425cbaa823626b71ca0129b740"><div class="ttname"><a href="history_8cpp.html#ae34f9f425cbaa823626b71ca0129b740">append_message_to_history</a></div><div class="ttdeci">void append_message_to_history(const std::string &amp;user1, const std::string &amp;user2, const std::string &amp;message)</div><div class="ttdoc">Добавить сообщение в историю чата двух пользователей.</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00022">history.cpp:22</a></div></div>
 <div class="ttc" id="amain__server_8cpp_html_a2162e68ba4f5ca47d17798d623fbbcb8"><div class="ttname"><a href="main__server_8cpp.html#a2162e68ba4f5ca47d17798d623fbbcb8">handle_client_command</a></div><div class="ttdeci">void handle_client_command(int fd, const std::string &amp;msg, fd_set &amp;master_fds)</div><div class="ttdoc">Обработать команду клиента в режиме диалога.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00120">main_server.cpp:120</a></div></div>
 <div class="ttc" id="amain__server_8cpp_html_a3f3b864aa1926634aeab0d037cefc11d"><div class="ttname"><a href="main__server_8cpp.html#a3f3b864aa1926634aeab0d037cefc11d">get_timestamp</a></div><div class="ttdeci">std::string get_timestamp()</div><div class="ttdoc">Получить текущую дату и время.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00069">main_server.cpp:69</a></div></div>
 <div class="ttc" id="amain__server_8cpp_html_a765a3ccfceadb6670202a0753b6f61f1"><div class="ttname"><a href="main__server_8cpp.html#a765a3ccfceadb6670202a0753b6f61f1">PORT</a></div><div class="ttdeci">constexpr int PORT</div><div class="ttdoc">Порт, на котором слушает сервер.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00030">main_server.cpp:30</a></div></div>
 <div class="ttc" id="amain__server_8cpp_html_a9e4e4f430cdf91a029a3aaa1c1a543e6"><div class="ttname"><a href="main__server_8cpp.html#a9e4e4f430cdf91a029a3aaa1c1a543e6">handle_pending_response</a></div><div class="ttdeci">void handle_pending_response(int fd, const std::string &amp;msg)</div><div class="ttdoc">Обработать ответ клиента на запрос соединения.</div><div class="ttdef"><b>Definition</b> <a href="main__server_8cpp_source.html#l00197">main_server.cpp:197</a></div></div>
-<div class="ttc" id="asocket__utils_8h_html_adfb7b70bdf1ffb56b41fd4b88e8b5dab"><div class="ttname"><a href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a></div><div class="ttdeci">bool recv_line(int fd, std::string &amp;out)</div><div class="ttdoc">Прочитать одну строку из сокета до символа новой строки.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00090">socket_utils.h:90</a></div></div>
-<div class="ttc" id="atelegram__auth_8cpp_html_a0bd7efd131f04d1c39a7e97276c64457"><div class="ttname"><a href="telegram__auth_8cpp.html#a0bd7efd131f04d1c39a7e97276c64457">verify_auth_code</a></div><div class="ttdeci">bool verify_auth_code(const std::string &amp;chat_id, const std::string &amp;code)</div><div class="ttdoc">Проверить введённый пользователем код авторизации.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00083">telegram_auth.cpp:83</a></div></div>
+<div class="ttc" id="asocket__utils_8h_html_adfb7b70bdf1ffb56b41fd4b88e8b5dab"><div class="ttname"><a href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a></div><div class="ttdeci">bool recv_line(int fd, std::string &amp;out)</div><div class="ttdoc">Прочитать одну строку из сокета до символа новой строки.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00095">socket_utils.h:95</a></div></div>
+<div class="ttc" id="atelegram__auth_8cpp_html_a0bd7efd131f04d1c39a7e97276c64457"><div class="ttname"><a href="telegram__auth_8cpp.html#a0bd7efd131f04d1c39a7e97276c64457">verify_auth_code</a></div><div class="ttdeci">bool verify_auth_code(const std::string &amp;chat_id, const std::string &amp;code)</div><div class="ttdoc">Проверить введённый пользователем код авторизации.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00065">telegram_auth.cpp:65</a></div></div>
 <div class="ttc" id="atelegram__auth_8cpp_html_a74d2f6718acaf08c27fb5c975a939cca"><div class="ttname"><a href="telegram__auth_8cpp.html#a74d2f6718acaf08c27fb5c975a939cca">generate_auth_code</a></div><div class="ttdeci">std::string generate_auth_code()</div><div class="ttdoc">Сгенерировать случайный шестизначный код для авторизации.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00017">telegram_auth.cpp:17</a></div></div>
-<div class="ttc" id="atelegram__auth_8cpp_html_ad0aadb96417fb892ae3cdaf3e4b24649"><div class="ttname"><a href="telegram__auth_8cpp.html#ad0aadb96417fb892ae3cdaf3e4b24649">send_telegram_code</a></div><div class="ttdeci">bool send_telegram_code(const std::string &amp;chat_id, const std::string &amp;code)</div><div class="ttdoc">Отправить код авторизации через Telegram Bot API.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00056">telegram_auth.cpp:56</a></div></div>
+<div class="ttc" id="atelegram__auth_8cpp_html_ad0aadb96417fb892ae3cdaf3e4b24649"><div class="ttname"><a href="telegram__auth_8cpp.html#ad0aadb96417fb892ae3cdaf3e4b24649">send_telegram_code</a></div><div class="ttdeci">bool send_telegram_code(const std::string &amp;chat_id, const std::string &amp;code)</div><div class="ttdoc">Отправить код авторизации через Telegram Bot API.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00053">telegram_auth.cpp:53</a></div></div>
 <div class="ttc" id="atelegram__auth_8cpp_html_addc2662ff5190602846d5e93f09aa388"><div class="ttname"><a href="telegram__auth_8cpp.html#addc2662ff5190602846d5e93f09aa388">ensure_bot_token</a></div><div class="ttdeci">void ensure_bot_token()</div><div class="ttdoc">Убедиться, что глобальный токен бота загружен.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00030">telegram_auth.cpp:30</a></div></div>
 </div><!-- fragment -->
 </div>

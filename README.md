@@ -64,6 +64,9 @@ On startup, the server will read this token and use it to send one-time codes.
 Before building, install the libcurl development package (required by `find_package(CURL)` in CMake):
 
 ```bash
+git clone https://github.com/fillhse/console-messenger-cpp.git
+cd console-messenger-cpp
+git submodule update --init --recursive      # cpr
 sudo apt-get update
 sudo apt-get install libcurl4-openssl-dev
 ```

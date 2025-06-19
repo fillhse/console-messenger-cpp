@@ -169,16 +169,16 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00023">23</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                         {</div>
-<div class="line"><span class="lineno">   25</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
-<div class="line"><span class="lineno">   26</span>    std::ofstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2), std::ios::app);</div>
-<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">if</span> (file) {</div>
-<div class="line"><span class="lineno">   28</span>        file &lt;&lt; message;</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
-<div class="line"><span class="lineno">   30</span>}</div>
-<div class="ttc" id="ahistory_8cpp_html_a7a46f887a14f116d328ace1ca302725f"><div class="ttname"><a href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a></div><div class="ttdeci">std::string get_history_filename(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00010">history.cpp:10</a></div></div>
-<div class="ttc" id="ahistory_8cpp_html_aab3589714c50ca1cb82633cef1ec3b1c"><div class="ttname"><a href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a></div><div class="ttdeci">void ensure_history_folder_exists()</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00017">history.cpp:17</a></div></div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00022">22</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>                                                         {</div>
+<div class="line"><span class="lineno">   24</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
+<div class="line"><span class="lineno">   25</span>    std::ofstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2), std::ios::app);</div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> (file) {</div>
+<div class="line"><span class="lineno">   27</span>        file &lt;&lt; message;</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="line"><span class="lineno">   29</span>}</div>
+<div class="ttc" id="ahistory_8cpp_html_a7a46f887a14f116d328ace1ca302725f"><div class="ttname"><a href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a></div><div class="ttdeci">std::string get_history_filename(const std::string &amp;user1, const std::string &amp;user2)</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00009">history.cpp:9</a></div></div>
+<div class="ttc" id="ahistory_8cpp_html_aab3589714c50ca1cb82633cef1ec3b1c"><div class="ttname"><a href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a></div><div class="ttdeci">void ensure_history_folder_exists()</div><div class="ttdef"><b>Definition</b> <a href="history_8cpp_source.html#l00016">history.cpp:16</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -219,16 +219,18 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Строка с полным содержимым истории; пустая строка, если файл не существует или пуст. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00032">32</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>                                                                                 {</div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
-<div class="line"><span class="lineno">   34</span>    std::ifstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2));</div>
-<div class="line"><span class="lineno">   35</span>    std::ostringstream ss;</div>
-<div class="line"><span class="lineno">   36</span>    <span class="keywordflow">if</span> (file) {</div>
-<div class="line"><span class="lineno">   37</span>        ss &lt;&lt; file.rdbuf();</div>
-<div class="line"><span class="lineno">   38</span>    }</div>
-<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><span class="lineno">   40</span>}</div>
+<p class="definition">Definition at line <a class="el" href="history_8cpp_source.html#l00031">31</a> of file <a class="el" href="history_8cpp_source.html">history.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>                                                                                 {</div>
+<div class="line"><span class="lineno">   32</span>    <a class="code hl_function" href="history_8cpp.html#aab3589714c50ca1cb82633cef1ec3b1c">ensure_history_folder_exists</a>();</div>
+<div class="line"><span class="lineno">   33</span>    std::ifstream file(<a class="code hl_function" href="history_8cpp.html#a7a46f887a14f116d328ace1ca302725f">get_history_filename</a>(user1, user2));</div>
+<div class="line"><span class="lineno">   34</span>    std::string line, text;</div>
+<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (file.is_open()) {</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">while</span> (std::getline(file, line)){</div>
+<div class="line"><span class="lineno">   37</span>            text += line + <span class="stringliteral">&quot;\n&quot;</span>;  </div>
+<div class="line"><span class="lineno">   38</span>        }</div>
+<div class="line"><span class="lineno">   39</span>    }</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> text;</div>
+<div class="line"><span class="lineno">   41</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -82,23 +82,20 @@ $(function() {
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
-<code>#include &lt;string_view&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for socket_utils.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="socket__utils_8h__incl.png" border="0" usemap="#asocket__utils_8h" alt=""/></div>
 <map name="asocket__utils_8h" id="asocket__utils_8h">
-<area shape="rect" title="Обёртки функций отправки и приёма данных по TCP&#45;сокетам." alt="" coords="216,5,327,31"/>
+<area shape="rect" title="Обёртки функций отправки и приёма данных по TCP&#45;сокетам." alt="" coords="165,5,276,31"/>
 <area shape="rect" title=" " alt="" coords="5,79,108,104"/>
-<area shape="poly" title=" " alt="" coords="238,33,105,77,104,72,236,28"/>
+<area shape="poly" title=" " alt="" coords="195,33,97,76,95,71,193,28"/>
 <area shape="rect" title=" " alt="" coords="133,79,207,104"/>
-<area shape="poly" title=" " alt="" coords="257,33,199,73,196,68,254,28"/>
+<area shape="poly" title=" " alt="" coords="214,33,188,69,184,66,210,29"/>
 <area shape="rect" title=" " alt="" coords="231,79,311,104"/>
-<area shape="poly" title=" " alt="" coords="274,31,274,65,269,65,269,31"/>
+<area shape="poly" title=" " alt="" coords="231,29,257,66,253,69,227,33"/>
 <area shape="rect" title=" " alt="" coords="335,79,394,104"/>
-<area shape="poly" title=" " alt="" coords="288,29,340,68,337,72,285,33"/>
-<area shape="rect" title=" " alt="" coords="419,79,516,104"/>
-<area shape="poly" title=" " alt="" coords="304,28,423,71,422,76,302,33"/>
+<area shape="poly" title=" " alt="" coords="245,28,330,70,328,75,243,33"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -118,15 +115,15 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a03a3473dbc76b30e555485f53475de14" id="r_a03a3473dbc76b30e555485f53475de14"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a> (int fd, std::string_view data)</td></tr>
-<tr class="memdesc:a03a3473dbc76b30e555485f53475de14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить весь буфер данных через сокет.  <br /></td></tr>
-<tr class="separator:a03a3473dbc76b30e555485f53475de14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7030e8ec8c403aa4a278f6034fa4ca5" id="r_ab7030e8ec8c403aa4a278f6034fa4ca5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#ab7030e8ec8c403aa4a278f6034fa4ca5">send_packet</a> (int fd, std::string_view data)</td></tr>
-<tr class="memdesc:ab7030e8ec8c403aa4a278f6034fa4ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить пакет текстовых данных через сокет.  <br /></td></tr>
-<tr class="separator:ab7030e8ec8c403aa4a278f6034fa4ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa746ccdea39cf6cd75d161dd1354d5e3" id="r_aa746ccdea39cf6cd75d161dd1354d5e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#aa746ccdea39cf6cd75d161dd1354d5e3">send_line</a> (int fd, std::string_view sv)</td></tr>
-<tr class="memdesc:aa746ccdea39cf6cd75d161dd1354d5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить одну строку через сокет.  <br /></td></tr>
-<tr class="separator:aa746ccdea39cf6cd75d161dd1354d5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ba7f5d1f6b2967888f6780fd231e19" id="r_a60ba7f5d1f6b2967888f6780fd231e19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a> (int fd, const std::string &amp;msg)</td></tr>
+<tr class="memdesc:a60ba7f5d1f6b2967888f6780fd231e19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить всю строку целиком по TCP-сокету.  <br /></td></tr>
+<tr class="separator:a60ba7f5d1f6b2967888f6780fd231e19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea0027c92f09ab510a66048f11792e8" id="r_aaea0027c92f09ab510a66048f11792e8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#aaea0027c92f09ab510a66048f11792e8">send_packet</a> (int fd, std::string message)</td></tr>
+<tr class="memdesc:aaea0027c92f09ab510a66048f11792e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить пакет текстовых данных через сокет.  <br /></td></tr>
+<tr class="separator:aaea0027c92f09ab510a66048f11792e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9b60d15bad2fee8a7794caccf86efb6" id="r_ab9b60d15bad2fee8a7794caccf86efb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#ab9b60d15bad2fee8a7794caccf86efb6">send_line</a> (int fd, std::string message)</td></tr>
+<tr class="memdesc:ab9b60d15bad2fee8a7794caccf86efb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправить одну строку через сокет.  <br /></td></tr>
+<tr class="separator:ab9b60d15bad2fee8a7794caccf86efb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfb7b70bdf1ffb56b41fd4b88e8b5dab" id="r_adfb7b70bdf1ffb56b41fd4b88e8b5dab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="socket__utils_8h.html#adfb7b70bdf1ffb56b41fd4b88e8b5dab">recv_line</a> (int fd, std::string &amp;out)</td></tr>
 <tr class="memdesc:adfb7b70bdf1ffb56b41fd4b88e8b5dab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Прочитать одну строку из сокета до символа новой строки.  <br /></td></tr>
 <tr class="separator:adfb7b70bdf1ffb56b41fd4b88e8b5dab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,25 +188,25 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true если строка успешно прочитана, false при закрытии соединения или ошибке. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00090">90</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>                                              {</div>
-<div class="line"><span class="lineno">   91</span>    out.clear();</div>
-<div class="line"><span class="lineno">   92</span>    <span class="keywordtype">char</span> ch{};</div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
-<div class="line"><span class="lineno">   94</span>        ssize_t n = ::recv(fd, &amp;ch, 1, 0);</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">if</span> (n &lt;= 0)</div>
-<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">if</span> (ch == <span class="charliteral">&#39;\n&#39;</span>)</div>
-<div class="line"><span class="lineno">   98</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   99</span>        out.push_back(ch);</div>
-<div class="line"><span class="lineno">  100</span>    }</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  102</span>}</div>
+<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00095">95</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>                                              {</div>
+<div class="line"><span class="lineno">   96</span>    out.clear();</div>
+<div class="line"><span class="lineno">   97</span>    <span class="keywordtype">char</span> ch{};</div>
+<div class="line"><span class="lineno">   98</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">   99</span>        ssize_t n = ::recv(fd, &amp;ch, 1, 0);</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">if</span> (n &lt;= 0)</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span> (ch == <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  104</span>        out.push_back(ch);</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  107</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a03a3473dbc76b30e555485f53475de14" name="a03a3473dbc76b30e555485f53475de14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03a3473dbc76b30e555485f53475de14">&#9670;&#160;</a></span>send_all()</h2>
+<a id="a60ba7f5d1f6b2967888f6780fd231e19" name="a60ba7f5d1f6b2967888f6780fd231e19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ba7f5d1f6b2967888f6780fd231e19">&#9670;&#160;</a></span>send_all()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,8 +223,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>msg</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -242,34 +239,38 @@ Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Отправить весь буфер данных через сокет. </p>
-<p>Использует ::send() в цикле, пока не отправит все байты из <code>data</code>.</p>
+<p>Отправить всю строку целиком по TCP-сокету. </p>
+<p>Функция многократно вызывает системный ::send(), пока не будет передан каждый байт строки <code>msg</code>. Рассчитана на <b>блокирующий</b> сокет — ::send() внутри может подождать, когда освободится буфер ядра.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">fd</td><td>Дескриптор сокета. </td></tr>
-    <tr><td class="paramname">data</td><td>Буфер данных для отправки. </td></tr>
+    <tr><td class="paramname">fd</td><td>Дескриптор открытого TCP-сокета. </td></tr>
+    <tr><td class="paramname">msg</td><td>Строка, которую нужно передать (без копирования — используется её внутренний буфер).</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true если все данные успешно отправлены, false при ошибке. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true Если переданы все символы строки. </dd>
+<dd>
+false Если ::send() вернул 0 (соединение закрыто) или &lt; 0 (критическая ошибка). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00031">31</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   31</span>                                                  {</div>
-<div class="line"><span class="lineno">   32</span>    std::string message(data);</div>
-<div class="line"><span class="lineno">   33</span>    <span class="keywordtype">size_t</span> sent = 0;</div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">while</span> (sent &lt; message.size()) {</div>
-<div class="line"><span class="lineno">   35</span>        ssize_t n = ::send(fd, message.data() + sent, message.size() - sent, 0);</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (n &lt;= 0)</div>
-<div class="line"><span class="lineno">   37</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   38</span>        sent += <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(n);     <span class="comment">// Borrowed line</span></div>
-<div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   41</span>}</div>
+<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00037">37</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   37</span>                                                   { <span class="comment">//Без const ссылка на временный std::string запрещена стандартом.</span></div>
+<div class="line"><span class="lineno">   38</span>    <span class="keywordtype">size_t</span> sent = 0;                       </div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">while</span> (sent &lt; msg.size()) {            </div>
+<div class="line"><span class="lineno">   40</span>        ssize_t n = ::send(fd,</div>
+<div class="line"><span class="lineno">   41</span>                           msg.c_str() + sent,       <span class="comment">// адрес нужного байта</span></div>
+<div class="line"><span class="lineno">   42</span>                           msg.size()  - sent,      </div>
+<div class="line"><span class="lineno">   43</span>                           0);</div>
+<div class="line"><span class="lineno">   44</span>        <span class="keywordflow">if</span> (n &lt;= 0)                  <span class="comment">// ошибка или разрыв</span></div>
+<div class="line"><span class="lineno">   45</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   46</span>        sent += <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(n);</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;                        </div>
+<div class="line"><span class="lineno">   49</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="aa746ccdea39cf6cd75d161dd1354d5e3" name="aa746ccdea39cf6cd75d161dd1354d5e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa746ccdea39cf6cd75d161dd1354d5e3">&#9670;&#160;</a></span>send_line()</h2>
+<a id="ab9b60d15bad2fee8a7794caccf86efb6" name="ab9b60d15bad2fee8a7794caccf86efb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9b60d15bad2fee8a7794caccf86efb6">&#9670;&#160;</a></span>send_line()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,8 +287,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>sv</em>&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -304,7 +305,7 @@ Functions</h2></td></tr>
 
 <p>Отправить одну строку через сокет. </p>
 <p>Гарантирует наличие символа новой строки '<br  />
-' в конце и отправляет через <a class="el" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14" title="Отправить весь буфер данных через сокет.">send_all()</a>.</p>
+' в конце и отправляет через <a class="el" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19" title="Отправить всю строку целиком по TCP-сокету.">send_all()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fd</td><td>Дескриптор сокета. </td></tr>
@@ -314,21 +315,19 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true если строка успешно отправлена, false при ошибке. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00071">71</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>                                                 {</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">if</span> (sv.empty() || sv.back() != <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><span class="lineno">   73</span>        std::string tmp(sv);</div>
-<div class="line"><span class="lineno">   74</span>        tmp.push_back(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, tmp);</div>
-<div class="line"><span class="lineno">   76</span>    }</div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, sv);</div>
-<div class="line"><span class="lineno">   78</span>}</div>
-<div class="ttc" id="asocket__utils_8h_html_a03a3473dbc76b30e555485f53475de14"><div class="ttname"><a href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a></div><div class="ttdeci">bool send_all(int fd, std::string_view data)</div><div class="ttdoc">Отправить весь буфер данных через сокет.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00031">socket_utils.h:31</a></div></div>
+<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00078">78</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>                                                 {</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">if</span> (message.empty() || message.back() != <span class="charliteral">&#39;\n&#39;</span>) {</div>
+<div class="line"><span class="lineno">   80</span>        message.push_back(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><span class="lineno">   81</span>    }</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, message);</div>
+<div class="line"><span class="lineno">   83</span>}</div>
+<div class="ttc" id="asocket__utils_8h_html_a60ba7f5d1f6b2967888f6780fd231e19"><div class="ttname"><a href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a></div><div class="ttdeci">bool send_all(int fd, const std::string &amp;msg)</div><div class="ttdoc">Отправить всю строку целиком по TCP-сокету.</div><div class="ttdef"><b>Definition</b> <a href="socket__utils_8h_source.html#l00037">socket_utils.h:37</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="ab7030e8ec8c403aa4a278f6034fa4ca5" name="ab7030e8ec8c403aa4a278f6034fa4ca5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7030e8ec8c403aa4a278f6034fa4ca5">&#9670;&#160;</a></span>send_packet()</h2>
+<a id="aaea0027c92f09ab510a66048f11792e8" name="aaea0027c92f09ab510a66048f11792e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaea0027c92f09ab510a66048f11792e8">&#9670;&#160;</a></span>send_packet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -345,8 +344,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string_view&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -363,7 +362,7 @@ Functions</h2></td></tr>
 
 <p>Отправить пакет текстовых данных через сокет. </p>
 <p>Добавляет '<br  />
-' в конец сообщения, если его нет, затем добавляет маркер "*ENDM*\n" и отправляет через <a class="el" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14" title="Отправить весь буфер данных через сокет.">send_all()</a>.</p>
+' в конец сообщения, если его нет, затем добавляет маркер "*ENDM*\n" и отправляет через <a class="el" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19" title="Отправить всю строку целиком по TCP-сокету.">send_all()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fd</td><td>Дескриптор сокета. </td></tr>
@@ -373,14 +372,13 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true если пакет успешно отправлен, false при ошибке. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00053">53</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                     {</div>
-<div class="line"><span class="lineno">   54</span>    std::string message(data);</div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">if</span> (message.empty() || message.back() != <span class="charliteral">&#39;\n&#39;</span>)</div>
-<div class="line"><span class="lineno">   56</span>        message.push_back(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><span class="lineno">   57</span>    message += <span class="stringliteral">&quot;*ENDM*\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="socket__utils_8h.html#a03a3473dbc76b30e555485f53475de14">send_all</a>(fd, message);</div>
-<div class="line"><span class="lineno">   59</span>}</div>
+<p class="definition">Definition at line <a class="el" href="socket__utils_8h_source.html#l00061">61</a> of file <a class="el" href="socket__utils_8h_source.html">socket_utils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                   {</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (message.empty() || message.back() != <span class="charliteral">&#39;\n&#39;</span>)</div>
+<div class="line"><span class="lineno">   63</span>        message.push_back(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><span class="lineno">   64</span>    message += <span class="stringliteral">&quot;*ENDM*\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="socket__utils_8h.html#a60ba7f5d1f6b2967888f6780fd231e19">send_all</a>(fd, message);</div>
+<div class="line"><span class="lineno">   66</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -75,8 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">telegram_auth.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -111,9 +110,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a49e6447c01a81c8af7c206e1538510a0" id="r_a49e6447c01a81c8af7c206e1538510a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="telegram__auth_8h.html#a49e6447c01a81c8af7c206e1538510a0">set_bot_token</a> (const std::string &amp;token)</td></tr>
-<tr class="memdesc:a49e6447c01a81c8af7c206e1538510a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Установить глобальный токен Telegram-бота.  <br /></td></tr>
-<tr class="separator:a49e6447c01a81c8af7c206e1538510a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74d2f6718acaf08c27fb5c975a939cca" id="r_a74d2f6718acaf08c27fb5c975a939cca"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="telegram__auth_8h.html#a74d2f6718acaf08c27fb5c975a939cca">generate_auth_code</a> ()</td></tr>
 <tr class="memdesc:a74d2f6718acaf08c27fb5c975a939cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сгенерировать случайный шестизначный код для авторизации.  <br /></td></tr>
 <tr class="separator:a74d2f6718acaf08c27fb5c975a939cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -126,12 +122,6 @@ Functions</h2></td></tr>
 <tr class="memitem:addc2662ff5190602846d5e93f09aa388" id="r_addc2662ff5190602846d5e93f09aa388"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="telegram__auth_8h.html#addc2662ff5190602846d5e93f09aa388">ensure_bot_token</a> ()</td></tr>
 <tr class="memdesc:addc2662ff5190602846d5e93f09aa388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Убедиться, что глобальный токен бота загружен.  <br /></td></tr>
 <tr class="separator:addc2662ff5190602846d5e93f09aa388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ac261e08f76f7e7de9a1ace511ead28c5" id="r_ac261e08f76f7e7de9a1ace511ead28c5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a></td></tr>
-<tr class="memdesc:ac261e08f76f7e7de9a1ace511ead28c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Глобальный токен Telegram-бота, используется при отправке сообщений.  <br /></td></tr>
-<tr class="separator:ac261e08f76f7e7de9a1ace511ead28c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Интерфейс для Telegram-аутентификации: генерация, отправка и проверка кодов. </p>
@@ -162,31 +152,28 @@ Variables</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00030">30</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   30</span>                        {</div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a>.empty())</div>
-<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>    <span class="keyword">namespace </span>fs = std::filesystem;</div>
-<div class="line"><span class="lineno">   35</span>    fs::path dir = <span class="stringliteral">&quot;SERVER_SETTINGS&quot;</span>;</div>
-<div class="line"><span class="lineno">   36</span>    fs::path file = dir / <span class="stringliteral">&quot;BOT_TOKEN.txt&quot;</span>;</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keyword">namespace </span>fs = std::filesystem;</div>
+<div class="line"><span class="lineno">   32</span>    fs::path dir = <span class="stringliteral">&quot;SERVER_SETTINGS&quot;</span>;</div>
+<div class="line"><span class="lineno">   33</span>    fs::path file = dir / <span class="stringliteral">&quot;BOT_TOKEN.txt&quot;</span>;</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!fs::exists(dir))</div>
+<div class="line"><span class="lineno">   36</span>        fs::create_directories(dir);</div>
 <div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">if</span> (!fs::exists(dir))</div>
-<div class="line"><span class="lineno">   39</span>        fs::create_directories(dir);</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">if</span> (fs::exists(file)) {</div>
-<div class="line"><span class="lineno">   42</span>        std::ifstream in(file);</div>
-<div class="line"><span class="lineno">   43</span>        std::getline(in, <a class="code hl_variable" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a>);</div>
-<div class="line"><span class="lineno">   44</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   45</span>        std::ofstream out(file);</div>
-<div class="line"><span class="lineno">   46</span>    }</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a>.empty()) {</div>
-<div class="line"><span class="lineno">   49</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;[TelegramAuth] Файл &quot;</span> &lt;&lt; file</div>
-<div class="line"><span class="lineno">   50</span>                  &lt;&lt; <span class="stringliteral">&quot; не содержит токен.\n&quot;</span></div>
-<div class="line"><span class="lineno">   51</span>                     <span class="stringliteral">&quot;Добавьте токен в первую строку и перезапустите сервер.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   52</span>        exit(1);</div>
-<div class="line"><span class="lineno">   53</span>    }</div>
-<div class="line"><span class="lineno">   54</span>}</div>
-<div class="ttc" id="atelegram__auth_8h_html_ac261e08f76f7e7de9a1ace511ead28c5"><div class="ttname"><a href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a></div><div class="ttdeci">std::string BOT_TOKEN</div><div class="ttdoc">Глобальный токен Telegram-бота, используется при отправке сообщений.</div></div>
+<div class="line"><span class="lineno">   38</span>    <span class="keywordflow">if</span> (fs::exists(file)) {</div>
+<div class="line"><span class="lineno">   39</span>        std::ifstream in(file);</div>
+<div class="line"><span class="lineno">   40</span>        std::getline(in, <a class="code hl_variable" href="telegram__auth_8cpp.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a>);</div>
+<div class="line"><span class="lineno">   41</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   42</span>        std::ofstream out(file);</div>
+<div class="line"><span class="lineno">   43</span>    }</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="telegram__auth_8cpp.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a>.empty()) {</div>
+<div class="line"><span class="lineno">   46</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;[TelegramAuth] Файл &quot;</span> &lt;&lt; file</div>
+<div class="line"><span class="lineno">   47</span>                  &lt;&lt; <span class="stringliteral">&quot; не содержит токен.\n&quot;</span></div>
+<div class="line"><span class="lineno">   48</span>                     <span class="stringliteral">&quot;Добавьте токен в первую строку и перезапустите сервер.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   49</span>        exit(1);</div>
+<div class="line"><span class="lineno">   50</span>    }</div>
+<div class="line"><span class="lineno">   51</span>}</div>
+<div class="ttc" id="atelegram__auth_8cpp_html_ac261e08f76f7e7de9a1ace511ead28c5"><div class="ttname"><a href="telegram__auth_8cpp.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a></div><div class="ttdeci">std::string BOT_TOKEN</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00013">telegram_auth.cpp:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -213,7 +200,7 @@ Variables</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   17</span>                               {</div>
 <div class="line"><span class="lineno">   18</span>    <span class="keyword">static</span> <span class="keywordtype">bool</span> seeded = <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">if</span> (!seeded) {</div>
-<div class="line"><span class="lineno">   20</span>        std::srand(<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span><span class="keyword">&gt;</span>(std::time(<span class="keyword">nullptr</span>)));</div>
+<div class="line"><span class="lineno">   20</span>        std::srand(<span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(std::time(<span class="keyword">nullptr</span>)));</div>
 <div class="line"><span class="lineno">   21</span>        seeded = <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   22</span>    }</div>
 <div class="line"><span class="lineno">   23</span> </div>
@@ -262,66 +249,19 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true, если сообщение успешно отправлено и код сохранён; false в случае ошибки при вызове curl или неверного ответа API. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00056">56</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                                         {</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="telegram__auth_8cpp.html#addc2662ff5190602846d5e93f09aa388">ensure_bot_token</a>();</div>
-<div class="line"><span class="lineno">   58</span>    std::string url = <span class="stringliteral">&quot;https://api.telegram.org/bot&quot;</span> + <a class="code hl_variable" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a> + <span class="stringliteral">&quot;/sendMessage&quot;</span>;</div>
-<div class="line"><span class="lineno">   59</span>    std::string cmd = <span class="stringliteral">&quot;curl -s -X POST \&quot;&quot;</span> + url +</div>
-<div class="line"><span class="lineno">   60</span>                      <span class="stringliteral">&quot;\&quot;&quot;</span></div>
-<div class="line"><span class="lineno">   61</span>                      <span class="stringliteral">&quot; -d chat_id=&quot;</span> +</div>
-<div class="line"><span class="lineno">   62</span>                      chat_id + <span class="stringliteral">&quot; -d text=&#39;Your authentication code is: &quot;</span> + code + <span class="stringliteral">&quot;&#39;&quot;</span>;</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>    <span class="comment">// BEGIN: Borrowed code (executing curl command and reading response)</span></div>
-<div class="line"><span class="lineno">   65</span>FILE* pipe = popen(cmd.c_str(), <span class="stringliteral">&quot;r&quot;</span>);</div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">if</span> (!pipe)</div>
-<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   68</span><span class="comment">// END: Borrowed code (executing curl command and reading response)</span></div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    std::string response;</div>
-<div class="line"><span class="lineno">   71</span>    <span class="keywordtype">char</span> buf[256];</div>
-<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">while</span> (fgets(buf, <span class="keyword">sizeof</span>(buf), pipe))</div>
-<div class="line"><span class="lineno">   73</span>        response += buf;</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordtype">int</span> status = pclose(pipe);</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span> (status == 0 &amp;&amp; response.find(<span class="stringliteral">&quot;\&quot;ok\&quot;:true&quot;</span>) != std::string::npos) {</div>
-<div class="line"><span class="lineno">   77</span>        auth_codes[chat_id] = code;</div>
-<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   79</span>    }</div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   81</span>}</div>
-<div class="ttc" id="atelegram__auth_8cpp_html_addc2662ff5190602846d5e93f09aa388"><div class="ttname"><a href="telegram__auth_8cpp.html#addc2662ff5190602846d5e93f09aa388">ensure_bot_token</a></div><div class="ttdeci">void ensure_bot_token()</div><div class="ttdoc">Убедиться, что глобальный токен бота загружен.</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00030">telegram_auth.cpp:30</a></div></div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a49e6447c01a81c8af7c206e1538510a0" name="a49e6447c01a81c8af7c206e1538510a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49e6447c01a81c8af7c206e1538510a0">&#9670;&#160;</a></span>set_bot_token()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void set_bot_token </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>token</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Установить глобальный токен Telegram-бота. </p>
-<p>Сохраняет переданный <code>token</code> для последующих HTTP-запросов.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">token</td><td>Строка токена, выданная BotFather. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00013">13</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>                                           {</div>
-<div class="line"><span class="lineno">   14</span>    <a class="code hl_variable" href="telegram__auth_8h.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a> = token;</div>
-<div class="line"><span class="lineno">   15</span>}</div>
+<p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00053">53</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                                         {</div>
+<div class="line"><span class="lineno">   54</span>    cpr::Response response = cpr::Post(</div>
+<div class="line"><span class="lineno">   55</span>        cpr::Url{<span class="stringliteral">&quot;https://api.telegram.org/bot&quot;</span> + <a class="code hl_variable" href="telegram__auth_8cpp.html#ac261e08f76f7e7de9a1ace511ead28c5">BOT_TOKEN</a> + <span class="stringliteral">&quot;/sendMessage&quot;</span>},</div>
+<div class="line"><span class="lineno">   56</span>        cpr::Payload{{<span class="stringliteral">&quot;chat_id&quot;</span>, chat_id}, {<span class="stringliteral">&quot;text&quot;</span>, <span class="stringliteral">&quot;Your code is: &quot;</span> + code}}</div>
+<div class="line"><span class="lineno">   57</span>    );</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span> (response.text.find(<span class="stringliteral">&quot;\&quot;ok\&quot;:true&quot;</span>) != std::string::npos) {</div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_variable" href="telegram__auth_8cpp.html#a5ae22537f50327cb47da0b11b774ad87">auth_codes</a>[chat_id] = code;</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   61</span>    }</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   63</span>}</div>
+<div class="ttc" id="atelegram__auth_8cpp_html_a5ae22537f50327cb47da0b11b774ad87"><div class="ttname"><a href="telegram__auth_8cpp.html#a5ae22537f50327cb47da0b11b774ad87">auth_codes</a></div><div class="ttdeci">std::map&lt; std::string, std::string &gt; auth_codes</div><div class="ttdef"><b>Definition</b> <a href="telegram__auth_8cpp_source.html#l00015">telegram_auth.cpp:15</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -362,37 +302,11 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true, если код совпадает с ранее сгенерированным; иначе false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00083">83</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   83</span>                                                                       {</div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">return</span> auth_codes.count(chat_id) &amp;&amp; auth_codes[chat_id] == code;</div>
-<div class="line"><span class="lineno">   85</span>}</div>
+<p class="definition">Definition at line <a class="el" href="telegram__auth_8cpp_source.html#l00065">65</a> of file <a class="el" href="telegram__auth_8cpp_source.html">telegram_auth.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>                                                                       {</div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="telegram__auth_8cpp.html#a5ae22537f50327cb47da0b11b774ad87">auth_codes</a>.count(chat_id) &amp;&amp; <a class="code hl_variable" href="telegram__auth_8cpp.html#a5ae22537f50327cb47da0b11b774ad87">auth_codes</a>[chat_id] == code;</div>
+<div class="line"><span class="lineno">   67</span>}</div>
 </div><!-- fragment -->
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ac261e08f76f7e7de9a1ace511ead28c5" name="ac261e08f76f7e7de9a1ace511ead28c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac261e08f76f7e7de9a1ace511ead28c5">&#9670;&#160;</a></span>BOT_TOKEN</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string BOT_TOKEN</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Глобальный токен Telegram-бота, используется при отправке сообщений. </p>
-<p>Должен быть установлен до вызова <a class="el" href="telegram__auth_8h.html#ad0aadb96417fb892ae3cdaf3e4b24649" title="Отправить код авторизации через Telegram Bot API.">send_telegram_code()</a>. </p>
-
 </div>
 </div>
 </div><!-- contents -->

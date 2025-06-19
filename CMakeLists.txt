@@ -1,46 +1,77 @@
 cmake_minimum_required(VERSION 3.16)
-project(console_messenger CXX)
+project(console_messenger LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 17)
+# ── C++ standard ───────────────────────────────────────────────────────────────
+set(CMAKE_CXX_STANDARD      20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS   OFF)
+set(CMAKE_CXX_EXTENSIONS    OFF)
+add_compile_options(-Wall -Wextra -Wpedantic)
 
-include_directories(${PROJECT_SOURCE_DIR})
+# ── External dependencies ───────────────────────────────────────────────────────
+find_package(CURL    REQUIRED)       # system libcurl
+find_package(Threads REQUIRED)       # portable threading
 
-# ── приложения ───────────────────────────────────────────────────────────────
-add_executable(console_server
-    server/main_server.cpp
-    server/history.cpp
-    server/telegram_auth.cpp)
-find_package(CURL REQUIRED)
-target_link_libraries(console_server PRIVATE CURL::libcurl pthread)
+# Force cpr to use system curl/libcurl rather than building its own
+set(CPR_USE_SYSTEM_CURL    ON CACHE BOOL "" FORCE)
+set(CPR_USE_SYSTEM_LIBCURL ON CACHE BOOL "" FORCE)
 
-add_executable(console_client client/main_client.cpp)
-target_link_libraries(console_client PRIVATE pthread)
+# cpr: place the repo under extern/cpr, then:
+#   git submodule add https://github.com/libcpr/cpr.git extern/cpr
+#   git submodule update --init --recursive
+add_subdirectory(extern/cpr)         # provides target cpr::cpr
 
-# ── библиотека с логикой для тестов ──────────────────────────────────────────
+# ── Core library ───────────────────────────────────────────────────────────────
 add_library(project_libs STATIC
     server/history.cpp
-    server/telegram_auth.cpp)
-target_link_libraries(project_libs PUBLIC CURL::libcurl pthread)
+    server/telegram_auth.cpp
+)
+target_link_libraries(project_libs
+    PUBLIC
+        CURL::libcurl
+        cpr::cpr
+        Threads::Threads
+)
+target_include_directories(project_libs
+    PUBLIC
+        ${PROJECT_SOURCE_DIR}
+        ${PROJECT_SOURCE_DIR}/server
+        ${PROJECT_SOURCE_DIR}/client
+)
 
-# ── doctest ──────────────────────────────────────────────────────────────────
+
+# ── Executables ────────────────────────────────────────────────────────────────
+add_executable(console_server
+    server/main_server.cpp
+)
+target_link_libraries(console_server PRIVATE project_libs)
+
+add_executable(console_client
+    client/main_client.cpp
+)
+target_link_libraries(console_client PRIVATE project_libs)
+
+# ── doctest (unit testing) ─────────────────────────────────────────────────────
 include(FetchContent)
 FetchContent_Declare(
     doctest
     GIT_REPOSITORY https://github.com/doctest/doctest.git
-    GIT_TAG v2.4.11)
+    GIT_TAG        v2.4.11
+)
+set(DOCTEST_WITH_MAIN OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(doctest)
 
-# ── unit-tests ───────────────────────────────────────────────────────────────
 enable_testing()
 
 add_executable(run_tests
-    tests/test_history.cpp          # <-- содержит main()
+    tests/test_history.cpp
     tests/test_telegram_auth.cpp
     tests/test_main_client.cpp
-    tests/test_main_server.cpp)
+    tests/test_main_server.cpp
+)
 target_link_libraries(run_tests
-    PRIVATE project_libs doctest::doctest pthread)
-
+    PRIVATE
+        project_libs
+        doctest::doctest
+        Threads::Threads
+)
 add_test(NAME unit_tests COMMAND run_tests)

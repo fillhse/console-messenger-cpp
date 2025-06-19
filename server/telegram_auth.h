@@ -12,21 +12,6 @@
 
 #include <string>
 
-/// Глобальный токен Telegram-бота, используется при отправке сообщений.
-/**
- * Должен быть установлен до вызова send_telegram_code().
- */
-extern std::string BOT_TOKEN;
-
-/**
- * @brief Установить глобальный токен Telegram-бота.
- *
- * Сохраняет переданный @p token для последующих HTTP-запросов.
- *
- * @param token Строка токена, выданная BotFather.
- */
-void set_bot_token(const std::string& token);
-
 /**
  * @brief Сгенерировать случайный шестизначный код для авторизации.
  *
