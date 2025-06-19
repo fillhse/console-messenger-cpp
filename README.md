@@ -68,6 +68,7 @@ git clone https://github.com/fillhse/console-messenger-cpp.git
 cd console-messenger-cpp
 git submodule update --init --recursive      # cpr
 sudo apt-get update
+sudo apt-get install libssl-dev
 sudo apt-get install libcurl4-openssl-dev
 ```
 
@@ -209,5 +210,22 @@ If you need PDF output:
 - **LaTeX sources & PDF:** `docs/latex/`  
 
 ---
+
+📦 Dependencies
+This project uses the external library cpr for handling HTTP requests (used, for example, for Telegram Bot API communication).
+
+It is included as a Git submodule in the extern/cpr directory.
+
+To initialize the submodule, run:
+
+  ```bash
+git submodule update --init --recursive
+Make sure libcurl and OpenSSL are installed on your system.
+   ```
+
+📄 License Note
+The cpr library is open-source and distributed under the MIT License.
+Please make sure to comply with the terms of its license if you redistribute or publish your project.
+
 
 *Licensed under MIT.*
